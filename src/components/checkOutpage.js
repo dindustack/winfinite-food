@@ -44,7 +44,7 @@ export class CheckOutPage extends Component {
       email: email,
       amount: amount,
       currency: "NGN",
-      ref: " " + Math.floor(Math.random() * 1000000000 + 1),
+      ref: "WNF" + Math.floor(Math.random() * 1000000000 + 1),
       metadata: {
         custom_fields: [
           {
