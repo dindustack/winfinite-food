@@ -1,26 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Navigation from './components/navigation';
+import Footer from './components/footer';
+import HomePage from './components/HomePage';
+import Details  from './components/Details';
+import recipeDetails  from './components/recipesDetails';
+import AboutPage from './components/aboutPage';
+import RecipePage from './components/recipePage';
+import ContactPage from './components/contactPage';
+import { DataProvider } from './components/productsContext';
+import { InfoProvider } from './components/recipesContext';
+import StockistPage from './components/stockistPage';
+// import FlourlessRecipePage from './components/recipes/flourlessPage';
+import ShoppingCartPage from './components/shoppingCartpage';
+import CheckOutPage from './components/checkOutpage';
 
-function App() {
+
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataProvider>
+      <InfoProvider>
+
+    <Router>
+    
+        {/* --------- Navbar ------- */}
+        <Navigation />
+
+      
+        <Switch>
+        <Route exact path="/" component={HomePage}  /> 
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/recipes" component={RecipePage} />
+        <Route exact path="/stockist" component={StockistPage} />
+        <Route exact path="/contact" component={ContactPage} />
+        {/* <Route exact path="/flourless-double-chocolate-banana-bread" component={FlourlessRecipePage} /> */}
+        <Route exact path="/cart" component={ShoppingCartPage} />
+        <Route exact path="/checkout" component={CheckOutPage} />
+        <Route exact path="/:id" component={Details} /> 
+        <Route exact path="/recipes/:id" component={recipeDetails} /> 
+        </Switch>
+
+        
+      
+        <Footer />
+        
+    </Router>
+    </InfoProvider>
+    </DataProvider>
   );
 }
 
-export default App;
+
+
+
+
+
+
+
+
