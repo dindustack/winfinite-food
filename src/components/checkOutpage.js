@@ -107,7 +107,15 @@ export class CheckOutPage extends Component {
             <div className="row">
               <div className="col-12 col-md-7">
                 <Formik validationSchema={schema} onSubmit={console.log}>
-                  {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
+                  {({
+                    handleSubmit,
+                    handleChange,
+                    handleBlur,
+                    values,
+                    touched,
+                    isValid,
+                    errors,
+                  }) => (
                     <Form noValidate onSubmit={handleSubmit}>
                       {/* -- Heading -- */}
                       <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
@@ -146,8 +154,15 @@ export class CheckOutPage extends Component {
                         <div className="col-12 col-md-6">
                           <Form.Group className="mb-3" id="email">
                             <Form.Label>Email *</Form.Label>
-                            <Form.Control type="email" placeholder="you@example.com" onChange={handleChange} isInvalid={!!errors.email} />
-                            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                            <Form.Control
+                              type="email"
+                              placeholder="you@example.com"
+                              onChange={handleChange}
+                              isInvalid={!!errors.email}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                              {errors.email}
+                            </Form.Control.Feedback>
                           </Form.Group>
                         </div>
 
@@ -162,7 +177,9 @@ export class CheckOutPage extends Component {
                               isInvalid={!!errors.phoneNumber}
                             />
 
-                            <Form.Control.Feedback type="invalid">{errors.phoneNumber}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid">
+                              {errors.phoneNumber}
+                            </Form.Control.Feedback>
                           </Form.Group>
                         </div>
 
@@ -178,7 +195,9 @@ export class CheckOutPage extends Component {
                               onChange={handleChange}
                               isInvalid={!!errors.address}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.address}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid">
+                              {errors.address}
+                            </Form.Control.Feedback>
                           </Form.Group>
                         </div>
                       </div>
@@ -215,7 +234,9 @@ export class CheckOutPage extends Component {
                 <div className="col-12 col-md-9 list-group list-group-sm mb-2">
                   <div className="list-group-item">
                     {/* <!-- Label --> */}
-                    <label className="custom-control-label font-size-sm text-body text-nowrap" htmlFor="checkoutPaymentCard">
+                    <label
+                      className="custom-control-label font-size-sm text-body text-nowrap"
+                      htmlFor="checkoutPaymentCard">
                       Credit Card <img className="ml-2" src={card} alt="card-avatar" />{" "}
                       <img className="ml-2" src={paystack} alt="card-avatar" width="16px" />
                     </label>
