@@ -30,23 +30,19 @@ export default function App() {
     
         {/* --------- Navbar ------- */}
         <Navigation />
-
       
         <Switch>
         <Route exact path="/" component={HomePage}  /> 
-        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/about" component={AboutPage}  />
         <Route exact path="/recipes" component={RecipePage} />
         <Route exact path="/stockist" component={StockistPage} />
         <Route exact path="/contact" component={ContactPage} />
-        {/* <Route exact path="/flourless-double-chocolate-banana-bread" component={FlourlessRecipePage} /> */}
         <Route exact path="/cart" component={ShoppingCartPage} />
         <Route exact path="/checkout" component={CheckOutPage} />
         <Route exact path="/:id" component={Details} /> 
         <Route exact path="/recipes/:id" component={recipeDetails} /> 
         </Switch>
 
-        
-      
         <Footer />
         
     </Router>
@@ -54,6 +50,11 @@ export default function App() {
     </DataProvider>
   );
 }
+
+
+
+
+
 
 
 

@@ -13,7 +13,7 @@ export class DataProvider extends Component {
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Chocolate",
                 "weight": "340g",
-                "price": 1700,
+                "price": 170000,
                 "content": {
                     "description":{
                         "make": "This Chocolate Nuts n Seeds butter is one of our favourite, made with the perfect blend of smooth nuts n Seeds and premium cocoa powder creating the best combo spread. ",
@@ -34,7 +34,7 @@ export class DataProvider extends Component {
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Smooth",
                 "weight": "340g",
-                "price": 1700,
+                "price": 170000,
                 "content": {
                     "description":{
                         "make": "Not your average nut butter! Our lightly roasted smooth, made from Nigeria's finest nuts and seeds, blended in small batches to create that extra fluidity deliciousness.",
@@ -56,7 +56,7 @@ export class DataProvider extends Component {
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Tiger Boost",
                 "weight": "340g",
-                "price": 1700,
+                "price": 170000,
                 "content": {
                     "description":{
                         "make": "Our Tigerboost nuts seeds butter is formulated as the perfect smoothie butter, made with the classic blend of smooth nuts n Seeds, boosted with Tigernut to make you look and feel your best. Mother earth best kept secret is just a spoonful away!",
@@ -77,7 +77,7 @@ export class DataProvider extends Component {
                 "brand": "Healthy Mix",
                 "heading": "Golden Hibiscus Mix",
                 "weight": "200g",
-                "price": 800,
+                "price": 80000,
                 "content": {
                     "description":{
                         "make": " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
@@ -98,7 +98,7 @@ export class DataProvider extends Component {
                 "brand": "Healthy Mix",
                 "heading": "Hibiscus Mix",
                 "weight": "200g",
-                "price": 800,
+                "price": 80000,
                 "content": {
                     "description":{
                         "make": " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
@@ -119,7 +119,7 @@ export class DataProvider extends Component {
                 "brand": "Healthy Mix",
                 "heading": "Golden Hibiscus Mix",
                 "weight": "435g",
-                "price": 1700,
+                "price": 170000,
                 "content": {
                     "description":{
                         "make": " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
@@ -140,7 +140,7 @@ export class DataProvider extends Component {
                 "brand": "Healthy Mix",
                 "heading": "Hibiscus Mix",
                 "weight": "435g",
-                "price": 1700,
+                "price": 170000,
                 "content": {
                     "description":{
                         "make": " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
@@ -161,7 +161,7 @@ export class DataProvider extends Component {
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Chocolate",
                 "weight": "30g",
-                "price": 10500,
+                "price": 1050000,
                 "content": {
                     "description":{
                         "make": "This Chocolate Nuts n Seeds butter is one of our favourite, made with the perfect blend of smooth nuts n Seeds and premium cocoa powder creating the best combo spread. ",
@@ -184,7 +184,7 @@ export class DataProvider extends Component {
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Smooth",
                 "weight": "30g",
-                "price": 10500,
+                "price": 1050000,
                 "content": {
                     "description":{
                         "make": "Not your average nut butter! Our lightly roasted smooth, made from Nigeria's finest nuts and seeds, blended in small batches to create that extra fluidity deliciousness.",
@@ -205,7 +205,7 @@ export class DataProvider extends Component {
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Tiger Boost",
                 "weight": "30g",
-                "price": 10500,
+                "price": 1050000,
                 "content": {
                     "description":{
                         "make": "Our Tigerboost nuts seeds butter is formulated as the perfect smoothie butter, made with the classic blend of smooth nuts n Seeds, boosted with Tigernut to make you look and feel your best. Mother earth best kept secret is just a spoonful away!",

@@ -17,6 +17,11 @@ const schema = yup.object({
   phoneNumber: yup.string().required(),
 });
 
+function removeKobo(amt) {
+  let newAmt = amt.toString();
+  return newAmt.slice(0, -1);
+}
+
 export class CheckOutPage extends Component {
   static contextType = DataContext;
   super(props) {
@@ -128,8 +133,11 @@ export class CheckOutPage extends Component {
                             <Form.Label>First Name *</Form.Label>
                             <Form.Control
                               type="text"
+                              name="firstname"
                               placeholder="Enter your first name"
                               onChange={handleChange}
+                              onBlur={handleBlur}
+                              // value={values.name}
                               isValid={touched.firstName && !errors.firstName}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -142,9 +150,12 @@ export class CheckOutPage extends Component {
                             <Form.Label>Last Name *</Form.Label>
                             <Form.Control
                               type="text"
+                              name="lastname"
                               placeholder="Enter your last name"
                               onChange={handleChange}
                               isValid={touched.lastName && !errors.lastName}
+                              onBlur={handleBlur}
+                              // value={values.name}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                           </Form.Group>
@@ -152,13 +163,16 @@ export class CheckOutPage extends Component {
 
                         {/* --  Email -- */}
                         <div className="col-12 col-md-6">
-                          <Form.Group className="mb-3" id="email">
+                          <Form.Group className="mb-3">
                             <Form.Label>Email *</Form.Label>
                             <Form.Control
                               type="email"
+                              name="email"
                               placeholder="you@example.com"
                               onChange={handleChange}
                               isInvalid={!!errors.email}
+                              onBlur={handleBlur}
+                              // value={values.email}
                             />
                             <Form.Control.Feedback type="invalid">
                               {errors.email}
@@ -171,10 +185,13 @@ export class CheckOutPage extends Component {
                           <Form.Group className="mb-3">
                             <Form.Label>Phone Number *</Form.Label>
                             <Form.Control
-                              type="text"
+                              type="number"
+                              name="phone"
                               placeholder="Enter your phone number"
                               onChange={handleChange}
                               isInvalid={!!errors.phoneNumber}
+                              onBlur={handleBlur}
+                              // value={values.phone}
                             />
 
                             <Form.Control.Feedback type="invalid">
@@ -190,10 +207,13 @@ export class CheckOutPage extends Component {
                             <Form.Control
                               as="textarea"
                               type="text"
+                              name="address"
                               rows="3"
                               placeholder="Enter your address..."
                               onChange={handleChange}
                               isInvalid={!!errors.address}
+                              onBlur={handleBlur}
+                              // value={values.address}
                             />
                             <Form.Control.Feedback type="invalid">
                               {errors.address}
@@ -212,7 +232,34 @@ export class CheckOutPage extends Component {
 
                 {/* !-- Divider -- */}
                 <hr className="my-5" />
+                {/* ------- Checkout items --------- */}
+                <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+                  {cart.map((item) => (
+                    <li class="list-group-item" key={item._id}>
+                      <div class="row align-items-center">
+                        <div class="col-4">
+                          {/* -- Product Image -- */}
+                          <Link to="/:id">
+                            <img src={item.src} alt="..." class="img-fluid" />
+                          </Link>
+                        </div>
+                        <div class="col">
+                          {/* -- Product description -- */}
+                          <p class="mb-4 small font-weight-bold">
+                            <Link to="/:id" class="heading text-decoration-none h5 text-blue">
+                              {item.title}
+                            </Link>{" "}
+                            <br />
+                            <span class="text-muted">{item.price * item.count}</span>
+                          </p>
 
+                          {/* -- Text -- */}
+                          <div class="font-size-sm text-muted">Quantity: {item.count}</div>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
                 {/* -- Card -- */}
                 <div className="card mb-5 bg-light">
                   <div className="card-body">
@@ -220,7 +267,7 @@ export class CheckOutPage extends Component {
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>Total</span>{" "}
                         <span id="amount" className="ml-auto">
-                          &#8358;{subtotal}
+                          &#8358;{removeKobo(subtotal)}
                         </span>
                       </li>
                     </ul>
@@ -248,7 +295,7 @@ export class CheckOutPage extends Component {
                   className="btn btn-block btn-dark mb-5"
                   onClick={() => {
                     if (this.isLoaded) {
-                      this.payNow();
+                      this.payNow("silvia@mds.com", subtotal);
                     } else {
                       alert(
                         "Unable to pay now. Make sure you're connected to the internet and don't have ADBlock turned on for this website."
