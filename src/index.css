@@ -68,22 +68,6 @@ li.nav-item > a.active {
   border-radius: 63% 37% 30% 70%/50% 45% 55% 50%;
 }
 
-@keyframes loading-animation{
-  0% {
-    background-color: #fff;
-  }
-  50% {
-    background-color: #ccc;
-  }
-  100% {
-    background-color: #fff;
-  }
-} 
-
-placeholder{
-  animation: loading-animation 1s infinite;
-}
-
 ul.ingredients {
   padding: 30px;
   list-style: none;
