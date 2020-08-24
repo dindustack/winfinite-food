@@ -19,7 +19,7 @@ const schema = yup.object({
 
 function removeKobo(amt) {
   let newAmt = amt.toString();
-  return newAmt.slice(0, -1);
+  return newAmt.slice(0, -2);
 }
 
 export class CheckOutPage extends Component {
@@ -250,7 +250,7 @@ export class CheckOutPage extends Component {
                               {item.title}
                             </Link>{" "}
                             <br />
-                            <span class="text-muted">{item.price * item.count}</span>
+                            <span class="text-muted">{removeKobo(item.price * item.count)}</span>
                           </p>
 
                           {/* -- Text -- */}

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
-import {LazyLoadImage} from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Jumbotron from "react-bootstrap/Jumbotron";
 import "../placeholder.css";
 import "../bootstrap.min.css";
 import "../index.css";
@@ -12,18 +13,20 @@ function removeKobo(amt) {
   return newAmt.slice(0, -2);
 }
 
+
 export class HomePage extends Component {
   static contextType = DataContext;
 
   render() {
     const { products } = this.context;
-    
+
     return (
       <React.Fragment>
         {/* ------------Welcome Image ------------ */}
-        <section>
-          <div className="w-100 bg-cover mt-5 mt-md-0 text-center">
-            <img src={cover} className="img-fluid" alt="product_avatar" />
+        <section className="py-5">
+          <div className="w-100 mt-md-0 text-center">
+          <img src={cover} className="img-fluid cover-fill" alt="product_avatar" />
+
           </div>
         </section>
 
@@ -42,14 +45,14 @@ export class HomePage extends Component {
                   <div className="card mb-5 shadow p-2">
                     <Link to={`/${product._id}`}>
                       <LazyLoadImage
-                        src={product.src} 
-                        className="card-img" 
-                        alt={product.title} 
+                        src={product.src}
+                        className="card-img"
+                        alt={product.title}
                         effect="blur"
                         placeholderSrc={product.src}
                       />
                     </Link>
-                    
+
                     <div className="card-body px-0">
                       <div className="mb-3">
                         <Link to={`/${product._id}`} className="text-body text-decoration-none">
@@ -58,7 +61,9 @@ export class HomePage extends Component {
                       </div>
 
                       <div className="d-flex justify-content-between">
-                        <h6 className="text-orange font-weight-bold">&#8358;{removeKobo(product.price)}</h6>
+                        <h6 className="text-orange font-weight-bold">
+                          &#8358;{removeKobo(product.price)}
+                        </h6>
 
                         <div>
                           <button

@@ -6,6 +6,11 @@ import "../index.css";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 
+function removeKobo(amt) {
+  let newAmt = amt.toString();
+  return newAmt.slice(0, -2);
+}
+
 export class ShoppingCartPage extends Component {
   static contextType = DataContext;
 
@@ -70,7 +75,7 @@ export class ShoppingCartPage extends Component {
                               {item.title}
                             </Link>{" "}
                             <span className="ml-auto text-orange font-weight-bold">
-                              &#8358;{item.price * item.count}
+                              &#8358;{removeKobo(item.price * item.count)}
                             </span>
                           </div>
 
@@ -135,14 +140,14 @@ export class ShoppingCartPage extends Component {
                     <ul className="list-group list-group-md list-group-flush-x">
                       <li className="list-group-item d-flex">
                         <span>Subtotal</span>{" "}
-                        <span className="ml-auto small">&#8358;{subtotal}</span>
+                        <span className="ml-auto small">&#8358;{removeKobo(subtotal)}</span>
                       </li>
                       <li className="list-group-item d-flex">
                         <span>Delivery</span> <span className="ml-auto small">&#8358;0</span>
                       </li>
                       <li className="list-group-item d-flex large font-weight-bold">
                         <span>Total</span>{" "}
-                        <span className="ml-auto font-size-sm">&#8358;{total + subtotal}</span>
+                        <span className="ml-auto font-size-sm">&#8358;{removeKobo(total + subtotal)}</span>
                       </li>
                       <li className="list-group-item small text-center text-muted">
                         Delivery cost calculated at Checkout *

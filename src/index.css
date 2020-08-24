@@ -5,10 +5,12 @@
 }
 
 .bg-cover {
+  background-image: url("./assets/img/products.png");
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;
 }
+
 
 .nav-link:hover {
   color: #ff6f61 !important;
@@ -54,6 +56,9 @@ li.nav-item > a.active {
   display: block;
 }
 
+.welcome-image{
+  background-image: url(./assets/img/products.png);
+}
 .lift {
   position: absolute;
 }

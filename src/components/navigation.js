@@ -1,28 +1,75 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { DataContext } from "./productsContext";
+import Modal from 'react-bootstrap/Modal';
+// import RightSideModal from "./CartModal";
 import "../bootstrap.min.css";
 import "../index.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import logo from "../assets/img/winfinite-logo.png";
+
+// function RightSideModal(props) {
+//   return (
+//     <Modal
+//       {...props}
+//       size="lg"
+//       aria-labelledby="contained-modal-title-vcenter"
+//       centered
+//     >
+//       <Modal.Header closeButton>
+//         <Modal.Title id="contained-modal-title-vcenter">
+//           Modal heading
+//         </Modal.Title>
+//       </Modal.Header>
+//       <Modal.Body>
+//         <h4>Centered Modal</h4>
+//         <p>
+//           Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+//           dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+//           consectetur ac, vestibulum at eros.
+//         </p>
+//       </Modal.Body>
+//       {/* <Modal.Footer>
+//         <Button onClick={props.onHide}>Close</Button>
+//       </Modal.Footer> */}
+//     </Modal>
+//   );
+// }
+
+
 export class Navigation extends Component {
   static contextType = DataContext;
 
+
   render() {
     const { cart } = this.context;
+    // const {modalShow, setModalShow} = React.useState(false);
+
     return (
       <Navbar collapseOnSelect expand="lg" bg="white" fixed="top" className="py-md-2 mb-5">
         <div className="container">
-          {/* ========================= Toggler ============================== */}
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          {/*  ======================== End Toggler ============================== */}
-
           {/* ========= Brand ========== */}
           <Link to="/" className="navbar-brand text-dark">
             <img src={logo} alt="winfinite-logo" width="50" height="50" className="img-fluid" />
           </Link>
           {/* ========= Brand End========== */}
+
+          <Link to="/cart" className="nav-link" >
+            <span className="d-md-none">
+              <svg viewBox="0 0 20 20" fill="#3e4095" width="26px">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+              <span className="badge bg-orange rounded-circle lift small">{cart.length}</span>
+            </span>
+          </Link>
+
+          {/* <RightSideModal show={modalShow} onHide={() => setModalShow(false)} /> */}
+
+          {/* ========================= Toggler ============================== */}
+
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          {/*  ======================== End Toggler ============================== */}
 
           {/* ========================= Collapse ============================== */}
 
@@ -32,26 +79,40 @@ export class Navigation extends Component {
               <ul className="navbar-nav mr-auto">
                 {/* -------------------Home --------------- */}
                 <li className="nav-item">
-                  <NavLink exact to="/" className="nav-link font-weight-bold " aria-current="page" activeClassName="active">
+                  <NavLink
+                    exact
+                    to="/"
+                    className="nav-link font-weight-bold "
+                    aria-current="page"
+                    activeClassName="active">
                     Shop
                   </NavLink>
                 </li>
 
                 {/* -a------------------About --------------- */}
                 <li className="nav-item ">
-                  <NavLink to="/about" className="nav-link font-weight-bold ml-md-5" activeClassName="active" >
+                  <NavLink
+                    to="/about"
+                    className="nav-link font-weight-bold ml-md-5"
+                    activeClassName="active">
                     About
                   </NavLink>
                 </li>
                 {/* -------------------Recipe --------------- */}
                 <li className="nav-item ">
-                  <NavLink to="/recipes" className="nav-link font-weight-bold ml-md-5" activeClassName="active">
+                  <NavLink
+                    to="/recipes"
+                    className="nav-link font-weight-bold ml-md-5"
+                    activeClassName="active">
                     Recipes
                   </NavLink>
                 </li>
                 {/* -------------------About --------------- */}
                 <li className="nav-item ">
-                  <NavLink to="/stockist" className="nav-link font-weight-bold ml-md-5" activeClassName="active">
+                  <NavLink
+                    to="/stockist"
+                    className="nav-link font-weight-bold ml-md-5"
+                    activeClassName="active">
                     Stockist
                   </NavLink>
                 </li>
@@ -70,7 +131,7 @@ export class Navigation extends Component {
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link to="/cart" className="nav-link">
-                    <span>
+                    <span className="">
                       <svg viewBox="0 0 20 20" fill="#3e4095" width="26px">
                         <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                       </svg>
