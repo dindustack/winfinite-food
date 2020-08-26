@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import CartModal from "./CartModal";
 import { DataContext } from "./productsContext";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Jumbotron from "react-bootstrap/Jumbotron";
+import Modal from "react-bootstrap/Modal";
 import "../placeholder.css";
 import "../bootstrap.min.css";
 import "../index.css";
@@ -14,12 +15,24 @@ function removeKobo(amt) {
 }
 
 
+
 export class HomePage extends Component {
   static contextType = DataContext;
+  constructor(props) 
+  {super(props) 
+  this.state = { modalShow: false }
+  }
+
+  handleClick = () => {
+    this.setState({ modalShow: true })
+  }
+
 
   render() {
     const { products } = this.context;
 
+    
+  
     return (
       <React.Fragment>
         {/* ------------Welcome Image ------------ */}
@@ -69,7 +82,9 @@ export class HomePage extends Component {
                           <button
                             type="submit"
                             className="btn btn-sm btn-orange text-white mb-2"
-                            onClick={() => this.context.addCart(product._id)}>
+                            onClick={() => this.context.addCart(product._id)
+                                    
+                            }>
                             Add to Cart{" "}
                             <svg
                               fill="none"
@@ -85,6 +100,10 @@ export class HomePage extends Component {
                               />
                             </svg>
                           </button>
+                          <button onClick={this.handleClick}>Show Modal</button>
+                          <CartModal 
+                          show={this.state.modalShow}  
+                          onHide={() => this.setState({ modalShow : false })}/>
                         </div>
                       </div>
                     </div>
