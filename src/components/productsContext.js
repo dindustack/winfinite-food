@@ -8,7 +8,7 @@ export class DataProvider extends Component {
                
             {
                 "_id": "chocolate",
-                "title": "Chocolate nuts 'n' seed butter",
+                "title": "Chocolate nuts 'n' seeds butter",
                 "src": require("../assets/img/chocolate.png"),
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Chocolate",
@@ -29,7 +29,7 @@ export class DataProvider extends Component {
             // Smooth
             {
                 "_id": "smooth",
-                "title": "Smooth nuts 'n' seed butter",
+                "title": "Smooth nuts 'n' seeds butter",
                 "src": require("../assets/img/smooth.png"),
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Smooth",
@@ -51,7 +51,7 @@ export class DataProvider extends Component {
             // TigerBoost
             {
                 "_id": "tiger-boost",
-                "title": "Tiger Boost nuts 'n' seed butter",
+                "title": "Tiger Boost nuts 'n' seeds butter",
                 "src": require("../assets/img/tiger-boost.png"),
                 "brand": "Nuts 'n' Seeds",
                 "heading": "Tiger Boost",

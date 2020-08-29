@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
+import EmptyCart from "./EmptyCart";
 import "../bootstrap.min.css";
 import "../index.css";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -20,7 +21,7 @@ export class ShoppingCartPage extends Component {
 
   render() {
     const { cart, increase, reduction, removeProduct, subtotal, total } = this.context;
-
+    if(cart.length > 0){
     return (
       <React.Fragment>
         {/* ----------- Bread Crumb ------- */}
@@ -178,6 +179,10 @@ export class ShoppingCartPage extends Component {
         </section>
       </React.Fragment>
     );
+    } else {
+        return <EmptyCart />
+    
+    }
   }
 }
 

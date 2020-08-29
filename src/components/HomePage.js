@@ -1,45 +1,72 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import CartModal from "./CartModal";
 import { DataContext } from "./productsContext";
+import CartModal from "./CartModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Modal from "react-bootstrap/Modal";
 import "../placeholder.css";
 import "../bootstrap.min.css";
 import "../index.css";
-import cover from "../assets/img/products.png";
+// import cover from "../assets/img/products.png";
 
 function removeKobo(amt) {
   let newAmt = amt.toString();
   return newAmt.slice(0, -2);
 }
 
-
-
 export class HomePage extends Component {
   static contextType = DataContext;
-  constructor(props) 
-  {super(props) 
-  this.state = { modalShow: false }
+  constructor(props) {
+    super(props);
+    this.state = { modalShow: false };
   }
 
   handleClick = () => {
-    this.setState({ modalShow: true })
-  }
-
+    this.setState({ modalShow: true });
+  };
 
   render() {
     const { products } = this.context;
 
-    
-  
     return (
       <React.Fragment>
         {/* ------------Welcome Image ------------ */}
-        <section className="py-5">
-          <div className="w-100 mt-md-0 text-center">
-          <img src={cover} className="img-fluid cover-fill" alt="product_avatar" />
-
+        <section className="py-5 welcome-image img-fluid bg-accent">
+          <div className="container py-5 no-opacity">
+            <div className="row pt-md-5 pb-lg-5 justify-content-center">
+              <div className="col-xl-7 col-lg-8 col-md-10 text-center py-xl-3 my-auto">
+                <h1 className="pb-sm-3 heading display-3 font-weight-bolder">
+                  Welcome to the<br />
+                  Home of Superfoods in Nigeria.
+                </h1>
+                <span className="d-inline-block h5 text-light font-weight-bold mx-2">
+                  Healthy.
+                </span>
+                <span className="d-inline-block h3 text-light font-weight-bold mx-2">
+                  Affordable.
+                </span>
+                <span className="d-inline-block h4 text-light font-weight-bold mx-2">
+                  Fresh
+                </span>
+                <span className="d-inline-block h3 text-light font-weight-bold mx-2">
+                  Farm-sourced
+                </span>
+                <span className="d-inline-block h6 text-light font-weight-bold mx-2">
+                  Packaged with love.
+                </span>
+                <span className="d-inline-block h3 text-light font-weight-bold mx-2">
+                  Delicious
+                </span>
+                <span className="d-inline-block h5 text-light font-weight-bold mx-2">
+                  Fitfam.
+                </span>
+                <span className="d-inline-block h4 text-light font-weight-bold mx-2">
+                  Vegan
+                </span>
+                <span className="d-inline-block text-light font-weight-bold mx-2">
+                  World-wide
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -77,14 +104,11 @@ export class HomePage extends Component {
                         <h6 className="text-orange font-weight-bold">
                           &#8358;{removeKobo(product.price)}
                         </h6>
-
                         <div>
                           <button
                             type="submit"
                             className="btn btn-sm btn-orange text-white mb-2"
-                            onClick={() => this.context.addCart(product._id)
-                                    
-                            }>
+                            onClick={() => this.context.addCart(product._id)}>
                             Add to Cart{" "}
                             <svg
                               fill="none"
@@ -101,9 +125,10 @@ export class HomePage extends Component {
                             </svg>
                           </button>
                           <button onClick={this.handleClick}>Show Modal</button>
-                          <CartModal 
-                          show={this.state.modalShow}  
-                          onHide={() => this.setState({ modalShow : false })}/>
+                          <CartModal
+                            show={this.state.modalShow}
+                            onHide={() => this.setState({ modalShow: false })}
+                          />
                         </div>
                       </div>
                     </div>
