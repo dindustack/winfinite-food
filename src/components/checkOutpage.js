@@ -1,21 +1,12 @@
-import { Formik } from "formik";
-import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
+// import { Formik } from "formik";
+import React, { Component, useState } from "react";
+
 import { Link } from "react-router-dom";
-import * as yup from "yup";
 import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
-import "../bootstrap.min.css";
-import "../index.css";
 import { DataContext } from "./productsContext";
+import CheckOutForm from "./CheckOutForm";
 
-const schema = yup.object({
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
-  email: yup.string().required(),
-  address: yup.string().required(),
-  phoneNumber: yup.string().required(),
-});
 
 function removeKobo(amt) {
   let newAmt = amt.toString();
@@ -111,119 +102,8 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                <Formik validationSchema={schema} onSubmit={console.log}>
-                  {({
-                    handleSubmit,
-                    handleChange,
-                    handleBlur,
-                    values,
-                    touched,
-                    isValid,
-                    errors,
-                  }) => (
-                    <Form noValidate onSubmit={handleSubmit}>
-                      {/* -- Heading -- */}
-                      <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
-
-                      {/* ---- Payment Details  */}
-                      <div className="row mb-5">
-                        <div className="col-12 col-md-6">
-                          {/* -- First Name */}
-                          <Form.Group className="mb-3">
-                            <Form.Label>First Name *</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="firstname"
-                              placeholder="Enter your first name"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              // value={values.name}
-                              isValid={touched.firstName && !errors.firstName}
-                            />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-
-                        {/* -- Last Name */}
-                        <div className="col-12 col-md-6">
-                          <Form.Group className="mb-3">
-                            <Form.Label>Last Name *</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="lastname"
-                              placeholder="Enter your last name"
-                              onChange={handleChange}
-                              isValid={touched.lastName && !errors.lastName}
-                              onBlur={handleBlur}
-                              // value={values.name}
-                            />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-
-                        {/* --  Email -- */}
-                        <div className="col-12 col-md-6">
-                          <Form.Group className="mb-3">
-                            <Form.Label>Email *</Form.Label>
-                            <Form.Control
-                              type="email"
-                              name="email"
-                              placeholder="you@example.com"
-                              onChange={handleChange}
-                              isInvalid={!!errors.email}
-                              onBlur={handleBlur}
-                              // value={values.email}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              {errors.email}
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-
-                        {/* -- Phone Number--- */}
-                        <div className="col-12 col-md-6">
-                          <Form.Group className="mb-3">
-                            <Form.Label>Phone Number *</Form.Label>
-                            <Form.Control
-                              type="number"
-                              name="phone"
-                              placeholder="Enter your phone number"
-                              onChange={handleChange}
-                              isInvalid={!!errors.phoneNumber}
-                              onBlur={handleBlur}
-                              // value={values.phone}
-                            />
-
-                            <Form.Control.Feedback type="invalid">
-                              {errors.phoneNumber}
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-
-                        {/* -------- Address ------ */}
-                        <div className="col-12">
-                          <Form.Group className="mb-3">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control
-                              as="textarea"
-                              type="text"
-                              name="address"
-                              rows="3"
-                              placeholder="Enter your address..."
-                              onChange={handleChange}
-                              isInvalid={!!errors.address}
-                              onBlur={handleBlur}
-                              // value={values.address}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                              {errors.address}
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-                      </div>
-                    </Form>
-                  )}
-                </Formik>
+                
+                    <CheckOutForm />
               </div>
 
               <div className="col-12 col-md-5 col-lg-4 offset-lg-1">

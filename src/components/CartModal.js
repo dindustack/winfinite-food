@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
 
@@ -9,7 +9,7 @@ const CartModal = (props) => {
     <React.Fragment>
       <Modal {...props} className="modal fade" dialogClassName="vh-100 my-0 mr-0">
         <Modal.Header className="text-center" closeButton>
-          <h4>Cart (1)</h4>
+          <h4>Cart ({cart.length})</h4>
         </Modal.Header>
         <Modal.Body>
           <div className="scrollbar-inner">

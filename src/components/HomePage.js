@@ -7,7 +7,6 @@ import "../placeholder.css";
 import "../bootstrap.min.css";
 import "../index.css";
 
-
 function removeKobo(amt) {
   let newAmt = amt.toString();
   return newAmt.slice(0, -2);
@@ -15,7 +14,6 @@ function removeKobo(amt) {
 
 export class HomePage extends Component {
   static contextType = DataContext;
-  
 
   openModal = () => {
     this.setState({ modalShow: true });
@@ -31,7 +29,7 @@ export class HomePage extends Component {
           <div className="container py-5 no-opacity">
             <div className="row pt-md-5 pb-lg-5 justify-content-center">
               <div className="col-xl-7 col-lg-8 col-md-10 text-center py-xl-3 my-auto">
-                <h1 className="pb-sm-3 heading display-3 font-weight-bolder">
+                <h1 className="pb-sm-3 heading display-3 font-weight-bolder text-light">
                   Welcome to the
                   <br />
                   Home of Superfoods in Nigeria.
@@ -111,7 +109,6 @@ export class HomePage extends Component {
                               />
                             </svg>
                           </button>
-                          {/*<button onClick={this.openModal}>Show Modal</button>*/}
                         </div>
                       </div>
                     </div>
@@ -121,7 +118,7 @@ export class HomePage extends Component {
             </div>
           </div>
         </section>
-        <CartModal show={this.state.modalShow} onHide={() => this.setState({ modalShow: false })} />
+        <CartModal show={this.setState.modalShow} onHide={() => this.setState({ modalShow: false })} />
       </React.Fragment>
     );
   }

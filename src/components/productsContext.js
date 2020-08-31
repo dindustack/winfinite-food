@@ -249,7 +249,7 @@ export class DataProvider extends Component {
       });
       this.setState({ cart: [...cart, ...data] });
     } else {
-      alert("The product has been added.");
+      // alert("The product has been added.");
     }
   };
 
@@ -275,7 +275,7 @@ export class DataProvider extends Component {
   };
 
   removeProduct = (id) => {
-    if (window.confirm("Do you want to delete this item?")) {
+    if (window) {
       const { cart } = this.state;
       cart.forEach((item, index) => {
         if (item._id === id) {
