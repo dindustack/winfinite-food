@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
-// import CartModal from "./CartModal";
+import CartModal from "./CartModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../placeholder.css";
 import "../bootstrap.min.css";
 import "../index.css";
-// import cover from "../assets/img/products.png";
+
 
 function removeKobo(amt) {
   let newAmt = amt.toString();
@@ -15,14 +15,11 @@ function removeKobo(amt) {
 
 export class HomePage extends Component {
   static contextType = DataContext;
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { modalShow: false, itemData:{} };
-  // }
+  
 
-  // handleClick = (data) => {
-  //   this.setState({ modalShow: true, itemData: data});
-  // };
+  openModal = () => {
+    this.setState({ modalShow: true });
+  };
 
   render() {
     const { products } = this.context;
@@ -35,18 +32,15 @@ export class HomePage extends Component {
             <div className="row pt-md-5 pb-lg-5 justify-content-center">
               <div className="col-xl-7 col-lg-8 col-md-10 text-center py-xl-3 my-auto">
                 <h1 className="pb-sm-3 heading display-3 font-weight-bolder">
-                  Welcome to the<br />
+                  Welcome to the
+                  <br />
                   Home of Superfoods in Nigeria.
                 </h1>
-                <span className="d-inline-block h5 text-light font-weight-bold mx-2">
-                  Healthy.
-                </span>
+                <span className="d-inline-block h5 text-light font-weight-bold mx-2">Healthy.</span>
                 <span className="d-inline-block h3 text-light font-weight-bold mx-2">
                   Affordable.
                 </span>
-                <span className="d-inline-block h4 text-light font-weight-bold mx-2">
-                  Fresh
-                </span>
+                <span className="d-inline-block h4 text-light font-weight-bold mx-2">Fresh</span>
                 <span className="d-inline-block h3 text-light font-weight-bold mx-2">
                   Farm-sourced
                 </span>
@@ -56,20 +50,13 @@ export class HomePage extends Component {
                 <span className="d-inline-block h3 text-light font-weight-bold mx-2">
                   Delicious
                 </span>
-                <span className="d-inline-block h5 text-light font-weight-bold mx-2">
-                  Fitfam.
-                </span>
-                <span className="d-inline-block h4 text-light font-weight-bold mx-2">
-                  Vegan
-                </span>
-                <span className="d-inline-block text-light font-weight-bold mx-2">
-                  World-wide
-                </span>
+                <span className="d-inline-block h5 text-light font-weight-bold mx-2">Fitfam.</span>
+                <span className="d-inline-block h4 text-light font-weight-bold mx-2">Vegan</span>
+                <span className="d-inline-block text-light font-weight-bold mx-2">World-wide</span>
               </div>
             </div>
           </div>
         </section>
-
         {/* ----------------- Products -------------- */}
         <section className="py-5">
           <div className="container">
@@ -108,8 +95,8 @@ export class HomePage extends Component {
                           <button
                             type="submit"
                             className="btn btn-sm btn-orange text-white mb-2"
-                            onClick={() => this.context.addCart(product._id)}>
-                            Add to Cart{" "}
+                            onClick={() => this.context.addCart(product._id, this.openModal)}>
+                            Add to Cart&nbsp;
                             <svg
                               fill="none"
                               viewBox="0 0 24 24"
@@ -124,12 +111,7 @@ export class HomePage extends Component {
                               />
                             </svg>
                           </button>
-                          {/* <button onClick={ () => this.handleClick(product)}>Show Modal</button>
-                          <CartModal
-                          itemData = {this.state.itemData}
-                            show={this.state.modalShow}
-                            onHide={() => this.setState({ modalShow: false })}
-                          /> */}
+                          {/*<button onClick={this.openModal}>Show Modal</button>*/}
                         </div>
                       </div>
                     </div>
@@ -139,6 +121,7 @@ export class HomePage extends Component {
             </div>
           </div>
         </section>
+        <CartModal show={this.state.modalShow} onHide={() => this.setState({ modalShow: false })} />
       </React.Fragment>
     );
   }

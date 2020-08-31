@@ -12,7 +12,7 @@
   opacity: 1 !important;
 }
 .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.041) !important;
+  background-color: rgba(0, 0, 0, 0.241) !important;
 }
 
 .welcome-image {
@@ -180,21 +180,6 @@ ol.directions > li {
 .timeline.timeline-one.dark .timeline-item:after {
   background-color: #b7c3d2;
 }
-
-/* right-side bar */
-.right-bar {
-  background-color: #fff;
-  -webkit-box-shadow: 0 0 24px 0 rgba(49, 58, 70, 0.1), 0 1px 0 0 rgba(49, 58, 70, 0.08);
-  box-shadow: 0 0 24px 0 rgba(49, 58, 70, 0.1), 0 1px 0 0 rgba(49, 58, 70, 0.08);
-  display: block;
-  position: fixed;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 280px;
-  z-index: 9999;
-  float: right !important;
-  right: -290px;
-  top: 0;
-  bottom: 0;
-  padding-bottom: 80px;
+.modal-content {
+  height: 100%;
 }
