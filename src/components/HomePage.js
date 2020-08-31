@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
-import CartModal from "./CartModal";
+// import CartModal from "./CartModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../placeholder.css";
 import "../bootstrap.min.css";
@@ -15,14 +15,14 @@ function removeKobo(amt) {
 
 export class HomePage extends Component {
   static contextType = DataContext;
-  constructor(props) {
-    super(props);
-    this.state = { modalShow: false };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { modalShow: false, itemData:{} };
+  // }
 
-  handleClick = () => {
-    this.setState({ modalShow: true });
-  };
+  // handleClick = (data) => {
+  //   this.setState({ modalShow: true, itemData: data});
+  // };
 
   render() {
     const { products } = this.context;
@@ -124,11 +124,12 @@ export class HomePage extends Component {
                               />
                             </svg>
                           </button>
-                          <button onClick={this.handleClick}>Show Modal</button>
+                          {/* <button onClick={ () => this.handleClick(product)}>Show Modal</button>
                           <CartModal
+                          itemData = {this.state.itemData}
                             show={this.state.modalShow}
                             onHide={() => this.setState({ modalShow: false })}
-                          />
+                          /> */}
                         </div>
                       </div>
                     </div>
