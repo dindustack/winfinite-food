@@ -2,68 +2,48 @@ import React from "react";
 import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
 
-
-
-
 const CartModal = (props) => {
-  //  contextType = DataContext;
-  // const { products } = this.context;
+  const { cart, subtotal, total } = React.useContext(DataContext);
 
-  // render() {
-    return (
-      // const { products } = this.context;
+  return (
     <React.Fragment>
-    <Modal
-      {...props}
-      className="modal fade"
-      
-    >
-      <Modal.Dialog className="modal-dialog modal-vertical modal-dialog-scrollable">
-        
-          <Modal.Header className="text-center" closeButton>
-            
-          </Modal.Header>
-          
-        
-      </Modal.Dialog>
-      <Modal.Body>
-        <div>
+      <Modal {...props} className="modal fade" dialogClassName="vh-100 my-0 mr-0">
+        <Modal.Header className="text-center" closeButton>
           <h4>Cart (1)</h4>
-          
-        </div>
-      <div className="scrollbar-inner">
-
-      {/* {products.map((product) => ( */}
-           <div className="list-group list-group-flush" >
-            <a href="action" className="list-group-item list-group-item-action">
-              <div className="d-flex align-items-center" >
-                <div>
-                  <div className="avatar-parent-child">
-                <img alt="Image placeholder" src="..." className="img-fluid" />
-                    
-                  </div>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="scrollbar-inner">
+            {cart.length > 0 ? (
+              cart.map((product) => (
+                <div className="list-group list-group-flush" key={product._id}>
+                  <a href="action" className="list-group-item list-group-item-action">
+                    <div className="d-flex align-items-center">
+                      <div>
+                        <div className="avatar-parent-child">
+                          <img alt="..." src="..." className="img-fluid" />
+                        </div>
+                      </div>
+                      <div className="flex-fill ml-3">
+                        <h6 className="text-sm mb-0">Product Name {product._id}</h6>
+                        <p className="text-sm mb-0">Quantity {product._id}</p>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-                <div className="flex-fill ml-3">
-                  <h6 className="text-sm mb-0">Product Name</h6>
-                  <p className="text-sm mb-0">
-                    Quantity
-                  </p>
-                </div>
-              </div>
-            </a>
+              ))
+            ) : (
+              <p>Empty Cart</p>
+            )}
+            <p>{subtotal}</p>
+            <p>{total}</p>
           </div>
-          {/* ))} */}
-        </div>  
-      </Modal.Body>
-      <Modal.Footer>
-        <button onClick={props.onHide}>Close</button>
-      </Modal.Footer>
-    </Modal>
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={props.onHide}>Close</button>
+        </Modal.Footer>
+      </Modal>
     </React.Fragment>
-
   );
-  
-}
-
+};
 
 export default CartModal;

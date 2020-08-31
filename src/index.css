@@ -4,7 +4,6 @@
   color: #020455;
 }
 
-
 .modal-dialog {
   margin-right: 0.5rem;
 }
@@ -13,10 +12,10 @@
   opacity: 1 !important;
 }
 .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.041) !important;
+  background-color: rgba(0, 0, 0, 0.241) !important;
 }
 
-.welcome-image{
+.welcome-image {
   background-image: url("./assets/img/chocolate-full5.jpg");
   background-repeat: no-repeat !important;
   background-position: center center !important;
@@ -24,8 +23,6 @@
   background-color: rgba(100, 100, 81, 0.7);
   /* opacity: 0.4; */
 }
-
-
 
 .nav-link:hover {
   color: #ff6f61 !important;
@@ -70,7 +67,6 @@ li.nav-item > a.active {
 .card-img-hover {
   display: block;
 }
-
 
 .lift {
   position: absolute;
@@ -184,4 +180,7 @@ ol.directions > li {
 }
 .timeline.timeline-one.dark .timeline-item:after {
   background-color: #b7c3d2;
+}
+.modal-content {
+  height: 100%;
 }
