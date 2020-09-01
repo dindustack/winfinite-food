@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import Carousel from "react-bootstrap/Carousel";
 import Form from "react-bootstrap/Form";
-// import InputGroup from 'react-bootstrap/InputGroup';
-// import Button from 'react-bootstrap/Button';
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import TabContent from "react-bootstrap/TabContent";
@@ -15,6 +13,7 @@ function removeKobo(amt) {
     let newAmt = amt.toString();
     return newAmt.slice(0, -2);
 }
+
 
 export class Details extends Component {
   static contextType = DataContext;
@@ -34,6 +33,7 @@ export class Details extends Component {
 
   componentDidMount() {
     this.getProduct();
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -242,4 +242,4 @@ export class Details extends Component {
   }
 }
 
-export default Details;
+export default withRouter (Details);

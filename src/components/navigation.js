@@ -31,8 +31,6 @@ export class Navigation extends Component {
             </span>
           </Link>
 
-          {/* <RightSideModal show={modalShow} onHide={() => setModalShow(false)} /> */}
-
           {/* ========================= Toggler ============================== */}
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

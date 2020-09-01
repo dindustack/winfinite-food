@@ -1,6 +1,24 @@
 import React, { useState } from "react";
+import emailjs from 'emailjs-com';
 import Form from "react-bootstrap/Form";
 
+const API_KEY = process.env.REACT_APP_EMAIL_JS_API_KEY
+const TEMPLATE_ID = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID
+
+const sendEmail = e => {
+    e.preventDefault()
+
+    emailjs
+    .sendForm('gmail', API_KEY.TEMPLATE_ID, e.target, API_KEY.USER_ID)
+    .then(
+      result => {
+        console.log(result.text)
+      },
+      error => {
+        console.log(error.text)
+      }
+    )
+}
 
 function  CheckOutForm() {
     const [validated, setValidated] = useState(false);
@@ -68,8 +86,8 @@ function  CheckOutForm() {
             <Form.Group className="mb-3">
               <Form.Label>Phone Number *</Form.Label>
               <Form.Control
-                type="number"
-                name="phone"
+                type="tel"
+                name="phonenumber"
                 placeholder="Enter your phone number"
               />
 

@@ -1,12 +1,10 @@
-// import { Formik } from "formik";
 import React, { Component, useState } from "react";
-
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import CheckOutForm from "./CheckOutForm";
-
 
 function removeKobo(amt) {
   let newAmt = amt.toString();
@@ -32,6 +30,7 @@ export class CheckOutPage extends Component {
     script.onerror = () => {
       this.isLoaded = false;
     };
+    window.scrollTo(0, 0);
   }
 
   payNow(email, amount) {
@@ -102,8 +101,7 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                
-                    <CheckOutForm />
+                <CheckOutForm />
               </div>
 
               <div className="col-12 col-md-5 col-lg-4 offset-lg-1">

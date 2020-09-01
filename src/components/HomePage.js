@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import CartModal from "./CartModal";
@@ -19,6 +20,10 @@ export class HomePage extends Component {
     this.setState({ modalShow: true });
   };
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const { products } = this.context;
 
@@ -28,7 +33,7 @@ export class HomePage extends Component {
         <section className="py-5 welcome-image img-fluid bg-accent">
           <div className="container py-5 no-opacity">
             <div className="row pt-md-5 pb-lg-5 justify-content-center">
-              <div className="col-xl-7 col-lg-8 col-md-10 text-center py-xl-3 my-auto">
+              <div className="col-xl-7 col-lg-8 col-md-10 text-center py-xl-3 w-100 py-auto">
                 <h1 className="pb-sm-3 heading display-3 font-weight-bolder text-light">
                   Welcome to the
                   <br />

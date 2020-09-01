@@ -23,6 +23,7 @@ export class recipeDetails extends Component {
 
   componentDidMount() {
     this.getRecipe();
+    window.scrollTo(0, 0);
   }
 
   render() {

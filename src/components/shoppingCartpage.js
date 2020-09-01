@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import EmptyCart from "./EmptyCart";
@@ -17,6 +18,7 @@ export class ShoppingCartPage extends Component {
 
   componentDidMount() {
     this.context.getSubTotal();
+    window.scrollTo(0, 0);
   }
 
   render() {

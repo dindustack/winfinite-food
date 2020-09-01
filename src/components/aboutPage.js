@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import about from "../assets/img/about-one.jpg";
 import "../bootstrap.min.css";
 import "../index.css";
 
 function AboutPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  })
   return (
     <React.Fragment>
       {/* ----------- Bread Crumb ------- */}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { InfoContext } from "./recipesContext";
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -8,6 +9,10 @@ import "../index.css";
 
 export class RecipePage extends Component {
   static contextType = InfoContext;
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   render() {
     const { recipes } = this.context;
