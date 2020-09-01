@@ -310,7 +310,7 @@ export class DataProvider extends Component {
       this.setState({ subtotal: dataSubTotal });
     }
   }
-
+  
   render() {
     const { products, cart, subtotal, total } = this.state;
     const { addCart, reduction, increase, removeProduct, getSubTotal } = this;

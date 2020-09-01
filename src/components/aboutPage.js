@@ -97,7 +97,7 @@ function AboutPage() {
                       I preserved the iconic name but created a brand; WINFINITE FOODS .
                     </p>
                   </div>
-                  <div className="timeline-item">
+                  {/* <div className="timeline-item">
                     <h1 className="h2 mb-4 heading">Women empowerment</h1>
                     <p>
                       We have created a network that empowers women from the farms in the rural
@@ -115,7 +115,7 @@ function AboutPage() {
                       Finally, our distribution chain consists primarily women who from the
                       proceeds, feed their families.
                     </p>
-                  </div>
+                  </div> */}
                   <div className="timeline-item">
                     <h1 className="h2 mb-4 heading">Global inspiration</h1>
                     <p>

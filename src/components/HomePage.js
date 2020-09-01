@@ -5,8 +5,7 @@ import { DataContext } from "./productsContext";
 import CartModal from "./CartModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../placeholder.css";
-import "../bootstrap.min.css";
-import "../index.css";
+
 
 function removeKobo(amt) {
   let newAmt = amt.toString();
@@ -15,6 +14,10 @@ function removeKobo(amt) {
 
 export class HomePage extends Component {
   static contextType = DataContext;
+  constructor(props) {
+    super(props);
+    this.state = { modalShow: false };
+  }
 
   openModal = () => {
     this.setState({ modalShow: true });
@@ -123,7 +126,7 @@ export class HomePage extends Component {
             </div>
           </div>
         </section>
-        <CartModal show={this.setState.modalShow} onHide={() => this.setState({ modalShow: false })} />
+        <CartModal show={this.state.modalShow} onHide={() => this.setState({ modalShow: false })} />
       </React.Fragment>
     );
   }
