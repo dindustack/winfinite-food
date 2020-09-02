@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const EmptyCart = () => {
   return (
     <React.Fragment>
+      <Helmet>
+          <title>Empty Cart &mdash; Shop at Winfinite Foods</title>
+        </Helmet>
       <section className="mt-5 mb-5">
         <div className="container ">
           <div className="row">

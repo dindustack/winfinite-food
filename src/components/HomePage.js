@@ -32,33 +32,36 @@ export class HomePage extends Component {
 
     return (
       <React.Fragment>
+        <Helmet>
+          <title>Home &mdash; Shop at Winfinite Foods</title>
+        </Helmet>
         {/* ------------Welcome Image ------------ */}
         <section className="py-5 welcome-image img-fluid bg-accent">
           <div className="container py-5 no-opacity">
             <div className="row pt-md-5 pb-lg-5 justify-content-center">
               <div className="col-xl-7 col-lg-8 col-md-10 text-center py-xl-3 w-100 py-auto">
-                <h1 className="pb-sm-3 heading display-3 font-weight-bolder text-light">
+                <h1 className="pb-sm-3 heading display-3 font-weight-bolder text-white">
                   Welcome to the
                   <br />
                   Home of Superfoods in Nigeria.
                 </h1>
-                <span className="d-inline-block h5 text-light font-weight-bold mx-2">Healthy.</span>
-                <span className="d-inline-block h3 text-light font-weight-bold mx-2">
+                <span className="d-inline-block h5 text-white font-weight-bold mx-2">Healthy.</span>
+                <span className="d-inline-block h3 text-white font-weight-bold mx-2">
                   Affordable.
                 </span>
-                <span className="d-inline-block h4 text-light font-weight-bold mx-2">Fresh</span>
-                <span className="d-inline-block h3 text-light font-weight-bold mx-2">
+                <span className="d-inline-block h4 text-white font-weight-bold mx-2">Fresh</span>
+                <span className="d-inline-block h3 text-white font-weight-bold mx-2">
                   Farm-sourced
                 </span>
-                <span className="d-inline-block h6 text-light font-weight-bold mx-2">
+                <span className="d-inline-block h6 text-white font-weight-bold mx-2">
                   Packaged with love.
                 </span>
-                <span className="d-inline-block h3 text-light font-weight-bold mx-2">
+                <span className="d-inline-block h3 text-white font-weight-bold mx-2">
                   Delicious
                 </span>
-                <span className="d-inline-block h5 text-light font-weight-bold mx-2">Fitfam.</span>
-                <span className="d-inline-block h4 text-light font-weight-bold mx-2">Vegan</span>
-                <span className="d-inline-block text-light font-weight-bold mx-2">World-wide</span>
+                <span className="d-inline-block h5 text-white font-weight-bold mx-2">Fitfam.</span>
+                <span className="d-inline-block h4 text-white font-weight-bold mx-2">Vegan</span>
+                <span className="d-inline-block text-white font-weight-bold mx-2">World-wide</span>
               </div>
             </div>
           </div>

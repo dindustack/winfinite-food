@@ -65,6 +65,9 @@ export class CheckOutPage extends Component {
 
     return (
       <React.Fragment>
+        <Helmet>
+          <title>Checkout &mdash; Shop at Winfinite Foods</title>
+        </Helmet>
         {/* ----------- Bread Crumb ------- */}
         <nav aria-label="breadcrumb" className="pt-5 mt-md-5 bg-white">
           <div className="container">
@@ -118,7 +121,7 @@ export class CheckOutPage extends Component {
                         <div class="col-4">
                           {/* -- Product Image -- */}
                           <Link to="/:id">
-                            <img src={item.src} alt="..." class="img-fluid" />
+                            <img src={item.src} alt={item.title} class="img-fluid" />
                           </Link>
                         </div>
                         <div class="col">

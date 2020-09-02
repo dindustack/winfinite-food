@@ -239,7 +239,6 @@ export class DataProvider extends Component {
     const check = cart.every((item) => {
       return item._id !== id;
     });
-    // Dirty hack. TODO: Clean up and get a better version
     if (cart.length === 0) {
       showModal();
     }
@@ -310,7 +309,7 @@ export class DataProvider extends Component {
       this.setState({ subtotal: dataSubTotal });
     }
   }
-  
+
   render() {
     const { products, cart, subtotal, total } = this.state;
     const { addCart, reduction, increase, removeProduct, getSubTotal } = this;

@@ -26,6 +26,9 @@ export class ShoppingCartPage extends Component {
     if(cart.length > 0){
     return (
       <React.Fragment>
+        <Helmet>
+          <title>Shopping Cart &mdash; Shop at Winfinite Foods</title>
+        </Helmet>
         {/* ----------- Bread Crumb ------- */}
         <nav aria-label="breadcrumb" className="pt-5 mt-md-5 bg-white">
           <div className="container">

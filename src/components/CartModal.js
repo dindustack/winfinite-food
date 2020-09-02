@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
 
+function removeKobo(amt) {
+  let newAmt = amt.toString();
+  return newAmt.slice(0, -2);
+}
+
 const CartModal = (props) => {
   const { cart, subtotal, total } = React.useContext(DataContext);
+
+  // useEffect(() => {
+  //   subtotal
+  //   console.log("ada");
+  // }, []);
 
   return (
     <React.Fragment>
@@ -13,33 +24,59 @@ const CartModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           <div className="scrollbar-inner">
-            {cart.length > 0 ? (
-              cart.map((product) => (
-                <div className="list-group list-group-flush" key={product._id}>
-                  <a href="action" className="list-group-item list-group-item-action">
-                    <div className="d-flex align-items-center">
-                      <div>
-                        <div className="avatar-parent-child">
-                          <img alt="..." src="..." className="img-fluid" />
-                        </div>
+            <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+              {cart.length > 0 ? (
+                cart.map((product) => (
+                  <li class="list-group-item border-0" key={product._id}>
+                    <div class="row align-items-center">
+                      <div class="col-4">
+                        {/* -- Product Image -- */}
+                        <Link to="/:id">
+                          <img src={product.src} alt={product.title} className="img-fluid" />
+                        </Link>
                       </div>
-                      <div className="flex-fill ml-3">
-                        <h6 className="text-sm mb-0">Product Name {product._id}</h6>
-                        <p className="text-sm mb-0">Quantity {product._id}</p>
+                      <div class="col">
+                        {/* -- Product description -- */}
+                        <p class="mb-4 small font-weight-bold">
+                          <Link to="/:id" class="heading text-decoration-none h5 text-blue">
+                            {product.title}
+                          </Link>{" "}
+                          <br />
+                          <span class="text-orange">&#8358;{removeKobo(product.price)}</span>
+                        </p>
+
+                        {/* -- Text -- */}
+                        <div class="font-size-sm text-muted">Quantity: {product.count}</div>
                       </div>
                     </div>
-                  </a>
-                </div>
-              ))
-            ) : (
-              <p>Empty Cart</p>
-            )}
-            <p>{subtotal}</p>
-            <p>{total}</p>
+                  </li>
+                ))
+              ) : (
+                <p>Empty Cart</p>
+              )}
+            </ul>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <button onClick={props.onHide}>Close</button>
+        <Modal.Footer className="d-inline-flex justify-content-between">
+          <div>
+            <span className="font-weight-bold">Subtotal:</span>{" "}
+            <span className="ml-auto small">&#8358;{removeKobo(subtotal)}</span>
+          </div>
+          <div className="justify-content-center">
+            <Link to="/cart" className="text-decoration-none">
+              <button type="submit" className="btn btn-block btn-success mb-2">
+                Proceed to Checkout{" "}
+                <svg viewBox="0 0 20 20" fill="#fff" width="16px" className="ml-2">
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </Link>
+          </div>
+          {/* <button onClick={props.onHide}>Close</button> */}
         </Modal.Footer>
       </Modal>
     </React.Fragment>

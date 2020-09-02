@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { InfoContext } from "./recipesContext";
 import "../bootstrap.min.css";
 import "../index.css";
@@ -31,6 +32,11 @@ export class recipeDetails extends Component {
 
     return (
       <React.Fragment>
+        <Helmet>
+        {recipe.map((item) => (
+          <title className="text-capitalize">{item.title}  &mdash; Shop at Winfinite Foods</title>
+          ))}
+        </Helmet>
         {recipe.map((item) => (
           <div>
             <nav aria-label="breadcrumb" className="py-5 my-5 bg-white" key={item._id}>
@@ -49,7 +55,7 @@ export class recipeDetails extends Component {
                           Recipes
                         </Link>
                       </li>
-                      <li className="breadcrumb-item active">{item.title}</li>
+                      <li className="breadcrumb-item active text-capitalize">{item.title}</li>
                     </ol>
                   </div>
                 </div>

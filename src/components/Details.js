@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { DataContext } from "./productsContext";
 import Carousel from "react-bootstrap/Carousel";
 import Form from "react-bootstrap/Form";
@@ -38,9 +39,14 @@ export class Details extends Component {
 
   render() {
     const { product } = this.state;
-
+    const { addCart } = this.context;
     return (
       <React.Fragment>
+        <Helmet>
+        {product.map((item) => (
+          <title className="text-capitalize">{item.title}  &mdash; Shop at Winfinite Foods</title>
+          ))}
+        </Helmet>
         {product.map((item) => (
           <div>
             <nav aria-label="breadcrumb" className="py-5 my-md-5 bg-white" key={item._id}>
@@ -109,25 +115,8 @@ export class Details extends Component {
                         {/* -------- Add to Cart and WishList ------- */}
                         <Form className="mt-5 mt-md-5">
                           <div className="row">
-                            {/* <div className="col-12 col-lg"> */}
-
-                            {/* ---- Quantity ------- *
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Prepend>
-                                                <Button className="btn text-orange large font-weight-bolder" variant="outline-secondary" onClick={() => reduction(item._id)}> - </Button>
-                                                </InputGroup.Prepend>
-
-                                                <span className="border px-3 pt-2 justify-content-center text-orange font-weight-bolder">{item.count}</span>
-                                                
-                                                <InputGroup.Append>
-                                                <Button className="btn text-orange large font-weight-bolder" variant="outline-secondary" onClick={() => increase(item._id)}> + </Button>
-                                                </InputGroup.Append>
-                                            </InputGroup>
-                                        </div>
-                                        onClick={() => addCart(item._id)}
-                                        {/* ----- Shopping Cart ------ */}
                             <div className="col-12 col-lg-auto">
-                              <Link to="/cart" className="btn btn-block btn-dark mb-2" >
+                              <Link to="/cart" className="btn btn-block btn-dark mb-2" onClick={() => addCart(item._id)}>
                                   Add to Cart  <svg fill="none" viewBox="0 0 24 24" stroke="#fff" width="16px" className="ml-2">
                                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                                               </svg>
