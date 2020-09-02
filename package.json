@@ -17,7 +17,7 @@
     "react-lazyload": "^3.0.0",
     "react-paystack": "^3.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "yup": "^0.29.2"
   },
   "scripts": {

@@ -6,7 +6,6 @@ import CartModal from "./CartModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../placeholder.css";
 
-
 function removeKobo(amt) {
   let newAmt = amt.toString();
   return newAmt.slice(0, -2);
@@ -16,19 +15,16 @@ export class HomePage extends Component {
   static contextType = DataContext;
   constructor(props) {
     super(props);
-    this.state = { modalShow: false };
   }
-
-  openModal = () => {
-    this.setState({ modalShow: true });
-  };
 
   componentDidMount() {
     window.scrollTo(0, 0);
   }
 
   render() {
-    const { products } = this.context;
+    const { products, modalShow } = this.context;
+
+    console.log(this.context);
 
     return (
       <React.Fragment>
@@ -104,7 +100,7 @@ export class HomePage extends Component {
                           <button
                             type="submit"
                             className="btn btn-sm btn-orange text-white mb-2"
-                            onClick={() => this.context.addCart(product._id, this.openModal)}>
+                            onClick={() => this.context.addCart(product._id)}>
                             Add to Cart&nbsp;
                             <svg
                               fill="none"
@@ -129,7 +125,7 @@ export class HomePage extends Component {
             </div>
           </div>
         </section>
-        <CartModal show={this.state.modalShow} onHide={() => this.setState({ modalShow: false })} />
+        <CartModal show={modalShow} onHide={() => this.context.closeModal()} />
       </React.Fragment>
     );
   }

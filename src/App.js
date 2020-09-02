@@ -13,8 +13,7 @@ import { InfoProvider } from "./components/recipesContext";
 import StockistPage from "./components/stockistPage";
 import ShoppingCartPage from "./components/shoppingCartpage";
 import CheckOutPage from "./components/checkOutpage";
-import CartModal from "./components/CartModal";
-
+// import CartModal from "./components/CartModal";
 
 export default function App() {
   return (
@@ -31,7 +30,7 @@ export default function App() {
             <Route exact path="/stockist" component={StockistPage} />
             <Route exact path="/contact" component={ContactPage} />
             <Route exact path="/cart" component={ShoppingCartPage} />
-            <Route exact path="/popup-cart" component={CartModal} />
+            {/* <Route exact path="/popup-cart" component={CartModal} /> */}
             <Route exact path="/checkout" component={CheckOutPage} />
             <Route exact path="/:id" component={Details} />
             <Route exact path="/recipes/:id" component={recipeDetails} />
@@ -43,5 +42,3 @@ export default function App() {
     </DataProvider>
   );
 }
-
-
