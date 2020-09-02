@@ -24,8 +24,6 @@ export class HomePage extends Component {
   render() {
     const { products, modalShow } = this.context;
 
-    console.log(this.context);
-
     return (
       <React.Fragment>
         <Helmet>

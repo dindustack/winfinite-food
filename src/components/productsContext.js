@@ -246,11 +246,13 @@ export class DataProvider extends Component {
   };
 
   addCart = (id) => {
+    this.openModal();
+
     const { products, cart } = this.state;
     const check = cart.every((item) => {
       return item._id !== id;
     });
-    this.openModal();
+
     if (check) {
       const data = products.filter((product) => {
         return product._id === id;
@@ -271,6 +273,7 @@ export class DataProvider extends Component {
     this.setState({ cart: cart });
     this.getSubTotal();
   };
+
   increase = (id) => {
     const { cart } = this.state;
     cart.forEach((item) => {
