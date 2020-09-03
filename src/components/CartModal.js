@@ -12,7 +12,7 @@ const CartModal = (props) => {
   console.log(total);
 
   // useEffect(() => {
-  //   getSubTotal();
+  //   this.getSubTotal();
   // }, []);
   
   return (

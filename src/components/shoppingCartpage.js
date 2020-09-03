@@ -63,7 +63,7 @@ export class ShoppingCartPage extends Component {
                       <div className="row align-items-center">
                         <div className="col-3">
                           {/* -- Image --- */}
-                          <Link to="/golden-hibiscus-mix">
+                          <Link to={`/${item._id}`}>
                             <img src={item.src} alt="product-avatar" className="img-fluid" />
                           </Link>
                         </div>
@@ -72,7 +72,7 @@ export class ShoppingCartPage extends Component {
                           {/* -- Title -- */}
                           <div className="d-flex mb-2 font-weight-bold">
                             <Link
-                              to="/:id"
+                              to={`/${item._id}`}
                               className="heading text-decoration-none h5 text-blue text-uppercase font-weight-bold">
                               {item.title}
                             </Link>{" "}

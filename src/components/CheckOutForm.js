@@ -72,6 +72,7 @@ function  CheckOutForm() {
               <Form.Label>Email *</Form.Label>
               <Form.Control
                 type="email"
+                id="email"
                 name="email"
                 placeholder="you@example.com"
               />

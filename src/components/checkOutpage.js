@@ -52,9 +52,9 @@ export class CheckOutPage extends Component {
       callback: function (response) {
         alert("success. transaction ref is " + response.reference);
       },
-      onClose: function () {
-        alert("window closed");
-      },
+      // onClose: function () {
+      //   alert("window closed");
+      // },
     };
     const handler = window.PaystackPop.setup(options);
     handler.openIframe();
@@ -146,9 +146,15 @@ export class CheckOutPage extends Component {
                   <div className="card-body">
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
+                        <span>VAT (7.5%)</span>{" "}
+                        <span className="ml-auto">
+                          &#8358;{0.075 * subtotal}
+                        </span>
+                      </li>
+                      <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>Total</span>{" "}
                         <span id="amount" className="ml-auto">
-                          &#8358;{subtotal}
+                          &#8358;{subtotal + (0.075 * subtotal)}
                         </span>
                       </li>
                     </ul>
