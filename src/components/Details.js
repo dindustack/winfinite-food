@@ -10,11 +10,6 @@ import TabContent from "react-bootstrap/TabContent";
 import "../bootstrap.min.css";
 import "../index.css";
 
-function removeKobo(amt) {
-    let newAmt = amt.toString();
-    return newAmt.slice(0, -2);
-}
-
 
 export class Details extends Component {
   static contextType = DataContext;
@@ -108,7 +103,7 @@ export class Details extends Component {
                         {/* -- Price -- */}
                         <div className="mb-5">
                           <span className="ml-1 h5 font-weight-bolder text-orange">
-                            &#8358;{removeKobo(item.price)}
+                            &#8358;{item.price}
                           </span>
                         </div>
 

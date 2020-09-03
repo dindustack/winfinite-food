@@ -11,7 +11,7 @@ export class DataProvider extends Component {
         brand: "Nuts 'n' Seeds",
         heading: "Chocolate",
         weight: "340g",
-        price: 170000,
+        price: 1700,
         content: {
           description: {
             make:
@@ -33,7 +33,7 @@ export class DataProvider extends Component {
         brand: "Nuts 'n' Seeds",
         heading: "Smooth",
         weight: "340g",
-        price: 170000,
+        price: 1700,
         content: {
           description: {
             make:
@@ -55,7 +55,7 @@ export class DataProvider extends Component {
         brand: "Nuts 'n' Seeds",
         heading: "Tiger Boost",
         weight: "340g",
-        price: 170000,
+        price: 1700,
         content: {
           description: {
             make:
@@ -77,7 +77,7 @@ export class DataProvider extends Component {
         brand: "Healthy Mix",
         heading: "Golden Hibiscus Mix",
         weight: "200g",
-        price: 80000,
+        price: 800,
         content: {
           description: {
             make:
@@ -99,7 +99,7 @@ export class DataProvider extends Component {
         brand: "Healthy Mix",
         heading: "Hibiscus Mix",
         weight: "200g",
-        price: 80000,
+        price: 800,
         content: {
           description: {
             make:
@@ -121,7 +121,7 @@ export class DataProvider extends Component {
         brand: "Healthy Mix",
         heading: "Golden Hibiscus Mix",
         weight: "435g",
-        price: 170000,
+        price: 1700,
         content: {
           description: {
             make:
@@ -143,7 +143,7 @@ export class DataProvider extends Component {
         brand: "Healthy Mix",
         heading: "Hibiscus Mix",
         weight: "435g",
-        price: 170000,
+        price: 1700,
         content: {
           description: {
             make:
@@ -165,7 +165,7 @@ export class DataProvider extends Component {
         brand: "Nuts 'n' Seeds",
         heading: "Chocolate",
         weight: "30g",
-        price: 1050000,
+        price: 10500,
         content: {
           description: {
             make:
@@ -192,7 +192,7 @@ export class DataProvider extends Component {
         brand: "Nuts 'n' Seeds",
         heading: "Smooth",
         weight: "30g",
-        price: 1050000,
+        price: 10500,
         content: {
           description: {
             make:
@@ -214,7 +214,7 @@ export class DataProvider extends Component {
         brand: "Nuts 'n' Seeds",
         heading: "Tiger Boost",
         weight: "30g",
-        price: 1050000,
+        price: 10500,
         content: {
           description: {
             make:

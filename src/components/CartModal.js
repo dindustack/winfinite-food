@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
 
-function removeKobo(amt) {
-  let newAmt = amt.toString();
-  return newAmt.slice(0, -2);
-}
 
 const CartModal = (props) => {
   const { cart, subtotal, total } = React.useContext(DataContext);
@@ -31,7 +27,7 @@ const CartModal = (props) => {
             <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
               {cart.length > 0 ? (
                 cart.map((product) => (
-                  <li class="list-group-item border-0" key={product._id}>
+                  <li class="list-group-item" key={product._id}>
                     <div class="row align-items-center">
                       <div class="col-4">
                         {/* -- Product Image -- */}
@@ -44,9 +40,10 @@ const CartModal = (props) => {
                         <p class="mb-4 small font-weight-bold">
                           <Link to="/:id" class="heading text-decoration-none h5 text-blue">
                             {product.title}
+                            <span className="ml-2 text-sm heading">({product.weight})</span>
                           </Link>{" "}
                           <br />
-                          <span class="text-orange">&#8358;{removeKobo(product.price)}</span>
+                          <span class="text-orange">&#8358;{product.price}</span>
                         </p>
 
                         {/* -- Text -- */}
@@ -64,7 +61,7 @@ const CartModal = (props) => {
         <Modal.Footer className="d-inline-flex justify-content-between">
           <div>
             <span className="font-weight-bold">Subtotal:</span>{" "}
-            <span className="ml-auto small">&#8358;{removeKobo(subtotal)}</span>
+            <span className="ml-auto small">&#8358;{subtotal}</span>
           </div>
           <div className="justify-content-center">
             <Link to="/cart" className="text-decoration-none">

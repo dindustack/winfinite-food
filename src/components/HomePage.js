@@ -6,10 +6,6 @@ import CartModal from "./CartModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../placeholder.css";
 
-function removeKobo(amt) {
-  let newAmt = amt.toString();
-  return newAmt.slice(0, -2);
-}
 
 export class HomePage extends Component {
   static contextType = DataContext;
@@ -92,7 +88,7 @@ export class HomePage extends Component {
 
                       <div className="d-flex justify-content-between">
                         <h6 className="text-orange font-weight-bold">
-                          &#8358;{removeKobo(product.price)}
+                          &#8358;{product.price}
                         </h6>
                         <div>
                           <button
