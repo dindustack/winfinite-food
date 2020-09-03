@@ -37,7 +37,7 @@ export class CheckOutPage extends Component {
     let options = {
       key: "pk_test_2ef9377963e79603b90ca45d7565d50f51d7fb47",
       email: email,
-      amount: amount,
+      amount: amount * 100,
       currency: "NGN",
       ref: "WNF" + Math.floor(Math.random() * 1000000000 + 1),
       metadata: {
@@ -148,7 +148,7 @@ export class CheckOutPage extends Component {
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>Total</span>{" "}
                         <span id="amount" className="ml-auto">
-                          &#8358;{removeKobo(subtotal)}
+                          &#8358;{subtotal}
                         </span>
                       </li>
                     </ul>

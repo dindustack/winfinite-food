@@ -3,57 +3,70 @@ import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
 
-
 const CartModal = (props) => {
-  const { cart, subtotal, total } = React.useContext(DataContext);
+  const { cart, subtotal, total, removeProduct } = React.useContext(DataContext);
+  
 
   console.log(subtotal);
   console.log(cart);
   console.log(total);
 
   // useEffect(() => {
-  //   subtotal
-  //   console.log("ada");
+  //   getSubTotal();
   // }, []);
-
+  
   return (
     <React.Fragment>
-      <Modal {...props} className="modal fade" dialogClassName="vh-100 my-0 mr-0">
+      <Modal {...props} className="modal fade overflow-auto" dialogClassName="vh-100 my-0 mr-0">
         <Modal.Header className="text-center" closeButton>
           <h4>Cart ({cart.length})</h4>
         </Modal.Header>
         <Modal.Body>
           <div className="scrollbar-inner">
-            <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+            <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5 ">
               {cart.length > 0 ? (
                 cart.map((product) => (
-                  <li class="list-group-item" key={product._id}>
-                    <div class="row align-items-center">
-                      <div class="col-4">
+                  <li className="list-group-item overflow-auto" key={product._id}>
+                    <div className="row align-items-center">
+                      <div className="col-4">
                         {/* -- Product Image -- */}
                         <Link to="/:id">
                           <img src={product.src} alt={product.title} className="img-fluid" />
                         </Link>
                       </div>
-                      <div class="col">
+                      <div className="col">
                         {/* -- Product description -- */}
-                        <p class="mb-4 small font-weight-bold">
-                          <Link to="/:id" class="heading text-decoration-none h5 text-blue">
+                        <p className="mb-4 small font-weight-bold">
+                          <Link to="/:id" className="heading text-decoration-none h5 text-blue">
                             {product.title}
                             <span className="ml-2 text-sm heading">({product.weight})</span>
                           </Link>{" "}
                           <br />
-                          <span class="text-orange">&#8358;{product.price}</span>
+                          <span className="text-orange">&#8358;{product.price}</span>
                         </p>
 
                         {/* -- Text -- */}
-                        <div class="font-size-sm text-muted">Quantity: {product.count}</div>
+                        <div className="font-size-sm text-muted">Quantity: {product.count}</div>
+                      </div>
+                      <div className="col-2">
+                        <a
+                          className="small text-muted text-decoration-none ml-auto"
+                          href="#action"
+                          onClick={() => removeProduct(product._id)}>
+                          <svg viewBox="0 0 20 20" fill="currentColor" width="26px" className="mt-0">
+                            <path
+                              fillRule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </a>
                       </div>
                     </div>
                   </li>
                 ))
               ) : (
-                <p>Empty Cart</p>
+                <p className="font-weight-bold">Empty Cart</p>
               )}
             </ul>
           </div>
@@ -76,7 +89,9 @@ const CartModal = (props) => {
                 </svg>
               </button>
             </Link>
+           
           </div>
+          
           {/* <button onClick={props.onHide}>Close</button> */}
         </Modal.Footer>
       </Modal>

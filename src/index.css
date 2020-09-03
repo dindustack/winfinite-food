@@ -8,6 +8,11 @@
   margin-right: 0.5rem;
 }
 
+.scrollbar-inner{
+  overflow: auto;
+  height: 500px; 
+}
+
 .fade {
   opacity: 1 !important;
 }
