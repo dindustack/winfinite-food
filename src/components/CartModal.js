@@ -11,6 +11,10 @@ function removeKobo(amt) {
 const CartModal = (props) => {
   const { cart, subtotal, total } = React.useContext(DataContext);
 
+  console.log(subtotal);
+  console.log(cart);
+  console.log(total);
+
   // useEffect(() => {
   //   subtotal
   //   console.log("ada");

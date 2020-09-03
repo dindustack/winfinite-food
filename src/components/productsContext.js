@@ -232,16 +232,27 @@ export class DataProvider extends Component {
     cart: [],
     subtotal: 0,
     total: 0,
+    modalShow: false,
   };
 
-  addCart = (id, showModal) => {
+  openModal() {
+    this.setState({ modalShow: true });
+  }
+
+  closeModal = () => {
+    this.setState(() => {
+      return { modalShow: false };
+    });
+  };
+
+  addCart = (id) => {
+    this.openModal();
+
     const { products, cart } = this.state;
     const check = cart.every((item) => {
       return item._id !== id;
     });
-    if (cart.length === 0) {
-      showModal();
-    }
+
     if (check) {
       const data = products.filter((product) => {
         return product._id === id;
@@ -262,6 +273,7 @@ export class DataProvider extends Component {
     this.setState({ cart: cart });
     this.getSubTotal();
   };
+
   increase = (id) => {
     const { cart } = this.state;
     cart.forEach((item) => {
@@ -311,8 +323,8 @@ export class DataProvider extends Component {
   }
 
   render() {
-    const { products, cart, subtotal, total } = this.state;
-    const { addCart, reduction, increase, removeProduct, getSubTotal } = this;
+    const { products, cart, subtotal, total, modalShow } = this.state;
+    const { addCart, reduction, increase, removeProduct, getSubTotal, closeModal } = this;
     return (
       <DataContext.Provider
         value={{
@@ -325,6 +337,8 @@ export class DataProvider extends Component {
           subtotal,
           total,
           getSubTotal,
+          closeModal,
+          modalShow,
         }}>
         {this.props.children}
       </DataContext.Provider>
