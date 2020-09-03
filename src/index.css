@@ -7,10 +7,13 @@
 .modal-dialog {
   margin-right: 0.5rem;
 }
-
+.modal-content {
+  height: 100%;
+  
+}
 .scrollbar-inner{
   overflow: auto;
-  height: 500px; 
+  height: calc(100vh - 200px); 
 }
 
 .fade {
@@ -185,6 +188,4 @@ ol.directions > li {
 .timeline.timeline-one.dark .timeline-item:after {
   background-color: #b7c3d2;
 }
-.modal-content {
-  height: 100%;
-}
+

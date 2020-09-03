@@ -17,7 +17,7 @@ const CartModal = (props) => {
   
   return (
     <React.Fragment>
-      <Modal {...props} className="modal fade overflow-auto" dialogClassName="vh-100 my-0 mr-0">
+      <Modal {...props} className="modal fade" dialogClassName="vh-100 my-0 mr-0">
         <Modal.Header className="text-center" closeButton>
           <h4>Cart ({cart.length})</h4>
         </Modal.Header>
