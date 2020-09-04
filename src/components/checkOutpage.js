@@ -120,14 +120,14 @@ export class CheckOutPage extends Component {
                       <div class="row align-items-center">
                         <div class="col-4">
                           {/* -- Product Image -- */}
-                          <Link to="/:id">
+                          <Link to={`/${item._id}`}>
                             <img src={item.src} alt={item.title} class="img-fluid" />
                           </Link>
                         </div>
                         <div class="col">
                           {/* -- Product description -- */}
                           <p class="mb-4 small font-weight-bold">
-                            <Link to="/:id" class="heading text-decoration-none h5 text-blue">
+                            <Link to={`/${item._id}`} class="heading text-decoration-none h5 text-blue">
                               {item.title}
                             </Link>{" "}
                             <br />
