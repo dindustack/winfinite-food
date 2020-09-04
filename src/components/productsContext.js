@@ -257,7 +257,9 @@ export class DataProvider extends Component {
       const data = products.filter((product) => {
         return product._id === id;
       });
-      this.setState({ cart: [...cart, ...data] });
+      this.setState({ cart: [...cart, ...data] }, () => {
+        this.getSubTotal();
+      });
     } else {
       // alert("The product has been added.");
     }
@@ -270,8 +272,10 @@ export class DataProvider extends Component {
         item.count === 1 ? (item.count = 1) : (item.count -= 1);
       }
     });
-    this.setState({ cart: cart });
-    this.getSubTotal();
+    this.setState({ cart: cart }, () => {
+      this.getSubTotal();
+    });
+    // this.getSubTotal();
   };
 
   increase = (id) => {
@@ -281,8 +285,10 @@ export class DataProvider extends Component {
         item.count += 1;
       }
     });
-    this.setState({ cart: cart });
-    this.getSubTotal();
+    this.setState({ cart: cart }, () => {
+      this.getSubTotal();
+    });
+    // this.getSubTotal();
   };
 
   removeProduct = (id) => {
@@ -293,8 +299,10 @@ export class DataProvider extends Component {
           cart.splice(index, 1);
         }
       });
-      this.setState({ cart: cart });
-      this.getSubTotal();
+      this.setState({ cart: cart }, () => {
+        this.getSubTotal();
+      });
+      // this.getSubTotal();
     }
   };
 
@@ -324,7 +332,15 @@ export class DataProvider extends Component {
 
   render() {
     const { products, cart, subtotal, total, modalShow } = this.state;
-    const { addCart, reduction, increase, removeProduct, getSubTotal, openModal, closeModal } = this;
+    const {
+      addCart,
+      reduction,
+      increase,
+      removeProduct,
+      getSubTotal,
+      openModal,
+      closeModal,
+    } = this;
     return (
       <DataContext.Provider
         value={{
