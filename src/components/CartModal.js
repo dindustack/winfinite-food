@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
 
 const CartModal = (props) => {
-  const { cart, subtotal, total, removeProduct } = React.useContext(DataContext);
+  const { cart, subtotal, removeProduct } = React.useContext(DataContext);
   
 
-  console.log(subtotal);
-  console.log(cart);
-  console.log(total);
-
   // useEffect(() => {
-  //   this.getSubTotal();
+  //     const subtotal = getSubtotal()
   // }, []);
   
   return (

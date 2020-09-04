@@ -324,7 +324,7 @@ export class DataProvider extends Component {
 
   render() {
     const { products, cart, subtotal, total, modalShow } = this.state;
-    const { addCart, reduction, increase, removeProduct, getSubTotal, closeModal } = this;
+    const { addCart, reduction, increase, removeProduct, getSubTotal, openModal, closeModal } = this;
     return (
       <DataContext.Provider
         value={{
@@ -337,6 +337,7 @@ export class DataProvider extends Component {
           subtotal,
           total,
           getSubTotal,
+          openModal,
           closeModal,
           modalShow,
         }}>

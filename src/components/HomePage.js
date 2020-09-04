@@ -6,7 +6,6 @@ import CartModal from "./CartModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../placeholder.css";
 
-
 export class HomePage extends Component {
   static contextType = DataContext;
   constructor(props) {
@@ -35,23 +34,13 @@ export class HomePage extends Component {
                   <br />
                   Home of Superfoods in Nigeria.
                 </h1>
-                <span className="d-inline-block h5 text-white font-weight-bold mx-2">Healthy.</span>
                 <span className="d-inline-block h3 text-white font-weight-bold mx-2">
-                  Affordable.
-                </span>
-                <span className="d-inline-block h4 text-white font-weight-bold mx-2">Fresh</span>
-                <span className="d-inline-block h3 text-white font-weight-bold mx-2">
-                  Farm-sourced
-                </span>
-                <span className="d-inline-block h6 text-white font-weight-bold mx-2">
-                  Packaged with love.
+                  Farm-sourced |
                 </span>
                 <span className="d-inline-block h3 text-white font-weight-bold mx-2">
-                  Delicious
+                  Packaged with love |
                 </span>
-                <span className="d-inline-block h5 text-white font-weight-bold mx-2">Fitfam.</span>
-                <span className="d-inline-block h4 text-white font-weight-bold mx-2">Vegan</span>
-                <span className="d-inline-block text-white font-weight-bold mx-2">World-wide</span>
+                <span className="d-inline-block h3 text-white font-weight-bold mx-2">Fitfam</span>
               </div>
             </div>
           </div>
@@ -87,9 +76,7 @@ export class HomePage extends Component {
                       </div>
 
                       <div className="d-flex justify-content-between">
-                        <h6 className="text-orange font-weight-bold">
-                          &#8358;{product.price}
-                        </h6>
+                        <h6 className="text-orange font-weight-bold">&#8358;{product.price}</h6>
                         <div>
                           <button
                             type="submit"

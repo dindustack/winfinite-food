@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import card from "../assets/brand/cards.svg";
@@ -6,10 +6,6 @@ import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import CheckOutForm from "./CheckOutForm";
 
-function removeKobo(amt) {
-  let newAmt = amt.toString();
-  return newAmt.slice(0, -2);
-}
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
