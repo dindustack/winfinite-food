@@ -4,17 +4,54 @@ import { Link } from "react-router-dom";
 import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
-import CheckOutForm from "./CheckOutForm";
-
+import Form from "react-bootstrap/Form";
+// import CheckOutForm from "./CheckOutForm";
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
-  super(props) {
+  constructor(props) {
+  super(props) 
+    // this.isLoaded = false;
+
+    this.state = {
+      firstname: "",
+      lastname: "",
+      email: "",
+      phonenumber: "",
+      address: "",
+    }
+
     this.isLoaded = false;
   }
 
+  handleFirstnameChange = event => {
+    this.setState({
+      firstname: event.target.value,
+    });
+  };
+
+  handleLastnameChange = event => {
+    this.setState({
+      lastname: event.target.value,
+    });
+  };
+  handleEmailChange = event => {
+    this.setState({
+      email: event.target.value,
+    });
+  };
+  handlePhonenumberChange = event => {
+    this.setState({
+      phonenumber: event.target.value,
+    });
+  };
+  handleAddressChange = event => {
+    this.setState({
+      address: event.target.value,
+    });
+  };
+
   componentDidMount() {
-    this.context.getSubTotal();
     let script = document.createElement("script");
     script.src = `https://js.paystack.co/v1/inline.js`;
     script.async = true;
@@ -58,6 +95,7 @@ export class CheckOutPage extends Component {
 
   render() {
     const { cart, subtotal } = this.context;
+    const { firstname, lastname, email, phonenumber, address } = this.state;
 
     return (
       <React.Fragment>
@@ -100,7 +138,105 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                <CheckOutForm />
+                <Form>
+                  {/* -- Heading -- */}
+                  <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
+
+                  {/* ---- Payment Details  */}
+                  <div className="row mb-5">
+                    <div className="col-12 col-md-6">
+                      {/* -- First Name */}
+                      <Form.Group className="mb-3">
+                        <Form.Label>First Name *</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={firstname}
+                          name="firstname"
+                          placeholder="Enter your first name"
+                          onChange={this.handleFirstnameChange}
+                          // ref={register({ required: true, maxLength: 80 })}
+                        />
+                        {/* {errors.firstname && (
+                          <p style={{ color: "red" }}>{errors.firstname.message}</p>
+                        )} */}
+                      </Form.Group>
+                    </div>
+
+                    {/* -- Last Name */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Last Name *</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="lastname"
+                          value={lastname}
+                          placeholder="Enter your last name"
+                          onChange={this.handleLastnameChange}
+                          // ref={register({ required: true, maxLength: 100 })}
+                        />
+                        {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+
+                    {/* --  Email -- */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Email *</Form.Label>
+                        <Form.Control
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={email}
+                          placeholder="you@example.com"
+                          onChange={this.handleEmailChange}
+                          // ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+                        />
+                        {/* <Form.Control.Feedback type="invalid">
+                          Please provide a valid email.
+                        </Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+
+                    {/* -- Phone Number--- */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Phone Number *</Form.Label>
+                        <Form.Control
+                          type="tel"
+                          name="phonenumber"
+                          value={phonenumber}
+                          placeholder="Enter your phone number"
+                          onChange={this.handlePhonenumberChange}
+                          // ref={register({ required: true, minLength: 6, maxLength: 12 })}
+                        />
+
+                        {/* <Form.Control.Feedback type="invalid">
+                          Please provide a valid phone number.
+                        </Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+
+                    {/* -------- Address ------ */}
+                    <div className="col-12">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          type="text"
+                          name="address"
+                          value={address}
+                          rows="3"
+                          placeholder="Enter your address..."
+                          onChange={this.handleAddressChange}
+                          // ref={register({ required: true })}
+                        />
+                        {/* <Form.Control.Feedback type="invalid">
+                          Please provide a valid address.
+                        </Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+                  </div>
+                </Form>
               </div>
 
               <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
@@ -110,28 +246,30 @@ export class CheckOutPage extends Component {
                 {/* !-- Divider -- */}
                 <hr className="my-5" />
                 {/* ------- Checkout items --------- */}
-                <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+                <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
                   {cart.map((item) => (
-                    <li class="list-group-item" key={item._id}>
-                      <div class="row align-items-center">
-                        <div class="col-4">
+                    <li className="list-group-item" key={item._id}>
+                      <div className="row align-items-center">
+                        <div className="col-4">
                           {/* -- Product Image -- */}
                           <Link to={`/${item._id}`}>
-                            <img src={item.src} alt={item.title} class="img-fluid" />
+                            <img src={item.src} alt={item.title} className="img-fluid" />
                           </Link>
                         </div>
-                        <div class="col">
+                        <div className="col">
                           {/* -- Product description -- */}
-                          <p class="mb-4 small font-weight-bold">
-                            <Link to={`/${item._id}`} class="heading text-decoration-none h5 text-blue">
+                          <p className="mb-4 small font-weight-bold">
+                            <Link
+                              to={`/${item._id}`}
+                              className="heading text-decoration-none h5 text-blue">
                               {item.title}
                             </Link>{" "}
                             <br />
-                            <span class="text-muted">{item.price * item.count}</span>
+                            <span className="text-muted">{item.price * item.count}</span>
                           </p>
 
                           {/* -- Text -- */}
-                          <div class="font-size-sm text-muted">Quantity: {item.count}</div>
+                          <div className="font-size-sm text-muted">Quantity: {item.count}</div>
                         </div>
                       </div>
                     </li>
@@ -143,14 +281,12 @@ export class CheckOutPage extends Component {
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>VAT (7.5%)</span>{" "}
-                        <span className="ml-auto">
-                          &#8358;{0.075 * subtotal}
-                        </span>
+                        <span className="ml-auto">&#8358;{0.075 * subtotal}</span>
                       </li>
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>Total</span>{" "}
                         <span id="amount" className="ml-auto">
-                          &#8358;{subtotal + (0.075 * subtotal)}
+                          &#8358;{subtotal + 0.075 * subtotal}
                         </span>
                       </li>
                     </ul>

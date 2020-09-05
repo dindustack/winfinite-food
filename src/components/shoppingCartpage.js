@@ -13,7 +13,7 @@ export class ShoppingCartPage extends Component {
   static contextType = DataContext;
 
   componentDidMount() {
-    this.context.getSubTotal();
+    this.context.closeModal();
     window.scrollTo(0, 0);
   }
 
