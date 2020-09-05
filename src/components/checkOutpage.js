@@ -154,6 +154,7 @@ export class CheckOutPage extends Component {
                           name="firstname"
                           placeholder="Enter your first name"
                           onChange={this.handleFirstnameChange}
+                          required
                           // ref={register({ required: true, maxLength: 80 })}
                         />
                         {/* {errors.firstname && (
@@ -172,6 +173,7 @@ export class CheckOutPage extends Component {
                           value={lastname}
                           placeholder="Enter your last name"
                           onChange={this.handleLastnameChange}
+                          required
                           // ref={register({ required: true, maxLength: 100 })}
                         />
                         {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
@@ -189,6 +191,7 @@ export class CheckOutPage extends Component {
                           value={email}
                           placeholder="you@example.com"
                           onChange={this.handleEmailChange}
+                          required
                           // ref={register({ required: true, pattern: /^\S+@\S+$/i })}
                         />
                         {/* <Form.Control.Feedback type="invalid">
@@ -207,6 +210,7 @@ export class CheckOutPage extends Component {
                           value={phonenumber}
                           placeholder="Enter your phone number"
                           onChange={this.handlePhonenumberChange}
+                          required
                           // ref={register({ required: true, minLength: 6, maxLength: 12 })}
                         />
 
@@ -228,6 +232,7 @@ export class CheckOutPage extends Component {
                           rows="3"
                           placeholder="Enter your address..."
                           onChange={this.handleAddressChange}
+                          required
                           // ref={register({ required: true })}
                         />
                         {/* <Form.Control.Feedback type="invalid">
