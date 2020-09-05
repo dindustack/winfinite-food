@@ -6,15 +6,32 @@ import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import CheckOutForm from "./CheckOutForm";
 
-
 export class CheckOutPage extends Component {
   static contextType = DataContext;
-  super(props) {
+  // super(props) {
+  //   this.isLoaded = false;
+
+  //   this.state = {
+  //     firstName: "",
+  //     lastName: "",
+  //     email: "",
+  //     password: "",
+  //   };
+  // }
+
+  constructor(props) {
+    super(props);
     this.isLoaded = false;
+    this.state = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      address: "",
+    };
   }
 
   componentDidMount() {
-    this.context.getSubTotal();
     let script = document.createElement("script");
     script.src = `https://js.paystack.co/v1/inline.js`;
     script.async = true;
@@ -59,6 +76,8 @@ export class CheckOutPage extends Component {
   render() {
     const { cart, subtotal } = this.context;
 
+    console.log(this.state.firstName);
+
     return (
       <React.Fragment>
         <Helmet>
@@ -100,7 +119,7 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                <CheckOutForm />
+                <CheckOutForm myState={this.state} />
               </div>
 
               <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
@@ -123,7 +142,9 @@ export class CheckOutPage extends Component {
                         <div class="col">
                           {/* -- Product description -- */}
                           <p class="mb-4 small font-weight-bold">
-                            <Link to={`/${item._id}`} class="heading text-decoration-none h5 text-blue">
+                            <Link
+                              to={`/${item._id}`}
+                              class="heading text-decoration-none h5 text-blue">
                               {item.title}
                             </Link>{" "}
                             <br />
@@ -143,14 +164,12 @@ export class CheckOutPage extends Component {
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>VAT (7.5%)</span>{" "}
-                        <span className="ml-auto">
-                          &#8358;{0.075 * subtotal}
-                        </span>
+                        <span className="ml-auto">&#8358;{0.075 * subtotal}</span>
                       </li>
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>Total</span>{" "}
                         <span id="amount" className="ml-auto">
-                          &#8358;{subtotal + (0.075 * subtotal)}
+                          &#8358;{subtotal + 0.075 * subtotal}
                         </span>
                       </li>
                     </ul>
