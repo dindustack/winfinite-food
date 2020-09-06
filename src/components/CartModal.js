@@ -4,7 +4,16 @@ import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
 
 const CartModal = (props) => {
-  const { cart, subtotal, removeProduct } = React.useContext(DataContext);
+  const { cart, subtotal, removeProduct, closeModal } = React.useContext(DataContext);
+
+  useEffect(() => {
+    // Function to fetch blogs from Api
+    const closeCartMOdal = async () => {
+      closeModal();
+    };
+
+    closeCartMOdal();
+  }, []);
 
   return (
     <React.Fragment>

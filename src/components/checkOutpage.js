@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 export class CheckOutPage extends Component {
   static contextType = DataContext;
   constructor(props) {
-  super(props) 
+    super(props);
     // this.isLoaded = false;
 
     this.state = {
@@ -19,33 +19,33 @@ export class CheckOutPage extends Component {
       email: "",
       phonenumber: "",
       address: "",
-    }
+    };
 
     this.isLoaded = false;
   }
 
-  handleFirstnameChange = event => {
+  handleFirstnameChange = (event) => {
     this.setState({
       firstname: event.target.value,
     });
   };
 
-  handleLastnameChange = event => {
+  handleLastnameChange = (event) => {
     this.setState({
       lastname: event.target.value,
     });
   };
-  handleEmailChange = event => {
+  handleEmailChange = (event) => {
     this.setState({
       email: event.target.value,
     });
   };
-  handlePhonenumberChange = event => {
+  handlePhonenumberChange = (event) => {
     this.setState({
       phonenumber: event.target.value,
     });
   };
-  handleAddressChange = event => {
+  handleAddressChange = (event) => {
     this.setState({
       address: event.target.value,
     });
@@ -315,19 +315,29 @@ export class CheckOutPage extends Component {
                 </div>
 
                 {/* -- Button -- */}
-                <button
-                  className="btn btn-block btn-dark mb-5"
-                  onClick={() => {
-                    if (this.isLoaded) {
-                      this.payNow("silvia@mds.com", subtotal);
-                    } else {
-                      alert(
-                        "Unable to pay now. Make sure you're connected to the internet and don't have ADBlock turned on for this website."
-                      );
-                    }
-                  }}>
-                  Place Order
-                </button>
+                {firstname === "" ||
+                lastname === "" ||
+                email === "" ||
+                phonenumber === "" ||
+                address === "" ? (
+                  <button className="btn btn-block btn-dark mb-5" disabled>
+                    Please fill out the form
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-block btn-dark mb-5"
+                    onClick={() => {
+                      if (this.isLoaded) {
+                        this.payNow(email, subtotal);
+                      } else {
+                        alert(
+                          "Unable to pay now. Make sure you're connected to the internet and don't have ADBlock turned on for this website."
+                        );
+                      }
+                    }}>
+                    Place Order
+                  </button>
+                )}
               </div>
             </div>
           </div>
