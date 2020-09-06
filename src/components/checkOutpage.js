@@ -4,32 +4,52 @@ import { Link } from "react-router-dom";
 import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
-import CheckOutForm from "./CheckOutForm";
+import Form from "react-bootstrap/Form";
+// import CheckOutForm from "./CheckOutForm";
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
-  // super(props) {
-  //   this.isLoaded = false;
-
-  //   this.state = {
-  //     firstName: "",
-  //     lastName: "",
-  //     email: "",
-  //     password: "",
-  //   };
-  // }
-
   constructor(props) {
     super(props);
-    this.isLoaded = false;
+    // this.isLoaded = false;
+
     this.state = {
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       email: "",
-      phoneNumber: "",
+      phonenumber: "",
       address: "",
     };
+
+    this.isLoaded = false;
   }
+
+  handleFirstnameChange = (event) => {
+    this.setState({
+      firstname: event.target.value,
+    });
+  };
+
+  handleLastnameChange = (event) => {
+    this.setState({
+      lastname: event.target.value,
+    });
+  };
+  handleEmailChange = (event) => {
+    this.setState({
+      email: event.target.value,
+    });
+  };
+  handlePhonenumberChange = (event) => {
+    this.setState({
+      phonenumber: event.target.value,
+    });
+  };
+  handleAddressChange = (event) => {
+    this.setState({
+      address: event.target.value,
+    });
+  };
 
   componentDidMount() {
     let script = document.createElement("script");
@@ -75,8 +95,7 @@ export class CheckOutPage extends Component {
 
   render() {
     const { cart, subtotal } = this.context;
-
-    console.log(this.state.firstName);
+    const { firstname, lastname, email, phonenumber, address } = this.state;
 
     return (
       <React.Fragment>
@@ -119,7 +138,110 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                <CheckOutForm myState={this.state} />
+                <Form>
+                  {/* -- Heading -- */}
+                  <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
+
+                  {/* ---- Payment Details  */}
+                  <div className="row mb-5">
+                    <div className="col-12 col-md-6">
+                      {/* -- First Name */}
+                      <Form.Group className="mb-3">
+                        <Form.Label>First Name *</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={firstname}
+                          name="firstname"
+                          placeholder="Enter your first name"
+                          onChange={this.handleFirstnameChange}
+                          required
+                          // ref={register({ required: true, maxLength: 80 })}
+                        />
+                        {/* {errors.firstname && (
+                          <p style={{ color: "red" }}>{errors.firstname.message}</p>
+                        )} */}
+                      </Form.Group>
+                    </div>
+
+                    {/* -- Last Name */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Last Name *</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="lastname"
+                          value={lastname}
+                          placeholder="Enter your last name"
+                          onChange={this.handleLastnameChange}
+                          required
+                          // ref={register({ required: true, maxLength: 100 })}
+                        />
+                        {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+
+                    {/* --  Email -- */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Email *</Form.Label>
+                        <Form.Control
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={email}
+                          placeholder="you@example.com"
+                          onChange={this.handleEmailChange}
+                          required
+                          // ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+                        />
+                        {/* <Form.Control.Feedback type="invalid">
+                          Please provide a valid email.
+                        </Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+
+                    {/* -- Phone Number--- */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Phone Number *</Form.Label>
+                        <Form.Control
+                          type="tel"
+                          name="phonenumber"
+                          value={phonenumber}
+                          placeholder="Enter your phone number"
+                          onChange={this.handlePhonenumberChange}
+                          required
+                          // ref={register({ required: true, minLength: 6, maxLength: 12 })}
+                        />
+
+                        {/* <Form.Control.Feedback type="invalid">
+                          Please provide a valid phone number.
+                        </Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+
+                    {/* -------- Address ------ */}
+                    <div className="col-12">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          type="text"
+                          name="address"
+                          value={address}
+                          rows="3"
+                          placeholder="Enter your address..."
+                          onChange={this.handleAddressChange}
+                          required
+                          // ref={register({ required: true })}
+                        />
+                        {/* <Form.Control.Feedback type="invalid">
+                          Please provide a valid address.
+                        </Form.Control.Feedback> */}
+                      </Form.Group>
+                    </div>
+                  </div>
+                </Form>
               </div>
 
               <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
@@ -129,30 +251,30 @@ export class CheckOutPage extends Component {
                 {/* !-- Divider -- */}
                 <hr className="my-5" />
                 {/* ------- Checkout items --------- */}
-                <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+                <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
                   {cart.map((item) => (
-                    <li class="list-group-item" key={item._id}>
-                      <div class="row align-items-center">
-                        <div class="col-4">
+                    <li className="list-group-item" key={item._id}>
+                      <div className="row align-items-center">
+                        <div className="col-4">
                           {/* -- Product Image -- */}
                           <Link to={`/${item._id}`}>
-                            <img src={item.src} alt={item.title} class="img-fluid" />
+                            <img src={item.src} alt={item.title} className="img-fluid" />
                           </Link>
                         </div>
-                        <div class="col">
+                        <div className="col">
                           {/* -- Product description -- */}
-                          <p class="mb-4 small font-weight-bold">
+                          <p className="mb-4 small font-weight-bold">
                             <Link
                               to={`/${item._id}`}
-                              class="heading text-decoration-none h5 text-blue">
+                              className="heading text-decoration-none h5 text-blue">
                               {item.title}
                             </Link>{" "}
                             <br />
-                            <span class="text-muted">{item.price * item.count}</span>
+                            <span className="text-muted">{item.price * item.count}</span>
                           </p>
 
                           {/* -- Text -- */}
-                          <div class="font-size-sm text-muted">Quantity: {item.count}</div>
+                          <div className="font-size-sm text-muted">Quantity: {item.count}</div>
                         </div>
                       </div>
                     </li>
@@ -193,19 +315,29 @@ export class CheckOutPage extends Component {
                 </div>
 
                 {/* -- Button -- */}
-                <button
-                  className="btn btn-block btn-dark mb-5"
-                  onClick={() => {
-                    if (this.isLoaded) {
-                      this.payNow("silvia@mds.com", subtotal);
-                    } else {
-                      alert(
-                        "Unable to pay now. Make sure you're connected to the internet and don't have ADBlock turned on for this website."
-                      );
-                    }
-                  }}>
-                  Place Order
-                </button>
+                {firstname === "" ||
+                lastname === "" ||
+                email === "" ||
+                phonenumber === "" ||
+                address === "" ? (
+                  <button className="btn btn-block btn-dark mb-5" disabled>
+                    Please fill out the form
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-block btn-dark mb-5"
+                    onClick={() => {
+                      if (this.isLoaded) {
+                        this.payNow(email, subtotal);
+                      } else {
+                        alert(
+                          "Unable to pay now. Make sure you're connected to the internet and don't have ADBlock turned on for this website."
+                        );
+                      }
+                    }}>
+                    Place Order
+                  </button>
+                )}
               </div>
             </div>
           </div>

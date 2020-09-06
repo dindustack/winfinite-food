@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import Form from "react-bootstrap/Form";
+import { useForm } from "react-hook-form";
 
 const API_KEY = process.env.REACT_APP_EMAIL_JS_API_KEY;
 const TEMPLATE_ID = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID;
@@ -19,21 +20,12 @@ const sendEmail = (e) => {
 };
 
 function CheckOutForm() {
-  const [validated, setValidated] = useState(false);
-  const [name, setName] = useState(false);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => console.log(data);
+  console.log(errors);
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       {/* -- Heading -- */}
       <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
 
@@ -47,9 +39,9 @@ function CheckOutForm() {
               type="text"
               name="firstname"
               placeholder="Enter your first name"
-              onChange={(e) => setName(e.target.value)}
+              ref={register({ required: true, maxLength: 80 })}
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            {errors.firstname && <p style={{ color: "red" }}>{errors.firstname.message}</p>}
           </Form.Group>
         </div>
 
@@ -57,7 +49,12 @@ function CheckOutForm() {
         <div className="col-12 col-md-6">
           <Form.Group className="mb-3">
             <Form.Label>Last Name *</Form.Label>
-            <Form.Control type="text" name="lastname" placeholder="Enter your last name" />
+            <Form.Control
+              type="text"
+              name="lastname"
+              placeholder="Enter your last name"
+              ref={register({ required: true, maxLength: 100 })}
+            />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </div>
@@ -66,7 +63,13 @@ function CheckOutForm() {
         <div className="col-12 col-md-6">
           <Form.Group className="mb-3">
             <Form.Label>Email *</Form.Label>
-            <Form.Control type="email" id="email" name="email" placeholder="you@example.com" />
+            <Form.Control
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+            />
             <Form.Control.Feedback type="invalid">
               Please provide a valid email.
             </Form.Control.Feedback>
@@ -77,7 +80,12 @@ function CheckOutForm() {
         <div className="col-12 col-md-6">
           <Form.Group className="mb-3">
             <Form.Label>Phone Number *</Form.Label>
-            <Form.Control type="tel" name="phonenumber" placeholder="Enter your phone number" />
+            <Form.Control
+              type="tel"
+              name="phonenumber"
+              placeholder="Enter your phone number"
+              ref={register({ required: true, minLength: 6, maxLength: 12 })}
+            />
 
             <Form.Control.Feedback type="invalid">
               Please provide a valid phone number.
@@ -95,6 +103,7 @@ function CheckOutForm() {
               name="address"
               rows="3"
               placeholder="Enter your address..."
+              ref={register({ required: true })}
             />
             <Form.Control.Feedback type="invalid">
               Please provide a valid address.

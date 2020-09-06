@@ -245,9 +245,12 @@ export class DataProvider extends Component {
     modalShow: false,
   };
 
-  openModal() {
-    this.setState({ modalShow: true });
-  }
+  openModal = () => {
+    // this.setState({ modalShow: true });
+    this.setState(() => {
+      return { modalShow: true };
+    });
+  };
 
   closeModal = () => {
     this.setState(() => {
