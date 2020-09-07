@@ -12,6 +12,7 @@ export class DataProvider extends Component {
         heading: "Chocolate",
         weight: "340g",
         price: 1700,
+        inCart: false,
         content: {
           description: {
             make:
@@ -34,6 +35,7 @@ export class DataProvider extends Component {
         heading: "Smooth",
         weight: "340g",
         price: 1700,
+        inCart: false,
         content: {
           description: {
             make:
@@ -56,6 +58,7 @@ export class DataProvider extends Component {
         heading: "Tiger Boost",
         weight: "340g",
         price: 1700,
+        inCart: false,
         content: {
           description: {
             make:
@@ -78,6 +81,7 @@ export class DataProvider extends Component {
         heading: "Golden Hibiscus Mix",
         weight: "200g",
         price: 800,
+        inCart: false,
         content: {
           description: {
             make:
@@ -100,6 +104,7 @@ export class DataProvider extends Component {
         heading: "Hibiscus Mix",
         weight: "200g",
         price: 800,
+        inCart: false,
         content: {
           description: {
             make:
@@ -122,6 +127,7 @@ export class DataProvider extends Component {
         heading: "Golden Hibiscus Mix",
         weight: "435g",
         price: 1700,
+        inCart: false,
         content: {
           description: {
             make:
@@ -144,6 +150,7 @@ export class DataProvider extends Component {
         heading: "Hibiscus Mix",
         weight: "435g",
         price: 1700,
+        inCart: false,
         content: {
           description: {
             make:
@@ -166,6 +173,7 @@ export class DataProvider extends Component {
         heading: "Chocolate",
         weight: "30g",
         price: 10500,
+        inCart: false,
         content: {
           description: {
             make:
@@ -193,6 +201,7 @@ export class DataProvider extends Component {
         heading: "Smooth",
         weight: "30g",
         price: 10500,
+        inCart: false,
         content: {
           description: {
             make:
@@ -215,6 +224,7 @@ export class DataProvider extends Component {
         heading: "Tiger Boost",
         weight: "30g",
         price: 10500,
+        inCart: false,
         content: {
           description: {
             make:
@@ -235,9 +245,12 @@ export class DataProvider extends Component {
     modalShow: false,
   };
 
-  openModal() {
-    this.setState({ modalShow: true });
-  }
+  openModal = () => {
+    // this.setState({ modalShow: true });
+    this.setState(() => {
+      return { modalShow: true };
+    });
+  };
 
   closeModal = () => {
     this.setState(() => {
@@ -253,8 +266,17 @@ export class DataProvider extends Component {
       return item._id !== id;
     });
 
+    // products.map((product) => {
+    //   if (product._id === id) {
+    //     product.inCart = true;
+    //   }
+    // });
+
     if (check) {
       const data = products.filter((product) => {
+        console.log(product);
+        // const index = product.indexOf(this.getItem(product));
+        // console.log(index);
         return product._id === id;
       });
       this.setState({ cart: [...cart, ...data] }, () => {
