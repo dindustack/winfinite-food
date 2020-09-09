@@ -17,7 +17,7 @@ export class HomePage extends Component {
   }
 
   render() {
-    const { products, modalShow } = this.context;
+    const { products, modalShow, inCart } = this.context;
 
     return (
       <React.Fragment>
@@ -81,6 +81,7 @@ export class HomePage extends Component {
                           <button
                             type="submit"
                             className="btn btn-sm btn-orange text-white mb-2"
+                            disabled={inCart ? true : false}
                             onClick={() => this.context.addCart(product._id)}>
                             Add to Cart&nbsp;
                             <svg

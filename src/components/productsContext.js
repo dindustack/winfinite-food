@@ -246,7 +246,6 @@ export class DataProvider extends Component {
   };
 
   openModal = () => {
-    // this.setState({ modalShow: true });
     this.setState(() => {
       return { modalShow: true };
     });
@@ -275,8 +274,6 @@ export class DataProvider extends Component {
     if (check) {
       const data = products.filter((product) => {
         console.log(product);
-        // const index = product.indexOf(this.getItem(product));
-        // console.log(index);
         return product._id === id;
       });
       this.setState({ cart: [...cart, ...data] }, () => {
@@ -297,7 +294,6 @@ export class DataProvider extends Component {
     this.setState({ cart: cart }, () => {
       this.getSubTotal();
     });
-    // this.getSubTotal();
   };
 
   increase = (id) => {
@@ -310,7 +306,6 @@ export class DataProvider extends Component {
     this.setState({ cart: cart }, () => {
       this.getSubTotal();
     });
-    // this.getSubTotal();
   };
 
   removeProduct = (id) => {
@@ -324,7 +319,6 @@ export class DataProvider extends Component {
       this.setState({ cart: cart }, () => {
         this.getSubTotal();
       });
-      // this.getSubTotal();
     }
   };
 
@@ -335,6 +329,15 @@ export class DataProvider extends Component {
     }, 0);
     this.setState({ subtotal: res });
   };
+
+  clearCart = () => {
+    this.setState(() => {
+        return {cart: []}
+    }, () => {
+        this.setState();
+        this.getSubTotal();
+    })
+}
 
   componentDidUpdate() {
     localStorage.setItem("dataCart", JSON.stringify(this.state.cart));
@@ -362,6 +365,7 @@ export class DataProvider extends Component {
       getSubTotal,
       openModal,
       closeModal,
+      clearCart
     } = this;
     return (
       <DataContext.Provider
@@ -378,6 +382,7 @@ export class DataProvider extends Component {
           openModal,
           closeModal,
           modalShow,
+          clearCart
         }}>
         {this.props.children}
       </DataContext.Provider>

@@ -2,18 +2,19 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import about from "../assets/img/about-one.jpg";
+import aboutImage from "../assets/img/about-image.jpg";
 import "../bootstrap.min.css";
 import "../index.css";
 
 function AboutPage() {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  })
+    window.scrollTo(0, 0);
+  });
   return (
     <React.Fragment>
       <Helmet>
-          <title>About &mdash; Shop at Winfinite Foods</title>
-        </Helmet>
+        <title>About &mdash; Shop at Winfinite Foods</title>
+      </Helmet>
       {/* ----------- Bread Crumb ------- */}
       <nav aria-label="breadcrumb" className="pt-5 mt-2 mt-md-5 mt-5 bg-white">
         <div className="container">

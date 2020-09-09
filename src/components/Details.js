@@ -39,7 +39,7 @@ export class Details extends Component {
       <React.Fragment>
         <Helmet>
         {product.map((item) => (
-          <title className="text-capitalize">{item.title}  &mdash; Shop at Winfinite Foods</title>
+          <title className="text-capitalize" key={item._id}>{item.title}  &mdash; Shop at Winfinite Foods</title>
           ))}
         </Helmet>
         {product.map((item) => (

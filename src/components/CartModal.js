@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "./productsContext";
 import Modal from "react-bootstrap/Modal";
@@ -7,7 +7,6 @@ const CartModal = (props) => {
   const { cart, subtotal, removeProduct, closeModal } = React.useContext(DataContext);
 
   useEffect(() => {
-    // Function to fetch blogs from Api
     const closeCartMOdal = async () => {
       closeModal();
     };

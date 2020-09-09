@@ -5,13 +5,12 @@ import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
-// import CheckOutForm from "./CheckOutForm";
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
   constructor(props) {
     super(props);
-    // this.isLoaded = false;
+    
 
     this.state = {
       firstname: "",
@@ -82,19 +81,18 @@ export class CheckOutPage extends Component {
           },
         ],
       },
-      callback: function (response) {
+      callback: function (response) { 
         alert("success. transaction ref is " + response.reference);
       },
-      // onClose: function () {
-      //   alert("window closed");
-      // },
+
+       
     };
     const handler = window.PaystackPop.setup(options);
     handler.openIframe();
   }
 
   render() {
-    const { cart, subtotal } = this.context;
+    const { cart, subtotal, clearCart } = this.context;
     const { firstname, lastname, email, phonenumber, address } = this.state;
 
     return (
@@ -154,12 +152,7 @@ export class CheckOutPage extends Component {
                           name="firstname"
                           placeholder="Enter your first name"
                           onChange={this.handleFirstnameChange}
-                          required
-                          // ref={register({ required: true, maxLength: 80 })}
                         />
-                        {/* {errors.firstname && (
-                          <p style={{ color: "red" }}>{errors.firstname.message}</p>
-                        )} */}
                       </Form.Group>
                     </div>
 
@@ -173,10 +166,7 @@ export class CheckOutPage extends Component {
                           value={lastname}
                           placeholder="Enter your last name"
                           onChange={this.handleLastnameChange}
-                          required
-                          // ref={register({ required: true, maxLength: 100 })}
                         />
-                        {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
                       </Form.Group>
                     </div>
 
@@ -191,12 +181,7 @@ export class CheckOutPage extends Component {
                           value={email}
                           placeholder="you@example.com"
                           onChange={this.handleEmailChange}
-                          required
-                          // ref={register({ required: true, pattern: /^\S+@\S+$/i })}
                         />
-                        {/* <Form.Control.Feedback type="invalid">
-                          Please provide a valid email.
-                        </Form.Control.Feedback> */}
                       </Form.Group>
                     </div>
 
@@ -210,13 +195,7 @@ export class CheckOutPage extends Component {
                           value={phonenumber}
                           placeholder="Enter your phone number"
                           onChange={this.handlePhonenumberChange}
-                          required
-                          // ref={register({ required: true, minLength: 6, maxLength: 12 })}
                         />
-
-                        {/* <Form.Control.Feedback type="invalid">
-                          Please provide a valid phone number.
-                        </Form.Control.Feedback> */}
                       </Form.Group>
                     </div>
 
@@ -233,11 +212,8 @@ export class CheckOutPage extends Component {
                           placeholder="Enter your address..."
                           onChange={this.handleAddressChange}
                           required
-                          // ref={register({ required: true })}
                         />
-                        {/* <Form.Control.Feedback type="invalid">
-                          Please provide a valid address.
-                        </Form.Control.Feedback> */}
+                        
                       </Form.Group>
                     </div>
                   </div>
