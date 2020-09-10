@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
@@ -49,6 +50,45 @@ export class CheckOutPage extends Component {
     this.setState({
       address: event.target.value,
     });
+  };
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url: "/api/sendemail.php",
+      headers: { "content-type": "application/json", "Access-Control-Allow-Origin": "*" },
+      // credentials: "include",
+      data: this.state,
+    })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // try {
+    //   e.preventDefault();
+
+    //   console.log(this.state);
+    //   const data = await axios({
+    //     method: "POST",
+    //     url: "https://cors-anywhere.herokuapp.com/http://winfinitefoods.com/api/sendemail.php",
+    //     headers: { "content-type": "application/json" },
+    //     data: this.state,
+    //   });
+
+    //   console.log(data);
+
+    //   // console.log(this.state.firstname);
+    //   // console.log(this.state.lastname);
+    //   // console.log(this.state.email);
+    //   // console.log(this.state.phonenumber);
+    //   // console.log(this.state.address);
+    // } catch (err) {
+    //   // console.log(err);
+    //   throw err;
+    // }
   };
 
   componentDidMount() {
@@ -138,7 +178,7 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                   {/* -- Heading -- */}
                   <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
 
@@ -232,7 +272,7 @@ export class CheckOutPage extends Component {
                           rows="3"
                           placeholder="Enter your address..."
                           onChange={this.handleAddressChange}
-                          required
+                          // required
                           // ref={register({ required: true })}
                         />
                         {/* <Form.Control.Feedback type="invalid">
@@ -241,6 +281,8 @@ export class CheckOutPage extends Component {
                       </Form.Group>
                     </div>
                   </div>
+
+                  <button>Click me</button>
                 </Form>
               </div>
 
