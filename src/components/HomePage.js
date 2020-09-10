@@ -17,7 +17,7 @@ export class HomePage extends Component {
   }
 
   render() {
-    const { products, modalShow } = this.context;
+    const { products, modalShow, inCart } = this.context;
 
     return (
       <React.Fragment>
@@ -28,19 +28,19 @@ export class HomePage extends Component {
         <section className="py-5 welcome-image img-fluid bg-accent">
           <div className="container py-5 no-opacity">
             <div className="row pt-md-5 pb-lg-5 justify-content-center">
-              <div className="col-xl-7 col-lg-8 col-md-10 text-center text-wrap py-xl-3 w-100 py-auto mt-5 ">
-                <h1 className="pb-sm-3 heading display-2 font-weight-bolder text-center text-white">
+              <div className="col-xl-7 col-lg-8 col-md-10 text-center text-wrap text-orange py-xl-3 w-100 py-auto mt-5 ">
+                <h1 className="pb-sm-3 heading display-2 font-weight-bolder text-center">
                   Welcome to the
                   <br />
                   Home of Superfoods in Nigeria.
                 </h1>
-                <span className="d-inline-block h3 text-white font-weight-bold mx-2 text-wrap">
+                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap">
                   Farm-sourced |
                 </span>
-                <span className="d-inline-block h3 text-white font-weight-bold mx-2 text-wrap">
+                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap">
                   Packaged with love |
                 </span>
-                <span className="d-inline-block h3 text-white font-weight-bold mx-2 text-wrap">Fitfam</span>
+                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap">Fitfam</span>
               </div>
             </div>
           </div>
@@ -81,6 +81,7 @@ export class HomePage extends Component {
                           <button
                             type="submit"
                             className="btn btn-sm btn-orange text-white mb-2"
+                            disabled={inCart ? true : false}
                             onClick={() => this.context.addCart(product._id)}>
                             Add to Cart&nbsp;
                             <svg

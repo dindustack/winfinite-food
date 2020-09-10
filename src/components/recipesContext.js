@@ -11,6 +11,7 @@ export class InfoProvider extends Component {
                 "title": "flourless double chocolate banana bread",
                 "src": require("../assets/img/flourless-double-chocolate-bread.jpg"),
                 "introtext": "This yummy goodness was made with our chocolate nuts and seed butter",
+                "photo": require("../assets/img/chocolate.png"),
                 "ingredients":[
 
                     "8 ripe Bananas",
@@ -40,6 +41,7 @@ export class InfoProvider extends Component {
                 "_id": "vegetable-nuts-and-seeds-butter-soup",
                 "title": "vegetable nuts and seeds butter soup",
                 "src": require("../assets/img/vegetable-soup.jpg"),
+                "photo": require("../assets/img/smooth.png"),
                 "introtext": "This vegetable nuts and seeds butter soup is hearty, nutritious and lightly spicy; nuts n Seeds butter and sweet potato are a match made in vegan heaven.",
                 "ingredients":[
 
@@ -75,6 +77,7 @@ export class InfoProvider extends Component {
                 "title": "golden hibiscus mango smoothie",
                 "src": require("../assets/img/mango-smoothie.jpg"),
                 "introtext": "",
+                "photo": require("../assets/img/golden-mix.png"),
                 "ingredients":[
 
                     "2 cups chopped mangoes",
@@ -99,6 +102,7 @@ export class InfoProvider extends Component {
                 "_id": "creamy-nuts-and-seed-butter-beans-curry",
                 "title": "creamy nuts and seed butter beans curry",
                 "src": require("../assets/img/creamy-beans-curry.jpg"),
+                "photo": require("../assets/img/tiger-boost.png"),
                 "introtext": "Looking for a delicious vegan recipe? You've come to the right place. This one is an absolute banger. This creamy nuts n seeds butter beans curry will get rid of any midweek blues.",
                 "ingredients":[
 

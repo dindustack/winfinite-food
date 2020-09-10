@@ -13,11 +13,11 @@ const EmptyCart = () => {
           <div className="row">
             <div className="col-12">
               {/* -- Heading -- */}
-              <h3 className="mt-5 mb-5 text-center display-4 heading">Shopping Cart</h3>
+              <h3 className="mt-5 mb-md-5 text-center display-4 heading">Shopping Cart</h3>
             </div>
           </div>
           {/* ---------- Content ----------- */}
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mb-5 mt-5">
             <div className="col-12 col-md-10 col-lg-8 col-xl-6 text-center">
               {/* --- Icon ---- */}
               <div className="mb-5 h1"><span role="img" aria-label="emoji">❤️</span></div>
