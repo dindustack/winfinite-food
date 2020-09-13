@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
@@ -16,7 +16,7 @@ export class CheckOutPage extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      phonenumber: "",
+      phone: "",
       address: "",
     };
 
@@ -41,52 +41,13 @@ export class CheckOutPage extends Component {
   };
   handlePhonenumberChange = (event) => {
     this.setState({
-      phonenumber: event.target.value,
+      phone: event.target.value,
     });
   };
   handleAddressChange = (event) => {
     this.setState({
       address: event.target.value,
     });
-  };
-
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    axios({
-      method: "POST",
-      url: "/api/sendemail.php",
-      headers: { "content-type": "application/json", "Access-Control-Allow-Origin": "*" },
-      // credentials: "include",
-      data: this.state,
-    })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // try {
-    //   e.preventDefault();
-
-    //   console.log(this.state);
-    //   const data = await axios({
-    //     method: "POST",
-    //     url: "https://cors-anywhere.herokuapp.com/http://winfinitefoods.com/api/sendemail.php",
-    //     headers: { "content-type": "application/json" },
-    //     data: this.state,
-    //   });
-
-    //   console.log(data);
-
-    //   // console.log(this.state.firstname);
-    //   // console.log(this.state.lastname);
-    //   // console.log(this.state.email);
-    //   // console.log(this.state.phonenumber);
-    //   // console.log(this.state.address);
-    // } catch (err) {
-    //   // console.log(err);
-    //   throw err;
-    // }
   };
 
   componentDidMount() {
@@ -120,8 +81,41 @@ export class CheckOutPage extends Component {
           },
         ],
       },
-      callback: function (response) {
+      callback: function async(response) {
         alert("success. transaction ref is " + response.reference);
+
+        // Send email and show user success message
+        const formData = new FormData();
+
+        formData.append("firstname", this.state.firstname);
+        formData.append("lastname", this.state.lastname);
+        formData.append("email", this.state.email);
+        formData.append("phone", this.state.phone);
+        formData.append("address", this.state.address);
+
+        /*** Push app to surge and test if it works..If it does not work then go to the
+         * package.json and remove the "proxy": "http://winfinitefoods.com" and then
+         * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
+         */
+
+        axios
+          .post("/apis/sendemail.php", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((data) => {
+            // Do whatever u want with the data...Display 2 user etc..View d data in d
+            // console 2 see d
+            console.log(data);
+            // If Request was sent with all d proper fields available
+            console.log(data.data.success);
+            // If Request was sent missing fields
+            console.log(data.data.error);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
     };
     const handler = window.PaystackPop.setup(options);
@@ -130,7 +124,9 @@ export class CheckOutPage extends Component {
 
   render() {
     const { cart, subtotal, clearCart } = this.context;
-    const { firstname, lastname, email, phonenumber, address } = this.state;
+    const { firstname, lastname, email, phone, address } = this.state;
+
+    // console.log(clearCart);
 
     return (
       <React.Fragment>
@@ -173,7 +169,7 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                   {/* -- Heading -- */}
                   <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
 
@@ -228,8 +224,8 @@ export class CheckOutPage extends Component {
                         <Form.Label>Phone Number *</Form.Label>
                         <Form.Control
                           type="tel"
-                          name="phonenumber"
-                          value={phonenumber}
+                          name="phone"
+                          value={phone}
                           placeholder="Enter your phone number"
                           onChange={this.handlePhonenumberChange}
                         />
@@ -253,8 +249,6 @@ export class CheckOutPage extends Component {
                       </Form.Group>
                     </div>
                   </div>
-
-                  <button>Click me</button>
                 </Form>
               </div>
 
@@ -332,7 +326,7 @@ export class CheckOutPage extends Component {
                 {firstname === "" ||
                 lastname === "" ||
                 email === "" ||
-                phonenumber === "" ||
+                phone === "" ||
                 address === "" ? (
                   <button className="btn btn-block btn-dark mb-5" disabled>
                     Please fill out the form
