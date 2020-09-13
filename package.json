@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.20.0",
     "bootstrap": "4.5.0",
     "emailjs-com": "^2.6.3",
     "formik": "^2.1.5",
@@ -27,6 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://winfinitefoods.com",
   "eslintConfig": {
     "extends": "react-app"
   },

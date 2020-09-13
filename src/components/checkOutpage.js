@@ -5,18 +5,18 @@ import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
   constructor(props) {
     super(props);
-    
 
     this.state = {
       firstname: "",
       lastname: "",
       email: "",
-      phonenumber: "",
+      phone: "",
       address: "",
     };
 
@@ -41,7 +41,7 @@ export class CheckOutPage extends Component {
   };
   handlePhonenumberChange = (event) => {
     this.setState({
-      phonenumber: event.target.value,
+      phone: event.target.value,
     });
   };
   handleAddressChange = (event) => {
@@ -81,11 +81,42 @@ export class CheckOutPage extends Component {
           },
         ],
       },
-      callback: function (response) { 
+      callback: function async(response) {
         alert("success. transaction ref is " + response.reference);
-      },
 
-       
+        // Send email and show user success message
+        const formData = new FormData();
+
+        formData.append("firstname", this.state.firstname);
+        formData.append("lastname", this.state.lastname);
+        formData.append("email", this.state.email);
+        formData.append("phone", this.state.phone);
+        formData.append("address", this.state.address);
+
+        /*** Push app to surge and test if it works..If it does not work then go to the
+         * package.json and remove the "proxy": "http://winfinitefoods.com" and then
+         * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
+         */
+
+        axios
+          .post("/apis/sendemail.php", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((data) => {
+            // Do whatever u want with the data...Display 2 user etc..View d data in d
+            // console 2 see d
+            console.log(data);
+            // If Request was sent with all d proper fields available
+            console.log(data.data.success);
+            // If Request was sent missing fields
+            console.log(data.data.error);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     };
     const handler = window.PaystackPop.setup(options);
     handler.openIframe();
@@ -93,7 +124,9 @@ export class CheckOutPage extends Component {
 
   render() {
     const { cart, subtotal, clearCart } = this.context;
-    const { firstname, lastname, email, phonenumber, address } = this.state;
+    const { firstname, lastname, email, phone, address } = this.state;
+
+    // console.log(clearCart);
 
     return (
       <React.Fragment>
@@ -191,8 +224,8 @@ export class CheckOutPage extends Component {
                         <Form.Label>Phone Number *</Form.Label>
                         <Form.Control
                           type="tel"
-                          name="phonenumber"
-                          value={phonenumber}
+                          name="phone"
+                          value={phone}
                           placeholder="Enter your phone number"
                           onChange={this.handlePhonenumberChange}
                         />
@@ -213,7 +246,6 @@ export class CheckOutPage extends Component {
                           onChange={this.handleAddressChange}
                           required
                         />
-                        
                       </Form.Group>
                     </div>
                   </div>
@@ -294,7 +326,7 @@ export class CheckOutPage extends Component {
                 {firstname === "" ||
                 lastname === "" ||
                 email === "" ||
-                phonenumber === "" ||
+                phone === "" ||
                 address === "" ? (
                   <button className="btn btn-block btn-dark mb-5" disabled>
                     Please fill out the form
