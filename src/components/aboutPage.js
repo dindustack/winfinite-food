@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import about from "../assets/img/about-one.jpg";
-import aboutImage from "../assets/img/about-image.jpg";
 import "../bootstrap.min.css";
 import "../index.css";
 

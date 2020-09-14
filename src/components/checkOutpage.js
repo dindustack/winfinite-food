@@ -5,19 +5,19 @@ import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
+import Toast from "react-bootstrap/Toast";
+import axios from "axios";
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
   constructor(props) {
     super(props);
-    
 
     this.state = {
       firstname: "",
       lastname: "",
       email: "",
-      phonenumber: "",
+      phone: "",
       address: "",
     };
 
@@ -42,7 +42,7 @@ export class CheckOutPage extends Component {
   };
   handlePhonenumberChange = (event) => {
     this.setState({
-      phonenumber: event.target.value,
+      phone: event.target.value,
     });
   };
   handleAddressChange = (event) => {
@@ -82,11 +82,40 @@ export class CheckOutPage extends Component {
           },
         ],
       },
-      callback: function (response) {
-        alert("success. transaction ref is " + response.reference);
-      },
+      callback: function async(response) {
+        // Send email and show user success message
+        const formData = new FormData();
 
-       
+        formData.append("firstname", this.state.firstname);
+        formData.append("lastname", this.state.lastname);
+        formData.append("email", this.state.email);
+        formData.append("phone", this.state.phone);
+        formData.append("address", this.state.address);
+
+        /*** Push app to surge and test if it works..If it does not work then go to the
+         * package.json and remove the "proxy": "http://winfinitefoods.com" and then
+         * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
+         */
+
+        axios
+          .post("/apis/sendemail.php", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((data) => {
+            // Do whatever u want with the data...Display 2 user etc..View d data in d
+            // console 2 see d
+            console.log(data);
+            // If Request was sent with all d proper fields available
+            console.log(data.data.success);
+            // If Request was sent missing fields
+            console.log(data.data.error);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     };
     const handler = window.PaystackPop.setup(options);
     handler.openIframe();
@@ -94,7 +123,9 @@ export class CheckOutPage extends Component {
 
   render() {
     const { cart, subtotal, clearCart } = this.context;
-    const { firstname, lastname, email, phonenumber, address } = this.state;
+    const { firstname, lastname, email, phone, address } = this.state;
+
+    // console.log(clearCart);
 
     return (
       <React.Fragment>
@@ -192,8 +223,8 @@ export class CheckOutPage extends Component {
                         <Form.Label>Phone Number *</Form.Label>
                         <Form.Control
                           type="tel"
-                          name="phonenumber"
-                          value={phonenumber}
+                          name="phone"
+                          value={phone}
                           placeholder="Enter your phone number"
                           onChange={this.handlePhonenumberChange}
                         />
@@ -214,12 +245,48 @@ export class CheckOutPage extends Component {
                           onChange={this.handleAddressChange}
                           required
                         />
-                        
                       </Form.Group>
                     </div>
                   </div>
                 </Form>
               </div>
+              <button
+                className="btn btn-dark"
+                onClick={() => {
+                  const formData = new FormData();
+
+                  formData.append("firstname", this.state.firstname);
+                  formData.append("lastname", this.state.lastname);
+                  formData.append("email", this.state.email);
+                  formData.append("phone", this.state.phone);
+                  formData.append("address", this.state.address);
+
+                  /*** Push app to surge and test if it works..If it does not work then go to the
+                   * package.json and remove the "proxy": "http://winfinitefoods.com" and then
+                   * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
+                   */
+
+                  axios
+                    .post("/apis/sendemail.php", formData, {
+                      headers: {
+                        "Content-Type": "multipart/form-data",
+                      },
+                    })
+                    .then((data) => {
+                      // Do whatever u want with the data...Display 2 user etc..View d data in d
+                      // console 2 see d
+                      console.log(data);
+                      // If Request was sent with all d proper fields available
+                      console.log(data.data.success);
+                      // If Request was sent missing fields
+                      console.log(data.data.error);
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
+                }}>
+                Remove Cart
+              </button>
 
               <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
                 {/* -- Heading -- */}
@@ -261,15 +328,12 @@ export class CheckOutPage extends Component {
                 <div className="card mb-5 bg-light">
                   <div className="card-body">
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
-                      <li className="list-group-item d-flex font-size-lg font-weight-bold">
+                      {/* <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>VAT (7.5%)</span>{" "}
                         <span className="ml-auto">&#8358;{0.075 * subtotal}</span>
-                      </li>
+                      </li> */}
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                        <span>Total</span>{" "}
-                        <span id="amount" className="ml-auto">
-                          &#8358;{subtotal + 0.075 * subtotal}
-                        </span>
+                        <span>Total</span> <span className="ml-auto">&#8358;{subtotal}</span>
                       </li>
                     </ul>
                   </div>
@@ -295,7 +359,7 @@ export class CheckOutPage extends Component {
                 {firstname === "" ||
                 lastname === "" ||
                 email === "" ||
-                phonenumber === "" ||
+                phone === "" ||
                 address === "" ? (
                   <button className="btn btn-block btn-dark mb-5" disabled>
                     Please fill out the form
@@ -307,10 +371,15 @@ export class CheckOutPage extends Component {
                       if (this.isLoaded) {
                         this.payNow(email, subtotal);
                       } else {
-                        alert(
-                          "Unable to pay now. Make sure you're connected to the internet and don't have ADBlock turned on for this website."
-                        );
-                      }
+                        return(
+                        <Toast>
+                          <Toast.Body>
+                            Unable to pay now. Make sure you're connected to the internet and don't
+                            have ADBlock turned on for this website.
+                          </Toast.Body>
+                        </Toast>
+                        )}
+                      clearCart();
                     }}>
                     Place Order
                   </button>

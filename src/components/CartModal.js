@@ -82,7 +82,7 @@ const CartModal = (props) => {
           <div className="justify-content-center">
             <Link to="/cart" className="text-decoration-none">
               <button type="submit" className="btn btn-block btn-success mb-2">
-                Proceed to Checkout{" "}
+                Proceed to Cart{" "}
                 <svg viewBox="0 0 20 20" fill="#fff" width="16px" className="ml-2">
                   <path
                     fillRule="evenodd"

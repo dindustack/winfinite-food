@@ -1,5 +1,8 @@
 import React, { createContext, Component } from "react";
+import Toast from "react-bootstrap/Toast";
 export const DataContext = createContext();
+
+
 
 export class DataProvider extends Component {
   state = {
@@ -280,7 +283,13 @@ export class DataProvider extends Component {
         this.getSubTotal();
       });
     } else {
-      // alert("The product has been added.");
+      return(
+        <Toast>
+          <Toast.Body>
+          The product has been added.
+          </Toast.Body>
+        </Toast>
+        )
     }
   };
 
