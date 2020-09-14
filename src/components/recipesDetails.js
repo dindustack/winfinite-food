@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { InfoContext } from "./recipesContext";
-import "../bootstrap.min.css";
-import "../index.css";
+
 
 export class recipeDetails extends Component {
   static contextType = InfoContext;
@@ -105,6 +104,7 @@ export class recipeDetails extends Component {
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </section>

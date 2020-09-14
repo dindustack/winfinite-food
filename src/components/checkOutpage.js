@@ -5,6 +5,7 @@ import card from "../assets/brand/cards.svg";
 import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 export class CheckOutPage extends Component {
   static contextType = DataContext;
@@ -81,7 +82,7 @@ export class CheckOutPage extends Component {
           },
         ],
       },
-      callback: function (response) { 
+      callback: function (response) {
         alert("success. transaction ref is " + response.reference);
       },
 
