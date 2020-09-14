@@ -7,6 +7,9 @@ import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
+// Axios base url
+const API = axios.create({ baseURL: "https://winfinitefoods.com/apis" });
+
 export class CheckOutPage extends Component {
   static contextType = DataContext;
   constructor(props) {
@@ -65,7 +68,18 @@ export class CheckOutPage extends Component {
     window.scrollTo(0, 0);
   }
 
+  /*** Push app to surge and test if it works..If it does not work then go to the
+   * package.json and remove the "proxy": "http://winfinitefoods.com" and then
+   * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
+   */
   payNow(email, amount) {
+    let formData = new FormData();
+    formData.append("firstname", this.state.firstname);
+    formData.append("lastname", this.state.lastname);
+    formData.append("email", this.state.email);
+    formData.append("phone", this.state.phone);
+    formData.append("address", this.state.address);
+
     let options = {
       key: "pk_test_2ef9377963e79603b90ca45d7565d50f51d7fb47",
       email: email,
@@ -81,40 +95,23 @@ export class CheckOutPage extends Component {
           },
         ],
       },
-      callback: function async(response) {
-        alert("success. transaction ref is " + response.reference);
-
-        // Send email and show user success message
-        const formData = new FormData();
-
-        formData.append("firstname", this.state.firstname);
-        formData.append("lastname", this.state.lastname);
-        formData.append("email", this.state.email);
-        formData.append("phone", this.state.phone);
-        formData.append("address", this.state.address);
-
-        /*** Push app to surge and test if it works..If it does not work then go to the
-         * package.json and remove the "proxy": "http://winfinitefoods.com" and then
-         * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
+      callback: function (response) {
+        // Send email and show message then clear fields plus cart
+        /**
+         * Unfortunately ATM, the server is having CORS issues but the emails do get sent.
          */
-
-        axios
-          .post("/apis/sendemail.php", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
+        API.post("/sendemail.php", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
           .then((data) => {
-            // Do whatever u want with the data...Display 2 user etc..View d data in d
-            // console 2 see d
-            console.log(data);
-            // If Request was sent with all d proper fields available
-            console.log(data.data.success);
-            // If Request was sent missing fields
-            console.log(data.data.error);
+            // Available responses: data => data.data.success| data.data.error
+            return;
           })
           .catch((err) => {
-            console.log(err);
+            console.debug(err);
+            return;
           });
       },
     };
