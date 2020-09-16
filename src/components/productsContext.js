@@ -2,8 +2,6 @@ import React, { createContext, Component } from "react";
 import Toast from "react-bootstrap/Toast";
 export const DataContext = createContext();
 
-
-
 export class DataProvider extends Component {
   state = {
     products: [
@@ -121,52 +119,6 @@ export class DataProvider extends Component {
         },
         count: 1,
       },
-      // Golden Hibiscus Mix -435g
-      {
-        _id: "golden-hibiscus-mix-435g",
-        title: "Golden Hibiscus Mix",
-        src: require("../assets/img/golden-mix.png"),
-        brand: "Healthy Mix",
-        heading: "Golden Hibiscus Mix",
-        weight: "435g",
-        price: 1700,
-        inCart: false,
-        content: {
-          description: {
-            make:
-              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
-            use:
-              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
-          },
-          ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
-          },
-        },
-        count: 1,
-      },
-      // Hibiscus Mix -435g
-      {
-        _id: "hibiscus-mix-435g",
-        title: "Hibiscus Mix",
-        src: require("../assets/img/hibiscus.png"),
-        brand: "Healthy Mix",
-        heading: "Hibiscus Mix",
-        weight: "435g",
-        price: 1700,
-        inCart: false,
-        content: {
-          description: {
-            make:
-              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
-            use:
-              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
-          },
-          ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
-          },
-        },
-        count: 1,
-      },
       // Chocolate-squeeze
       {
         _id: "chocolate-squeeze",
@@ -241,6 +193,123 @@ export class DataProvider extends Component {
         },
         count: 1,
       },
+      // Golden Hibiscus Mix - 30g
+      {
+        _id: "golden-hibiscus-mix-30g",
+        title: "Golden Hibiscus Mix squeeze",
+        src: require("../assets/img/Golden_Hibiscus_Mix_30g.png"),
+        brand: "Healthy Mix",
+        heading: "Golden Hibiscus Mix squeeze",
+        weight: "30g",
+        price: 10500,
+        inCart: false,
+        content: {
+          description: {
+            make:
+              "Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+            use:
+              "It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix.",
+          },
+          ingredients: {
+            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+          },
+        },
+        count: 1,
+      },
+      // Golden Hibiscus Mix -400g
+      {
+        _id: "golden-hibiscus-mix-400g",
+        title: "Golden Hibiscus Mix",
+        src: require("../assets/img/Golden_Hibiscus_Mix.png"),
+        brand: "Healthy Mix",
+        heading: "Golden Hibiscus Mix",
+        weight: "400g",
+        price: 1700,
+        inCart: false,
+        content: {
+          description: {
+            make:
+              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+            use:
+              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+          },
+          ingredients: {
+            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+          },
+        },
+        count: 1,
+      },
+      
+      // Hibiscus Mix-400g
+      {
+        _id: "hibiscus-mix-400g",
+        title: "Hibiscus Mix",
+        src: require("../assets/img/Hibiscus_mix_400.png"),
+        brand: "Healthy Mix",
+        heading: "Hibiscus Mix",
+        weight: "400g",
+        price: 1700,
+        inCart: false,
+        content: {
+          description: {
+            make:
+              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+            use:
+              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+          },
+          ingredients: {
+            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+          },
+        },
+        count: 1,
+      },
+      // Original Pastry Mix-400g
+      {
+        _id: "original-nuts-seeds-pastry-mix",
+        title: "Original Nuts 'n' Seeds Pastry Mix",
+        src: require("../assets/img/Original_nuts_n_seeds_pastry_mix.png"),
+        brand: "Pastry Mix",
+        heading: "Original Nuts 'n' Seeds Pastry Mix",
+        weight: "460g",
+        price: 1700,
+        inCart: false,
+        content: {
+          description: {
+            make:
+              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+            use:
+              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+          },
+          ingredients: {
+            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+          },
+        },
+        count: 1,
+      },
+      // Spiced Pastry Mix-400g
+      {
+        _id: "spiced-nuts-seeds-pastry-mix",
+        title: "Spiced Nuts 'n' Seeds Pastry Mix",
+        src: require("../assets/img/Spiced_nuts_n_seed_pastry_mix.png"),
+        brand: "Pastry Mix",
+        heading: "Spiced Nuts 'n' Seeds Pastry Mix",
+        weight: "460g",
+        price: 1700,
+        inCart: false,
+        content: {
+          description: {
+            make:
+              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+            use:
+              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+          },
+          ingredients: {
+            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+          },
+        },
+        count: 1,
+      },
+      
     ],
     cart: [],
     subtotal: 0,
@@ -267,13 +336,7 @@ export class DataProvider extends Component {
     const check = cart.every((item) => {
       return item._id !== id;
     });
-
-    // products.map((product) => {
-    //   if (product._id === id) {
-    //     product.inCart = true;
-    //   }
-    // });
-
+    
     if (check) {
       const data = products.filter((product) => {
         console.log(product);
@@ -283,13 +346,11 @@ export class DataProvider extends Component {
         this.getSubTotal();
       });
     } else {
-      return(
+      return (
         <Toast>
-          <Toast.Body>
-          The product has been added.
-          </Toast.Body>
+          <Toast.Body>The product has been added.</Toast.Body>
         </Toast>
-        )
+      );
     }
   };
 
@@ -340,13 +401,16 @@ export class DataProvider extends Component {
   };
 
   clearCart = () => {
-    this.setState(() => {
-        return {cart: []}
-    }, () => {
+    this.setState(
+      () => {
+        return { cart: [] };
+      },
+      () => {
         this.setState();
         this.getSubTotal();
-    })
-}
+      }
+    );
+  };
 
   componentDidUpdate() {
     localStorage.setItem("dataCart", JSON.stringify(this.state.cart));
@@ -374,7 +438,7 @@ export class DataProvider extends Component {
       getSubTotal,
       openModal,
       closeModal,
-      clearCart
+      clearCart,
     } = this;
     return (
       <DataContext.Provider
@@ -391,7 +455,7 @@ export class DataProvider extends Component {
           openModal,
           closeModal,
           modalShow,
-          clearCart
+          clearCart,
         }}>
         {this.props.children}
       </DataContext.Provider>

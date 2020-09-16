@@ -54,6 +54,15 @@ export class CheckOutPage extends Component {
     });
   };
 
+  handleReset = () => {
+    this.setState({
+      firstname: "",
+      lastname: "",
+      email: "",
+      phone: "",
+      address: "",
+    });
+  }
   componentDidMount() {
     let script = document.createElement("script");
     script.src = `https://js.paystack.co/v1/inline.js`;
@@ -167,7 +176,7 @@ export class CheckOutPage extends Component {
 
             <div className="row">
               <div className="col-12 col-md-7">
-                <Form>
+                <Form id="checkout-form">
                   {/* -- Heading -- */}
                   <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
 
@@ -249,43 +258,6 @@ export class CheckOutPage extends Component {
                   </div>
                 </Form>
               </div>
-              <button
-                className="btn btn-dark"
-                onClick={() => {
-                  const formData = new FormData();
-
-                  formData.append("firstname", this.state.firstname);
-                  formData.append("lastname", this.state.lastname);
-                  formData.append("email", this.state.email);
-                  formData.append("phone", this.state.phone);
-                  formData.append("address", this.state.address);
-
-                  /*** Push app to surge and test if it works..If it does not work then go to the
-                   * package.json and remove the "proxy": "http://winfinitefoods.com" and then
-                   * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
-                   */
-
-                  axios
-                    .post("/apis/sendemail.php", formData, {
-                      headers: {
-                        "Content-Type": "multipart/form-data",
-                      },
-                    })
-                    .then((data) => {
-                      // Do whatever u want with the data...Display 2 user etc..View d data in d
-                      // console 2 see d
-                      console.log(data);
-                      // If Request was sent with all d proper fields available
-                      console.log(data.data.success);
-                      // If Request was sent missing fields
-                      console.log(data.data.error);
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                    });
-                }}>
-                Remove Cart
-              </button>
 
               <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
                 {/* -- Heading -- */}
@@ -370,15 +342,17 @@ export class CheckOutPage extends Component {
                       if (this.isLoaded) {
                         this.payNow(email, subtotal);
                       } else {
-                        return(
-                        <Toast>
-                          <Toast.Body>
-                            Unable to pay now. Make sure you're connected to the internet and don't
-                            have ADBlock turned on for this website.
-                          </Toast.Body>
-                        </Toast>
-                        )}
-                      clearCart();
+                        return (
+                          <Toast>
+                            <Toast.Body>
+                              Unable to pay now. Make sure you're connected to the internet and
+                              don't have ADBlock turned on for this website.
+                            </Toast.Body>
+                          </Toast>
+                        );
+                      }
+                      clearCart(); 
+                      this.handleReset()
                     }}>
                     Place Order
                   </button>

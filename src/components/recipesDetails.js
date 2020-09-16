@@ -61,7 +61,7 @@ export class recipeDetails extends Component {
               </div>
             </nav>
 
-            <section className=" pb-5">
+            <section className="pb-5">
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-lg-12 text-center">

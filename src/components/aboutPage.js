@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import about from "../assets/img/about-one.jpg";
+import avatar1 from "../assets/img/winfinite-food-one.jpg";
+import avatar2 from "../assets/img/winfinite-food-two.jpg";
+import avatar3 from "../assets/img/winfinite-food-three.jpg";
 import "../bootstrap.min.css";
 import "../index.css";
 
@@ -32,8 +35,9 @@ function AboutPage() {
           </div>
         </div>
       </nav>
+
       <section className=" mb-5">
-        <div className="container">
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 text-center">
               {/* ---- Heading ---- */}
@@ -63,44 +67,78 @@ function AboutPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="container mb-5">
-            <div className="row text-center">
-              <div className="col">
-                <h2 className="h1 heading">Our Story</h2>
+      <section className="mt-5 mb-5">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-12 col-md-10 col-lg-8 text-center">
+              {/* =============== Heading ========= */}
+              <h1 className="display-4 heading">New Identity. Same Product</h1>
+              {/* ============ Text ================ */}
+              <p className="h5 mb-5 mb-md-5">
+                Packaging which is done with love for our clients and firm confidence in the
+                knowledge that we are sending out health and wellness.
+              </p>
+            </div>
+            <div className="row mb-5">
+              {/* ===== Image ====== */}
+
+              <div className="col-4">
+                <img src={avatar1} alt="avatar" className="img-fluid rounded shadow-lg" />
+              </div>
+
+              <div className="col-4">
+                <img src={avatar2} alt="avatar" className="img-fluid rounded shadow-lg" />
+              </div>
+
+              <div className="col-4">
+                <img src={avatar3} alt="avatar" className="img-fluid rounded shadow-lg" />
               </div>
             </div>
-            <div className="row justify-content-center mt-5">
-              <div className="col-md-12">
-                <div className="timeline timeline-one">
-                  <div className="timeline-item">
-                    <h1 className="h2 mb-4 heading">Eggs and Chicken</h1>
-                    <p>
-                      In 2017, I closed my Nasarawa state based poultry business, Infinite Wealth
-                      (now known as Winfinite Foods). This wasn't easy; Infinite Wealth had been in
-                      existence for over 8 years, birthed in the furnace of affliction. Having been
-                      thrust by circumstances into an uncertain future.
-                    </p>
-                  </div>
-                  <div className="timeline-item">
-                    <h1 className="heading h2 mb-4">Innovative plant-focused company</h1>
-                    <p>
-                      I and my sons, while discussing the Infinite Wealth journey, had happened to
-                      mention the steady decline in the poultry sector and the plant-based
-                      superfoods celebrated in Nigeria. More and more people were adopting
-                      plant-based alternatives, and eating healthier. She stopped and chose to pivot
-                      Infinite Wealth into a new phase of superfoods production.
-                    </p>
-                  </div>
-                  <div className="timeline-item">
-                    <h1 className="h2 mb-4 heading">An Idea turns to a business</h1>
-                    <p>
-                      The chickens had long since gone, but our mission stayed the same: to create a
-                      sustainable and convenient plant-focused food solution at an affordable price.
-                      I preserved the iconic name but created a brand; WINFINITE FOODS .
-                    </p>
-                  </div>
-                  {/* <div className="timeline-item">
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container mb-5">
+          <div className="row text-center">
+            <div className="col">
+              <h2 className="h1 heading">Our Story</h2>
+            </div>
+          </div>
+          <div className="row justify-content-center mt-5">
+            <div className="col-md-12">
+              <div className="timeline timeline-one">
+                <div className="timeline-item">
+                  <h1 className="h2 mb-4 heading">Eggs and Chicken</h1>
+                  <p>
+                    In 2017, I closed my Nasarawa state based poultry business, Infinite Wealth (now
+                    known as Winfinite Foods). This wasn't easy; Infinite Wealth had been in
+                    existence for over 8 years, birthed in the furnace of affliction. Having been
+                    thrust by circumstances into an uncertain future.
+                  </p>
+                </div>
+                <div className="timeline-item">
+                  <h1 className="heading h2 mb-4">Innovative plant-focused company</h1>
+                  <p>
+                    I and my sons, while discussing the Infinite Wealth journey, had happened to
+                    mention the steady decline in the poultry sector and the plant-based superfoods
+                    celebrated in Nigeria. More and more people were adopting plant-based
+                    alternatives, and eating healthier. She stopped and chose to pivot Infinite
+                    Wealth into a new phase of superfoods production.
+                  </p>
+                </div>
+                <div className="timeline-item">
+                  <h1 className="h2 mb-4 heading">An Idea turns to a business</h1>
+                  <p>
+                    The chickens had long since gone, but our mission stayed the same: to create a
+                    sustainable and convenient plant-focused food solution at an affordable price. I
+                    preserved the iconic name but created a brand; WINFINITE FOODS .
+                  </p>
+                </div>
+                {/* <div className="timeline-item">
                     <h1 className="h2 mb-4 heading">Women empowerment</h1>
                     <p>
                       We have created a network that empowers women from the farms in the rural
@@ -119,15 +157,14 @@ function AboutPage() {
                       proceeds, feed their families.
                     </p>
                   </div> */}
-                  <div className="timeline-item">
-                    <h1 className="h2 mb-4 heading">Global inspiration</h1>
-                    <p>
-                      From Nigeria to the world aptly describes us as our client base extends from
-                      the hills of Gwarinpa to the silicon valleys of North America and from the
-                      scorching heat of Lagos to the cold winters of Calgary. Women and men across
-                      the world are beneficiaries of life’s wonders birthed through us.
-                    </p>
-                  </div>
+                <div className="timeline-item">
+                  <h1 className="h2 mb-4 heading">Global inspiration</h1>
+                  <p>
+                    From Nigeria to the world aptly describes us as our client base extends from the
+                    hills of Gwarinpa to the silicon valleys of North America and from the scorching
+                    heat of Lagos to the cold winters of Calgary. Women and men across the world are
+                    beneficiaries of life’s wonders birthed through us.
+                  </p>
                 </div>
               </div>
             </div>
