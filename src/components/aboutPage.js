@@ -85,15 +85,15 @@ function AboutPage() {
             <div className="row mb-5">
               {/* ===== Image ====== */}
 
-              <div className="col-4">
+              <div className="col-12 col-md-4">
                 <img src={avatar1} alt="avatar" className="img-fluid rounded shadow-lg" />
               </div>
 
-              <div className="col-4">
+              <div className="col-12 col-md-4">
                 <img src={avatar2} alt="avatar" className="img-fluid rounded shadow-lg" />
               </div>
 
-              <div className="col-4">
+              <div className="col-12 col-md-4">
                 <img src={avatar3} alt="avatar" className="img-fluid rounded shadow-lg" />
               </div>
             </div>

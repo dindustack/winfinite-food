@@ -206,12 +206,13 @@ export class DataProvider extends Component {
         content: {
           description: {
             make:
-              "Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+              "Ignite your wellness journey with our Golden Hibiscus mix; formulated using a combination of over 8 plant-based ingredients that support gut and immune health, enhances energy and help support the appearance of healthy skin, and stronger hair and nails.",
             use:
-              "It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix.",
+              "It's best to add 2 teaspoons into filtered water, coconut water, lemon water, plant-based milk, natural juice or blitz into a smoothie each morning or during the day.",
           },
           ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+            condiments:
+              "Hibiscus flower, Turmeric, Moringa, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
           },
         },
         count: 1,
@@ -229,17 +230,18 @@ export class DataProvider extends Component {
         content: {
           description: {
             make:
-              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+              "Ignite your wellness journey with our Golden Hibiscus mix; formulated using a combination of over 8 plant-based ingredients that support gut and immune health, enhances energy and help support the appearance of healthy skin, and stronger hair and nails.",
             use:
-              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+              "It's best to add 2 teaspoons into filtered water, coconut water, lemon water, plant-based milk, natural juice or blitz into a smoothie each morning or during the day.",
           },
           ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+            condiments:
+              "Hibiscus flower, Turmeric, Moringa, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
           },
         },
         count: 1,
       },
-      
+
       // Hibiscus Mix-400g
       {
         _id: "hibiscus-mix-400g",
@@ -309,7 +311,6 @@ export class DataProvider extends Component {
         },
         count: 1,
       },
-      
     ],
     cart: [],
     subtotal: 0,
@@ -336,7 +337,7 @@ export class DataProvider extends Component {
     const check = cart.every((item) => {
       return item._id !== id;
     });
-    
+
     if (check) {
       const data = products.filter((product) => {
         console.log(product);
