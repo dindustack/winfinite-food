@@ -22,6 +22,7 @@ export class CheckOutPage extends Component {
       email: "",
       phone: "",
       address: "",
+      paymentComplete: false,
     };
 
     this.isLoaded = false;
@@ -63,6 +64,7 @@ export class CheckOutPage extends Component {
       address: "",
     });
   }
+
   componentDidMount() {
     let script = document.createElement("script");
     script.src = `https://js.paystack.co/v1/inline.js`;
@@ -106,10 +108,10 @@ export class CheckOutPage extends Component {
         ],
       },
       callback: function (response) {
-        // Send email and show message then clear fields plus cart
-        /**
-         * Unfortunately ATM, the server is having CORS issues but the emails do get sent.
-         */
+        console.log(response)
+        this.setState({paymentComplete : true })
+        //  * Unfortunately ATM, the server is having CORS issues but the emails do get sent.
+        //  */
         API.post("/sendemail.php", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -117,6 +119,7 @@ export class CheckOutPage extends Component {
         })
           .then((data) => {
             // Available responses: data => data.data.success| data.data.error
+            
             return;
           })
           .catch((err) => {
@@ -132,8 +135,6 @@ export class CheckOutPage extends Component {
   render() {
     const { cart, subtotal, clearCart } = this.context;
     const { firstname, lastname, email, phone, address } = this.state;
-
-    // console.log(clearCart);
 
     return (
       <React.Fragment>
@@ -174,8 +175,11 @@ export class CheckOutPage extends Component {
               </div>
             </div>
 
+            {this.state.paymentComplete === false && 
+
             <div className="row">
               <div className="col-12 col-md-7">
+
                 <Form id="checkout-form">
                   {/* -- Heading -- */}
                   <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
@@ -299,10 +303,6 @@ export class CheckOutPage extends Component {
                 <div className="card mb-5 bg-light">
                   <div className="card-body">
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
-                      {/* <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                        <span>VAT (7.5%)</span>{" "}
-                        <span className="ml-auto">&#8358;{0.075 * subtotal}</span>
-                      </li> */}
                       <li className="list-group-item d-flex font-size-lg font-weight-bold">
                         <span>Total</span> <span className="ml-auto">&#8358;{subtotal}</span>
                       </li>
@@ -359,6 +359,11 @@ export class CheckOutPage extends Component {
                 )}
               </div>
             </div>
+            }
+
+{this.state.paymentComplete === true && 
+<p>Payment Complete</p>
+  }
           </div>
         </section>
       </React.Fragment>
