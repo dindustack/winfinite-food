@@ -75,12 +75,6 @@ li.nav-item > a.active {
   display: block;
 }
 
-.footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-
 .lift {
   position: absolute;
 }

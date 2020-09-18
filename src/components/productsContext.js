@@ -20,6 +20,8 @@ export class DataProvider extends Component {
               "This Chocolate Nuts n Seeds butter is one of our favourite, made with the perfect blend of smooth nuts n Seeds and premium cocoa powder creating the best combo spread. ",
             use:
               "It's great as a sweet dip for fruit, perfect in baked goods, over pancakes or as an ice cream topping. The possibilities are endless, grab a bigger spoon and enjoy by the spoonful.",
+            storage:
+              " Store in a cool dry place. Oil separation occurs naturally. Upside down jar for easy stirring. Stir well with a butter knife and store lid-side up. Once opened, eat within three months (easy!).",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Cocoa Powder, Dates, Sea Salt",
@@ -43,6 +45,8 @@ export class DataProvider extends Component {
               "Not your average nut butter! Our lightly roasted smooth, made from Nigeria's finest nuts and seeds, blended in small batches to create that extra fluidity deliciousness.",
             use:
               "Stir me up, I'm natural. Spread me on toast for a healthy breakfast; add to smoothies for a protein punch; on your favourite pancakes or dessert; spread on crackers and veggies, or enjoy by the spoonful! ",
+            storage:
+              " Store in a cool dry place. Oil separation occurs naturally. Upside down jar for easy stirring. Stir well with a butter knife and store lid-side up. Once opened, eat within three months (easy!).",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Dates, Sea Salt",
@@ -66,55 +70,11 @@ export class DataProvider extends Component {
               "Our Tigerboost nuts seeds butter is formulated as the perfect smoothie butter, made with the classic blend of smooth nuts n Seeds, boosted with Tigernut to make you look and feel your best. Mother earth best kept secret is just a spoonful away!",
             use:
               "It's a great addition to your morning smoothie, it can be eaten with almost anything; a delicious addition to pancakes and waffles. ",
+            storage:
+              " Store in a cool dry place. Oil separation occurs naturally. Upside down jar for easy stirring. Stir well with a butter knife and store lid-side up. Once opened, eat within three months (easy!).",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Tigernut, Dates, Sea Salt",
-          },
-        },
-        count: 1,
-      },
-      // Golden Hibiscus Mix
-      {
-        _id: "golden-hibiscus-mix-200g",
-        title: "Golden Hibiscus Mix",
-        src: require("../assets/img/golden-mix.png"),
-        brand: "Healthy Mix",
-        heading: "Golden Hibiscus Mix",
-        weight: "200g",
-        price: 800,
-        inCart: false,
-        content: {
-          description: {
-            make:
-              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
-            use:
-              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
-          },
-          ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
-          },
-        },
-        count: 1,
-      },
-      // Hibiscus Mix
-      {
-        _id: "hibiscus-mix-200g",
-        title: "Hibiscus Mix",
-        src: require("../assets/img/hibiscus.png"),
-        brand: "Healthy Mix",
-        heading: "Hibiscus Mix",
-        weight: "200g",
-        price: 800,
-        inCart: false,
-        content: {
-          description: {
-            make:
-              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
-            use:
-              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
-          },
-          ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
           },
         },
         count: 1,
@@ -163,6 +123,8 @@ export class DataProvider extends Component {
               "Not your average nut butter! Our lightly roasted smooth, made from Nigeria's finest nuts and seeds, blended in small batches to create that extra fluidity deliciousness.",
             use:
               "Stir me up, I'm natural. Spread me on toast for a healthy breakfast; add to smoothies for a protein punch; on your favourite pancakes or dessert; spread on crackers and veggies, or enjoy by the spoonful! ",
+            storage:
+              " Store in a cool dry place. Once opened, eat within three months (easy!).",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Dates, Sea Salt",
@@ -186,6 +148,8 @@ export class DataProvider extends Component {
               "Our Tigerboost nuts seeds butter is formulated as the perfect smoothie butter, made with the classic blend of smooth nuts n Seeds, boosted with Tigernut to make you look and feel your best. Mother earth best kept secret is just a spoonful away!",
             use:
               "It's a great addition to your morning smoothie, it can be eaten with almost anything; a delicious addition to pancakes and waffles. ",
+            storage:
+              " Store in a cool dry place. Once opened, eat within three months (easy!).",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Tigernut, Dates, Sea Salt",
@@ -209,6 +173,8 @@ export class DataProvider extends Component {
               "Ignite your wellness journey with our Golden Hibiscus mix; formulated using a combination of over 8 plant-based ingredients that support gut and immune health, enhances energy and help support the appearance of healthy skin, and stronger hair and nails.",
             use:
               "It's best to add 2 teaspoons into filtered water, coconut water, lemon water, plant-based milk, natural juice or blitz into a smoothie each morning or during the day.",
+            storage:
+              " Store in a cool dry place. Once opened, eat within three months (easy!).",
           },
           ingredients: {
             condiments:
@@ -233,6 +199,8 @@ export class DataProvider extends Component {
               "Ignite your wellness journey with our Golden Hibiscus mix; formulated using a combination of over 8 plant-based ingredients that support gut and immune health, enhances energy and help support the appearance of healthy skin, and stronger hair and nails.",
             use:
               "It's best to add 2 teaspoons into filtered water, coconut water, lemon water, plant-based milk, natural juice or blitz into a smoothie each morning or during the day.",
+            storage:
+              "Store in a cool dry place. Once open fold inner bag and use up within 2 months",
           },
           ingredients: {
             condiments:
@@ -258,9 +226,12 @@ export class DataProvider extends Component {
               " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
             use:
               " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+            storage:
+              "Store in a cool dry place. Once open fold inner bag and use up within 2 months",
           },
           ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+            condiments: "Tigernut, cashew and sesame seed",
+          
           },
         },
         count: 1,
@@ -278,12 +249,14 @@ export class DataProvider extends Component {
         content: {
           description: {
             make:
-              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+              "You guys went Nuts n Seeds - Crazy with our Nuts n Seeds butter, so we thought, why not bring you the real deal! Our very own Nuts n Seeds Pastry mix made with 60% TIGERBOOST - Nuts n Seeds Butter. Just like all our other products this is vegan, gluten-free and paleo friendly.",
             use:
-              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+              "Need a quick, easy and delicious breakfast option? This easily customisable pastry mix is a step up from the competition. It's our best-seller for a reason, after all:- It's perfect breakfast option to give you the energy to get through the day. Made with superfoods like tigernut, cashew and sesame seed for nutrient value. The fibre in Tigernut has been shown to lower cholesterol. Consuming at least 3g of tigernut daily can significantly lower cholesterol levels. Also contains loads of Omega-3. It can be made into Pancakes, Muffins or Waffles.",
+            storage:
+              "Store in a cool dry place. Once open fold inner bag and use up within 2 months",
           },
           ingredients: {
-            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+            condiments: "Tigernut, cashew and sesame seed",
           },
         },
         count: 1,
@@ -301,9 +274,11 @@ export class DataProvider extends Component {
         content: {
           description: {
             make:
-              " Formulated with the scarlet petals of the Hibiscus flower and blended with a combination of 6 plant-based ingredients for a refreshing tangy, easy pick-me-up goodness.",
+              "Everything you know and love about our pastry mix, with a spice twist. Made with superfoods and spices; the charming spice tinges will tickle your taste buds.",
             use:
-              " It can be used for Food (baked foods, pastries, syrups), Drink (tea, drinks and cocktails). For baking add ½ cup of Hibiscus mix  for every 4 cups of pastry mix. ",
+            "Need a quick, easy and delicious breakfast option? This easily customisable pastry mix is a step up from the competition. It's our best-seller for a reason, after all:- It's perfect breakfast option to give you the energy to get through the day. Made with superfoods like tigernut, cashew and sesame seed for nutrient value. The fibre in Tigernut has been shown to lower cholesterol. Consuming at least 3g of tigernut daily can significantly lower cholesterol levels. Also contains loads of Omega-3. It can be made into Pancakes, Muffins or Waffles.",
+            storage:
+              "Store in a cool dry place. Once open fold inner bag and use up within 2 months",
           },
           ingredients: {
             condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",

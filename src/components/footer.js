@@ -7,7 +7,7 @@ import '../index.css';
 
 function Footer() {
     return(
-        <footer className="bg-dark footer">
+        <footer className="bg-dark mb-0">
             <div className="py-5 border-bottom border-gray">
                 <div className="container">
                     <div className="row">

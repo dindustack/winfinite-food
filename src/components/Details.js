@@ -132,26 +132,6 @@ export class Details extends Component {
                                 </svg>
                               </Link>
                             </div>
-                            {/* --- Proceed to checkout ---*/}
-
-                            {/* <div className="col-12 col-lg-auto">
-                              <Link to="/checkout" className="text-decoration-none text-white">
-                                <button type="submit" className="btn btn-block btn-success mb-2">
-                                  Proceed to Checkout{" "}
-                                  <svg
-                                    viewBox="0 0 20 20"
-                                    fill="#fff"
-                                    width="16px"
-                                    className="ml-2">
-                                    <path
-                                      fillRule="evenodd"
-                                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                      clipRule="evenodd"
-                                    />
-                                  </svg>
-                                </button>
-                              </Link>
-                            </div> */}
                           </div>
                         </Form>
 
@@ -180,10 +160,7 @@ export class Details extends Component {
 
                                             <hr />
                                             <p className="text-muted">
-                                              Store in a cool dry place. Oil separation occurs
-                                              naturally. Upside down jar for easy stirring. Stir
-                                              well with a butter knife and store lid-side up. Once
-                                              opened, eat within three months (easy!).
+                                            {item.content.description.storage}
                                             </p>
                                           </div>
                                         </div>
