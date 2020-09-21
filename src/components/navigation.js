@@ -61,7 +61,7 @@ export class Navigation extends Component {
                 <li className="nav-item ">
                   <NavLink
                     to="/about"
-                    className="nav-link font-weight-bold ml-md-5"
+                    className="nav-link font-weight-bold ml-lg-5"
                     activeClassName="active">
                     About
                   </NavLink>
@@ -70,7 +70,7 @@ export class Navigation extends Component {
                 <li className="nav-item ">
                   <NavLink
                     to="/recipes"
-                    className="nav-link font-weight-bold ml-md-5"
+                    className="nav-link font-weight-bold ml-lg-5"
                     activeClassName="active">
                     Recipes
                   </NavLink>
@@ -79,7 +79,7 @@ export class Navigation extends Component {
                 <li className="nav-item ">
                   <NavLink
                     to="/stockist"
-                    className="nav-link font-weight-bold ml-md-5"
+                    className="nav-link font-weight-bold ml-lg-5"
                     activeClassName="active">
                     Stockist
                   </NavLink>

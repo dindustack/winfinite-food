@@ -191,7 +191,7 @@ export class Details extends Component {
 
                                             <hr />
                                             <p className="text-muted">
-                                              You can reuse the empty jar for containment.
+                                            {item.content.ingredients.reuse}
                                             </p>
                                           </div>
                                         </div>

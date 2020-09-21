@@ -28,8 +28,8 @@ export class HomePage extends Component {
         <section className="py-5 welcome-image img-fluid bg-accent">
           <div className="container py-5 no-opacity">
             <div className="row pt-md-5 pb-lg-5 justify-content-center">
-              <div className="col-xl-7 col-lg-8 col-md-10 text-center text-wrap text-orange py-xl-3 w-100 py-auto mt-5 ">
-                <h1 className="pb-sm-3 heading display-2 font-weight-bolder text-center">
+              <div className="col-xl-7 col-lg-8 col-md-10 text-center text-wrap text-orange py-xl-3 w-100 py-auto mt-5">
+                <h1 className="pb-sm-3 heading display-2 font-weight-bolder text-center text-white">
                   Welcome to the
                   <br />
                   Home of Superfoods in Nigeria.
@@ -45,6 +45,7 @@ export class HomePage extends Component {
             </div>
           </div>
         </section>
+        
         {/* ----------------- Products -------------- */}
         <section className="py-5">
           <div className="container">

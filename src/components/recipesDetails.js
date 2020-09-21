@@ -37,8 +37,8 @@ export class recipeDetails extends Component {
           ))}
         </Helmet>
         {recipe.map((item) => (
-          <div>
-            <nav aria-label="breadcrumb" className="py-5 my-5 bg-white" key={item._id}>
+          <div key={item._id}>
+            <nav aria-label="breadcrumb" className="py-5 my-5 bg-white">
               <div className="container">
                 <div className="row">
                   <div className="col-12">

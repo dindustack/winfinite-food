@@ -7,6 +7,7 @@ import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
 import Toast from "react-bootstrap/Toast";
 import axios from "axios";
+import EmptyCart from "./EmptyCart";
 
 // Axios base url
 const API = axios.create({ baseURL: "https://winfinitefoods.com/apis" });
@@ -23,6 +24,7 @@ export class CheckOutPage extends Component {
       phone: "",
       address: "",
       paymentComplete: false,
+      redirect: true,
     };
 
     this.isLoaded = false;
@@ -63,7 +65,7 @@ export class CheckOutPage extends Component {
       phone: "",
       address: "",
     });
-  }
+  };
 
   componentDidMount() {
     let script = document.createElement("script");
@@ -108,8 +110,12 @@ export class CheckOutPage extends Component {
         ],
       },
       callback: function (response) {
-        console.log(response)
-        this.setState({paymentComplete : true })
+        console.log("formData", formData);
+
+        console.log(response);
+
+        // this.setState({ paymentComplete: true });
+        console.log("girl");
         //  * Unfortunately ATM, the server is having CORS issues but the emails do get sent.
         //  */
         API.post("/sendemail.php", formData, {
@@ -118,9 +124,11 @@ export class CheckOutPage extends Component {
           },
         })
           .then((data) => {
-            // Available responses: data => data.data.success| data.data.error
-            
-            return;
+            console.log("success-data", data.data);
+            if (data.data.success)
+              // Available responses: data => data.data.success| data.data.error
+
+              return ;
           })
           .catch((err) => {
             console.debug(err);
@@ -175,195 +183,191 @@ export class CheckOutPage extends Component {
               </div>
             </div>
 
-            {this.state.paymentComplete === false && 
+            {this.state.paymentComplete === false && (
+              <div className="row">
+                <div className="col-12 col-md-7">
+                  <Form id="checkout-form">
+                    {/* -- Heading -- */}
+                    <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
 
-            <div className="row">
-              <div className="col-12 col-md-7">
-
-                <Form id="checkout-form">
-                  {/* -- Heading -- */}
-                  <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
-
-                  {/* ---- Payment Details  */}
-                  <div className="row mb-5">
-                    <div className="col-12 col-md-6">
-                      {/* -- First Name */}
-                      <Form.Group className="mb-3">
-                        <Form.Label>First Name *</Form.Label>
-                        <Form.Control
-                          type="text"
-                          value={firstname}
-                          name="firstname"
-                          placeholder="Enter your first name"
-                          onChange={this.handleFirstnameChange}
-                        />
-                      </Form.Group>
-                    </div>
-
-                    {/* -- Last Name */}
-                    <div className="col-12 col-md-6">
-                      <Form.Group className="mb-3">
-                        <Form.Label>Last Name *</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="lastname"
-                          value={lastname}
-                          placeholder="Enter your last name"
-                          onChange={this.handleLastnameChange}
-                        />
-                      </Form.Group>
-                    </div>
-
-                    {/* --  Email -- */}
-                    <div className="col-12 col-md-6">
-                      <Form.Group className="mb-3">
-                        <Form.Label>Email *</Form.Label>
-                        <Form.Control
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={email}
-                          placeholder="you@example.com"
-                          onChange={this.handleEmailChange}
-                        />
-                      </Form.Group>
-                    </div>
-
-                    {/* -- Phone Number--- */}
-                    <div className="col-12 col-md-6">
-                      <Form.Group className="mb-3">
-                        <Form.Label>Phone Number *</Form.Label>
-                        <Form.Control
-                          type="tel"
-                          name="phone"
-                          value={phone}
-                          placeholder="Enter your phone number"
-                          onChange={this.handlePhonenumberChange}
-                        />
-                      </Form.Group>
-                    </div>
-
-                    {/* -------- Address ------ */}
-                    <div className="col-12">
-                      <Form.Group className="mb-3">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control
-                          as="textarea"
-                          type="text"
-                          name="address"
-                          value={address}
-                          rows="3"
-                          placeholder="Enter your address..."
-                          onChange={this.handleAddressChange}
-                          required
-                        />
-                      </Form.Group>
-                    </div>
-                  </div>
-                </Form>
-              </div>
-
-              <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
-                {/* -- Heading -- */}
-                <h6 className="mb-5">Ordered Items ({cart.length})</h6>
-
-                {/* !-- Divider -- */}
-                <hr className="my-5" />
-                {/* ------- Checkout items --------- */}
-                <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
-                  {cart.map((item) => (
-                    <li className="list-group-item" key={item._id}>
-                      <div className="row align-items-center">
-                        <div className="col-4">
-                          {/* -- Product Image -- */}
-                          <Link to={`/${item._id}`}>
-                            <img src={item.src} alt={item.title} className="img-fluid" />
-                          </Link>
-                        </div>
-                        <div className="col">
-                          {/* -- Product description -- */}
-                          <p className="mb-4 small font-weight-bold">
-                            <Link
-                              to={`/${item._id}`}
-                              className="heading text-decoration-none h5 text-blue">
-                              {item.title}
-                            </Link>{" "}
-                            <br />
-                            <span className="text-muted">{item.price * item.count}</span>
-                          </p>
-
-                          {/* -- Text -- */}
-                          <div className="font-size-sm text-muted">Quantity: {item.count}</div>
-                        </div>
+                    {/* ---- Payment Details  */}
+                    <div className="row mb-5">
+                      <div className="col-12 col-md-6">
+                        {/* -- First Name */}
+                        <Form.Group className="mb-3">
+                          <Form.Label>First Name *</Form.Label>
+                          <Form.Control
+                            type="text"
+                            value={firstname}
+                            name="firstname"
+                            placeholder="Enter your first name"
+                            onChange={this.handleFirstnameChange}
+                          />
+                        </Form.Group>
                       </div>
-                    </li>
-                  ))}
-                </ul>
-                {/* -- Card -- */}
-                <div className="card mb-5 bg-light">
-                  <div className="card-body">
-                    <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
-                      <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                        <span>Total</span> <span className="ml-auto">&#8358;{subtotal}</span>
+
+                      {/* -- Last Name */}
+                      <div className="col-12 col-md-6">
+                        <Form.Group className="mb-3">
+                          <Form.Label>Last Name *</Form.Label>
+                          <Form.Control
+                            type="text"
+                            name="lastname"
+                            value={lastname}
+                            placeholder="Enter your last name"
+                            onChange={this.handleLastnameChange}
+                          />
+                        </Form.Group>
+                      </div>
+
+                      {/* --  Email -- */}
+                      <div className="col-12 col-md-6">
+                        <Form.Group className="mb-3">
+                          <Form.Label>Email *</Form.Label>
+                          <Form.Control
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            placeholder="you@example.com"
+                            onChange={this.handleEmailChange}
+                          />
+                        </Form.Group>
+                      </div>
+
+                      {/* -- Phone Number--- */}
+                      <div className="col-12 col-md-6">
+                        <Form.Group className="mb-3">
+                          <Form.Label>Phone Number *</Form.Label>
+                          <Form.Control
+                            type="tel"
+                            name="phone"
+                            value={phone}
+                            placeholder="Enter your phone number"
+                            onChange={this.handlePhonenumberChange}
+                          />
+                        </Form.Group>
+                      </div>
+
+                      {/* -------- Address ------ */}
+                      <div className="col-12">
+                        <Form.Group className="mb-3">
+                          <Form.Label>Address</Form.Label>
+                          <Form.Control
+                            as="textarea"
+                            type="text"
+                            name="address"
+                            value={address}
+                            rows="3"
+                            placeholder="Enter your address..."
+                            onChange={this.handleAddressChange}
+                            required
+                          />
+                        </Form.Group>
+                      </div>
+                    </div>
+                  </Form>
+                </div>
+
+                <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
+                  {/* -- Heading -- */}
+                  <h6 className="mb-5">Ordered Items ({cart.length})</h6>
+
+                  {/* !-- Divider -- */}
+                  <hr className="my-5" />
+                  {/* ------- Checkout items --------- */}
+                  <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+                    {cart.map((item) => (
+                      <li className="list-group-item" key={item._id}>
+                        <div className="row align-items-center">
+                          <div className="col-4">
+                            {/* -- Product Image -- */}
+                            <Link to={`/${item._id}`}>
+                              <img src={item.src} alt={item.title} className="img-fluid" />
+                            </Link>
+                          </div>
+                          <div className="col">
+                            {/* -- Product description -- */}
+                            <p className="mb-4 small font-weight-bold">
+                              <Link
+                                to={`/${item._id}`}
+                                className="heading text-decoration-none h5 text-blue">
+                                {item.title}
+                              </Link>{" "}
+                              <br />
+                              <span className="text-muted">{item.price * item.count}</span>
+                            </p>
+
+                            {/* -- Text -- */}
+                            <div className="font-size-sm text-muted">Quantity: {item.count}</div>
+                          </div>
+                        </div>
                       </li>
-                    </ul>
+                    ))}
+                  </ul>
+                  {/* -- Card -- */}
+                  <div className="card mb-5 bg-light">
+                    <div className="card-body">
+                      <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                        <li className="list-group-item d-flex font-size-lg font-weight-bold">
+                          <span>Total</span> <span className="ml-auto">&#8358;{subtotal}</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
 
-                {/* -- Heading -- */}
-                <h4 className="heading font-weight-bold">Payment</h4>
+                  {/* -- Heading -- */}
+                  <h4 className="heading font-weight-bold">Payment</h4>
 
-                {/* -- Payment Options -- */}
-                <div className="col-12 col-md-9 list-group list-group-sm mb-2">
-                  <div className="list-group-item">
-                    {/* <!-- Label --> */}
-                    <label
-                      className="custom-control-label font-size-sm text-body text-nowrap"
-                      htmlFor="checkoutPaymentCard">
-                      Credit Card <img className="ml-2" src={card} alt="card-avatar" />{" "}
-                      <img className="ml-2" src={paystack} alt="card-avatar" width="16px" />
-                    </label>
+                  {/* -- Payment Options -- */}
+                  <div className="col-12 col-md-9 list-group list-group-sm mb-2">
+                    <div className="list-group-item">
+                      {/* <!-- Label --> */}
+                      <label
+                        className="custom-control-label font-size-sm text-body text-nowrap"
+                        htmlFor="checkoutPaymentCard">
+                        Credit Card <img className="ml-2" src={card} alt="card-avatar" />{" "}
+                        <img className="ml-2" src={paystack} alt="card-avatar" width="16px" />
+                      </label>
+                    </div>
                   </div>
-                </div>
 
-                {/* -- Button -- */}
-                {firstname === "" ||
-                lastname === "" ||
-                email === "" ||
-                phone === "" ||
-                address === "" ? (
-                  <button className="btn btn-block btn-dark mb-5" disabled>
-                    Please fill out the form
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-block btn-dark mb-5"
-                    onClick={() => {
-                      if (this.isLoaded) {
-                        this.payNow(email, subtotal);
-                      } else {
-                        return (
-                          <Toast>
-                            <Toast.Body>
-                              Unable to pay now. Make sure you're connected to the internet and
-                              don't have ADBlock turned on for this website.
-                            </Toast.Body>
-                          </Toast>
-                        );
-                      }
-                      clearCart(); 
-                      this.handleReset()
-                    }}>
-                    Place Order
-                  </button>
-                )}
+                  {/* -- Button -- */}
+                  {firstname === "" ||
+                  lastname === "" ||
+                  email === "" ||
+                  phone === "" ||
+                  address === "" ? (
+                    <button className="btn btn-block btn-dark mb-5" disabled>
+                      Please fill out the form
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-block btn-dark mb-5"
+                      onClick={() => {
+                        if (this.isLoaded) {
+                          this.payNow(email, subtotal);
+                        } else {
+                          return (
+                            <Toast>
+                              <Toast.Body>
+                                Unable to pay now. Make sure you're connected to the internet and
+                                don't have ADBlock turned on for this website.
+                              </Toast.Body>
+                            </Toast>
+                          );
+                        }
+                        clearCart();
+                        this.handleReset();
+                      }}>
+                      Place Order
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-            }
+            )}
 
-{this.state.paymentComplete === true && 
-<p>Payment Complete</p>
-  }
+            {this.state.paymentComplete === true && <p>Payment Complete</p>}
           </div>
         </section>
       </React.Fragment>

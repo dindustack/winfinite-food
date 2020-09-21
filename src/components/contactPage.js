@@ -73,7 +73,7 @@ function ContactPage() {
                     />
                   </svg>
                   <h3 className="mb-2 heading font-weight-bold">Working hours</h3>
-                  <h6 className="small text-muted font-weight-bold">Mon - Sun: 8AM - 5PM</h6>
+                  <h6 className="small text-muted font-weight-bold">Mon - Sat: 8AM - 5PM</h6>
                 </div>
               </div>
             </div>

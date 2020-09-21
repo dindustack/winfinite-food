@@ -57,13 +57,13 @@ function AboutPage() {
 
               {/* -- Text -- */}
               <p className="lead">
-                Infinite Wealth Ltd. is an indigenous agro company born out of a burning desire to
-                respond to your basic health and cosmetic needs.
+                Here at Winfinite foods, our special focus is on paleo superfoods and enriching lives
+                through Nigeria grown nutrient-dense foods.
               </p>
               <p className="lead">
-                Our special focus is on paleo superfoods which are beneficial for the skin and the
-                stomach. Our firm belief is that if it is not good enough for your precious
-                digestive system, it is not good enough for your skin.
+                Our firm belief is that if you can't pronounce an ingredient, then it is not good
+                enough for your well-being. Use Winfinite foods to make wholesome meals and snacks -
+                Go with the goodness of healthy foods.
               </p>
             </div>
           </div>
@@ -126,7 +126,7 @@ function AboutPage() {
                     I and my sons, while discussing the Infinite Wealth journey, had happened to
                     mention the steady decline in the poultry sector and the plant-based superfoods
                     celebrated in Nigeria. More and more people were adopting plant-based
-                    alternatives, and eating healthier. She stopped and chose to pivot Infinite
+                    alternatives, and eating healthier. I stopped and chose to pivot Infinite
                     Wealth into a new phase of superfoods production.
                   </p>
                 </div>
@@ -135,28 +135,9 @@ function AboutPage() {
                   <p>
                     The chickens had long since gone, but our mission stayed the same: to create a
                     sustainable and convenient plant-focused food solution at an affordable price. I
-                    preserved the iconic name but created a brand; WINFINITE FOODS .
+                    preserved the iconic name and created a brand; WINFINITE FOODS .
                   </p>
                 </div>
-                {/* <div className="timeline-item">
-                    <h1 className="h2 mb-4 heading">Women empowerment</h1>
-                    <p>
-                      We have created a network that empowers women from the farms in the rural
-                      areas to the skyscrapers in the city. We buy raw produce from female farmers
-                      and traders in North-Central, North-West and South-Western Nigeria then
-                      transport them to the beautiful city of Abuja where they are processed into
-                      flour or powder under strict hygienic conditions.
-                    </p>
-                  </div>
-                  <div className="timeline-item">
-                    <h1 className="h2 mb-4 heading">Health and Wellness</h1>
-                    <p>
-                      The next process is the packaging which is done with love for our clients and
-                      firm confidence in the knowledge that we are sending out health and wellness.
-                      Finally, our distribution chain consists primarily women who from the
-                      proceeds, feed their families.
-                    </p>
-                  </div> */}
                 <div className="timeline-item">
                   <h1 className="h2 mb-4 heading">Global inspiration</h1>
                   <p>
