@@ -75,15 +75,15 @@ export class Navigation extends Component {
                     Recipes
                   </NavLink>
                 </li>
-                {/* -------------------About --------------- */}
-                <li className="nav-item ">
+                {/* -------------------Stockist --------------- */}
+                {/* <li className="nav-item ">
                   <NavLink
                     to="/stockist"
                     className="nav-link font-weight-bold ml-lg-5"
                     activeClassName="active">
                     Stockist
                   </NavLink>
-                </li>
+                </li> */}
 
                 {/* -------------------Contact --------------- */}
                 <li className="nav-item">

@@ -346,7 +346,7 @@ const CheckOutpage = () => {
         </div>
       </section>
 
-      <Modal show={loadingStates.show} onHide={handleClose}>
+      <Modal show={loadingStates.show} onHide={handleClose} className="modal fade" dialogClassName="vh-100 my-0 mr-0">
         <Modal.Body>
           <div className="text-center py-5">
             {loadingStates.loading ? "Completing payment..." : "Order complete"}

@@ -93,8 +93,6 @@ const CartModal = (props) => {
               </button>
             </Link>
           </div>
-
-          {/* <button onClick={props.onHide}>Close</button> */}
         </Modal.Footer>
       </Modal>
     </React.Fragment>
