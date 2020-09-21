@@ -24,12 +24,12 @@
 }
 
 .welcome-image {
-  background-image: url("./assets/img/chocolate-full.jpg");
+  background-image: url("./assets/img/chocolate-full.png");
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;
-  /* background: rgba(0, 0, 0); */
 }
+
 
 .nav-link:hover {
   color: #ff6f61 !important;

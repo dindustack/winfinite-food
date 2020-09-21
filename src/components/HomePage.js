@@ -34,13 +34,13 @@ export class HomePage extends Component {
                   <br />
                   Home of Superfoods in Nigeria.
                 </h1>
-                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap">
+                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap text-white">
                   Farm-sourced |
                 </span>
-                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap">
+                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap text-white">
                   Packaged with love |
                 </span>
-                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap">Fitfam</span>
+                <span className="d-inline-block h3 font-weight-bold mx-2 text-wrap text-white">Fitfam</span>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, useContext } from 'react';
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import card from "../assets/brand/cards.svg";
@@ -6,93 +6,64 @@ import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
 import Toast from "react-bootstrap/Toast";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
-import EmptyCart from "./EmptyCart";
 
-// Axios base url
-const API = axios.create({ baseURL: "https://winfinitefoods.com/apis" });
+const CheckOutpage = () => {
 
-export class CheckOutPage extends Component {
-  static contextType = DataContext;
-  constructor(props) {
-    super(props);
+  const dataC = useContext(DataContext);
 
-    this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      address: "",
-      paymentComplete: false,
-      redirect: true,
-    };
+  const [profile, setProfile] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
 
-    this.isLoaded = false;
-  }
+  const [loadingStates, setLoadingStates] = useState({
+    isLoaded: false,
+    paymentComplete: false,
+    show: false,
+    loading: false
+  });
 
-  handleFirstnameChange = (event) => {
-    this.setState({
-      firstname: event.target.value,
-    });
-  };
-
-  handleLastnameChange = (event) => {
-    this.setState({
-      lastname: event.target.value,
-    });
-  };
-  handleEmailChange = (event) => {
-    this.setState({
-      email: event.target.value,
-    });
-  };
-  handlePhonenumberChange = (event) => {
-    this.setState({
-      phone: event.target.value,
-    });
-  };
-  handleAddressChange = (event) => {
-    this.setState({
-      address: event.target.value,
-    });
-  };
-
-  handleReset = () => {
-    this.setState({
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      address: "",
-    });
-  };
-
-  componentDidMount() {
+  useEffect(() => {
     let script = document.createElement("script");
     script.src = `https://js.paystack.co/v1/inline.js`;
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
     script.onload = () => {
-      this.isLoaded = true;
+      setLoadingStates({ ...loadingStates, isLoaded: true })
     };
     script.onerror = () => {
-      this.isLoaded = false;
+      setLoadingStates({ ...loadingStates, isLoaded: false })
     };
     window.scrollTo(0, 0);
+
+  }, [])
+
+  const handleReset = () => {
+    setProfile({
+      firstname: "",
+      lastname: "",
+      email: "",
+      phone: "",
+      address: "",
+    });
   }
 
-  /*** Push app to surge and test if it works..If it does not work then go to the
-   * package.json and remove the "proxy": "http://winfinitefoods.com" and then
-   * replace the "/apis/sendemail.php" in d axios request to "http://winfinitefoods.com/apis/sendemail.php"
-   */
-  payNow(email, amount) {
+
+
+  const payNow = (email, amount) => {
     let formData = new FormData();
-    formData.append("firstname", this.state.firstname);
-    formData.append("lastname", this.state.lastname);
-    formData.append("email", this.state.email);
-    formData.append("phone", this.state.phone);
-    formData.append("address", this.state.address);
+    formData.append("firstname", profile.firstname);
+    formData.append("lastname", profile.lastname);
+    formData.append("email", profile.email);
+    formData.append("phone", profile.phone);
+    formData.append("address", profile.address);
 
     let options = {
       key: "pk_test_2ef9377963e79603b90ca45d7565d50f51d7fb47",
@@ -110,28 +81,23 @@ export class CheckOutPage extends Component {
         ],
       },
       callback: function (response) {
-        console.log("formData", formData);
+        setLoadingStates({ ...loadingStates, loading: true, show: true })
 
-        console.log(response);
-
-        // this.setState({ paymentComplete: true });
-        console.log("girl");
         //  * Unfortunately ATM, the server is having CORS issues but the emails do get sent.
         //  */
-        API.post("/sendemail.php", formData, {
+        axios.post("/sendemail.php", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         })
           .then((data) => {
-            console.log("success-data", data.data);
-            if (data.data.success)
-              // Available responses: data => data.data.success| data.data.error
-
-              return ;
+            setLoadingStates({ ...loadingStates, loading: false, paymentComplete: true })
+            // Available responses: data => data.data.success| data.data.error
+            console.log(data);
+            // this.setState({ paymentComplete: true })
+            return;
           })
           .catch((err) => {
-            console.debug(err);
             return;
           });
       },
@@ -140,200 +106,207 @@ export class CheckOutPage extends Component {
     handler.openIframe();
   }
 
-  render() {
-    const { cart, subtotal, clearCart } = this.context;
-    const { firstname, lastname, email, phone, address } = this.state;
 
-    return (
-      <React.Fragment>
-        <Helmet>
-          <title>Checkout &mdash; Shop at Winfinite Foods</title>
-        </Helmet>
-        {/* ----------- Bread Crumb ------- */}
-        <nav aria-label="breadcrumb" className="pt-5 mt-md-5 bg-white">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                {/* BreadCrumb */}
-                <ol className="breadcrumb mb-0 small text-muted bg-white">
-                  <li className="breadcrumb-item">
-                    <Link to="/" className="text-muted text-decoration-none">
-                      Home
+
+  const handleClose = () => setLoadingStates({ ...loadingStates, show: false });
+  const handleShow = () => setLoadingStates({ ...loadingStates, show: true })
+
+
+  const { cart, subtotal, clearCart } = dataC;
+  const { firstname, lastname, email, phone, address } = profile;
+
+  return (
+    <React.Fragment>
+      <Helmet>
+        <title>Checkout &mdash; Shop at Winfinite Foods</title>
+      </Helmet>
+      {/* ----------- Bread Crumb ------- */}
+      <nav aria-label="breadcrumb" className="pt-5 mt-md-5 bg-white">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              {/* BreadCrumb */}
+              <ol className="breadcrumb mb-0 small text-muted bg-white">
+                <li className="breadcrumb-item">
+                  <Link to="/" className="text-muted text-decoration-none">
+                    Home
                     </Link>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <Link to="/cart" className="text-muted text-decoration-none">
-                      Shopping Cart
+                </li>
+                <li className="breadcrumb-item">
+                  <Link to="/cart" className="text-muted text-decoration-none">
+                    Shopping Cart
                     </Link>
-                  </li>
-                  <li className="breadcrumb-item active">Checkout</li>
-                </ol>
-              </div>
+                </li>
+                <li className="breadcrumb-item active">Checkout</li>
+              </ol>
             </div>
           </div>
-        </nav>
+        </div>
+      </nav>
 
-        {/* --- Checkout content */}
-        <section className="pt-5 pb-5 pb-md-0">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 text-center">
-                {/* ---- Heading ---- */}
-                <h3 className=" font-weight-bold display-4 heading mb-4 mb-md-0">Checkout</h3>
-              </div>
+      {/* --- Checkout content */}
+      <section className="pt-5 pb-5 pb-md-0">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              {/* ---- Heading ---- */}
+              <h3 className=" font-weight-bold display-4 heading mb-4 mb-md-0">Checkout</h3>
             </div>
+          </div>
 
-            {this.state.paymentComplete === false && (
-              <div className="row">
-                <div className="col-12 col-md-7">
-                  <Form id="checkout-form">
-                    {/* -- Heading -- */}
-                    <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
+          {!loadingStates.paymentComplete &&
 
-                    {/* ---- Payment Details  */}
-                    <div className="row mb-5">
-                      <div className="col-12 col-md-6">
-                        {/* -- First Name */}
-                        <Form.Group className="mb-3">
-                          <Form.Label>First Name *</Form.Label>
-                          <Form.Control
-                            type="text"
-                            value={firstname}
-                            name="firstname"
-                            placeholder="Enter your first name"
-                            onChange={this.handleFirstnameChange}
-                          />
-                        </Form.Group>
-                      </div>
+            <div className="row">
+              <div className="col-12 col-md-7">
 
-                      {/* -- Last Name */}
-                      <div className="col-12 col-md-6">
-                        <Form.Group className="mb-3">
-                          <Form.Label>Last Name *</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="lastname"
-                            value={lastname}
-                            placeholder="Enter your last name"
-                            onChange={this.handleLastnameChange}
-                          />
-                        </Form.Group>
-                      </div>
+                <Form id="checkout-form">
+                  {/* -- Heading -- */}
+                  <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
 
-                      {/* --  Email -- */}
-                      <div className="col-12 col-md-6">
-                        <Form.Group className="mb-3">
-                          <Form.Label>Email *</Form.Label>
-                          <Form.Control
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            placeholder="you@example.com"
-                            onChange={this.handleEmailChange}
-                          />
-                        </Form.Group>
-                      </div>
-
-                      {/* -- Phone Number--- */}
-                      <div className="col-12 col-md-6">
-                        <Form.Group className="mb-3">
-                          <Form.Label>Phone Number *</Form.Label>
-                          <Form.Control
-                            type="tel"
-                            name="phone"
-                            value={phone}
-                            placeholder="Enter your phone number"
-                            onChange={this.handlePhonenumberChange}
-                          />
-                        </Form.Group>
-                      </div>
-
-                      {/* -------- Address ------ */}
-                      <div className="col-12">
-                        <Form.Group className="mb-3">
-                          <Form.Label>Address</Form.Label>
-                          <Form.Control
-                            as="textarea"
-                            type="text"
-                            name="address"
-                            value={address}
-                            rows="3"
-                            placeholder="Enter your address..."
-                            onChange={this.handleAddressChange}
-                            required
-                          />
-                        </Form.Group>
-                      </div>
+                  {/* ---- Payment Details  */}
+                  <div className="row mb-5">
+                    <div className="col-12 col-md-6">
+                      {/* -- First Name */}
+                      <Form.Group className="mb-3">
+                        <Form.Label>First Name *</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={firstname}
+                          name="firstname"
+                          placeholder="Enter your first name"
+                          onChange={(e) => setProfile({ ...profile, firstname: e.target.value })}
+                        />
+                      </Form.Group>
                     </div>
-                  </Form>
+
+                    {/* -- Last Name */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Last Name *</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="lastname"
+                          value={lastname}
+                          placeholder="Enter your last name"
+                          onChange={(e) => setProfile({ ...profile, lastname: e.target.value })}
+                        />
+                      </Form.Group>
+                    </div>
+
+                    {/* --  Email -- */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Email *</Form.Label>
+                        <Form.Control
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={email}
+                          placeholder="you@example.com"
+                          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+                        />
+                      </Form.Group>
+                    </div>
+
+                    {/* -- Phone Number--- */}
+                    <div className="col-12 col-md-6">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Phone Number *</Form.Label>
+                        <Form.Control
+                          type="tel"
+                          name="phone"
+                          value={phone}
+                          placeholder="Enter your phone number"
+                          onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+                        />
+                      </Form.Group>
+                    </div>
+
+                    {/* -------- Address ------ */}
+                    <div className="col-12">
+                      <Form.Group className="mb-3">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          type="text"
+                          name="address"
+                          value={address}
+                          rows="3"
+                          placeholder="Enter your address..."
+                          onChange={(e) => setProfile({ ...profile, address: e.target.value })}
+                          required
+                        />
+                      </Form.Group>
+                    </div>
+                  </div>
+                </Form>
+              </div>
+
+              <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
+                {/* -- Heading -- */}
+                <h6 className="mb-5">Ordered Items ({cart.length})</h6>
+
+                {/* !-- Divider -- */}
+                <hr className="my-5" />
+                {/* ------- Checkout items --------- */}
+                <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+                  {cart.map((item) => (
+                    <li className="list-group-item" key={item._id}>
+                      <div className="row align-items-center">
+                        <div className="col-4">
+                          {/* -- Product Image -- */}
+                          <Link to={`/${item._id}`}>
+                            <img src={item.src} alt={item.title} className="img-fluid" />
+                          </Link>
+                        </div>
+                        <div className="col">
+                          {/* -- Product description -- */}
+                          <p className="mb-4 small font-weight-bold">
+                            <Link
+                              to={`/${item._id}`}
+                              className="heading text-decoration-none h5 text-blue">
+                              {item.title}
+                            </Link>{" "}
+                            <br />
+                            <span className="text-muted">{item.price * item.count}</span>
+                          </p>
+
+                          {/* -- Text -- */}
+                          <div className="font-size-sm text-muted">Quantity: {item.count}</div>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                {/* -- Card -- */}
+                <div className="card mb-5 bg-light">
+                  <div className="card-body">
+                    <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                      <li className="list-group-item d-flex font-size-lg font-weight-bold">
+                        <span>Total</span> <span className="ml-auto">&#8358;{subtotal}</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
 
-                <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
-                  {/* -- Heading -- */}
-                  <h6 className="mb-5">Ordered Items ({cart.length})</h6>
+                {/* -- Heading -- */}
+                <h4 className="heading font-weight-bold">Payment</h4>
 
-                  {/* !-- Divider -- */}
-                  <hr className="my-5" />
-                  {/* ------- Checkout items --------- */}
-                  <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
-                    {cart.map((item) => (
-                      <li className="list-group-item" key={item._id}>
-                        <div className="row align-items-center">
-                          <div className="col-4">
-                            {/* -- Product Image -- */}
-                            <Link to={`/${item._id}`}>
-                              <img src={item.src} alt={item.title} className="img-fluid" />
-                            </Link>
-                          </div>
-                          <div className="col">
-                            {/* -- Product description -- */}
-                            <p className="mb-4 small font-weight-bold">
-                              <Link
-                                to={`/${item._id}`}
-                                className="heading text-decoration-none h5 text-blue">
-                                {item.title}
-                              </Link>{" "}
-                              <br />
-                              <span className="text-muted">{item.price * item.count}</span>
-                            </p>
-
-                            {/* -- Text -- */}
-                            <div className="font-size-sm text-muted">Quantity: {item.count}</div>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  {/* -- Card -- */}
-                  <div className="card mb-5 bg-light">
-                    <div className="card-body">
-                      <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
-                        <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                          <span>Total</span> <span className="ml-auto">&#8358;{subtotal}</span>
-                        </li>
-                      </ul>
-                    </div>
+                {/* -- Payment Options -- */}
+                <div className="col-12 col-md-9 list-group list-group-sm mb-2">
+                  <div className="list-group-item">
+                    {/* <!-- Label --> */}
+                    <label
+                      className="custom-control-label font-size-sm text-body text-nowrap"
+                      htmlFor="checkoutPaymentCard">
+                      Credit Card <img className="ml-2" src={card} alt="card-avatar" />{" "}
+                      <img className="ml-2" src={paystack} alt="card-avatar" width="16px" />
+                    </label>
                   </div>
+                </div>
 
-                  {/* -- Heading -- */}
-                  <h4 className="heading font-weight-bold">Payment</h4>
-
-                  {/* -- Payment Options -- */}
-                  <div className="col-12 col-md-9 list-group list-group-sm mb-2">
-                    <div className="list-group-item">
-                      {/* <!-- Label --> */}
-                      <label
-                        className="custom-control-label font-size-sm text-body text-nowrap"
-                        htmlFor="checkoutPaymentCard">
-                        Credit Card <img className="ml-2" src={card} alt="card-avatar" />{" "}
-                        <img className="ml-2" src={paystack} alt="card-avatar" width="16px" />
-                      </label>
-                    </div>
-                  </div>
-
-                  {/* -- Button -- */}
-                  {firstname === "" ||
+                {/* -- Button -- */}
+                {firstname === "" ||
                   lastname === "" ||
                   email === "" ||
                   phone === "" ||
@@ -345,34 +318,51 @@ export class CheckOutPage extends Component {
                     <button
                       className="btn btn-block btn-dark mb-5"
                       onClick={() => {
-                        if (this.isLoaded) {
-                          this.payNow(email, subtotal);
+                        if (loadingStates.isLoaded) {
+                          payNow(email, subtotal);
                         } else {
                           return (
                             <Toast>
                               <Toast.Body>
                                 Unable to pay now. Make sure you're connected to the internet and
                                 don't have ADBlock turned on for this website.
-                              </Toast.Body>
+                            </Toast.Body>
                             </Toast>
                           );
                         }
                         clearCart();
-                        this.handleReset();
+                        handleReset()
                       }}>
                       Place Order
                     </button>
                   )}
-                </div>
               </div>
-            )}
+            </div>
+          }
 
-            {this.state.paymentComplete === true && <p>Payment Complete</p>}
+          {loadingStates.paymentComplete &&
+            <p>Payment Complete</p>
+          }
+        </div>
+      </section>
+
+      <Modal show={loadingStates.show} onHide={handleClose}>
+        <Modal.Body>
+          <div className="text-center py-5">
+            {loadingStates.loading ? "Completing payment..." : "Order complete"}
           </div>
-        </section>
-      </React.Fragment>
-    );
-  }
+
+        </Modal.Body>
+        <Modal.Footer className="border-0">
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+
+        </Modal.Footer>
+      </Modal>
+    </React.Fragment>
+
+  )
 }
 
-export default CheckOutPage;
+export default CheckOutpage

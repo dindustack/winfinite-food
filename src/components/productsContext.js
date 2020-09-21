@@ -168,7 +168,7 @@ export class DataProvider extends Component {
         brand: "Healthy Mix",
         heading: "Golden Hibiscus Mix",
         weight: "400g",
-        price: 1700,
+        price: 2000,
         inCart: false,
         content: {
           description: {
@@ -221,7 +221,7 @@ export class DataProvider extends Component {
         brand: "Healthy Mix",
         heading: "Hibiscus Mix",
         weight: "400g",
-        price: 1700,
+        price: 2000,
         inCart: false,
         content: {
           description: {
@@ -247,7 +247,7 @@ export class DataProvider extends Component {
         brand: "Pastry Mix",
         heading: "Original Nuts 'n' Seeds Pastry Mix",
         weight: "460g",
-        price: 1700,
+        price: 2000,
         inCart: false,
         content: {
           description: {
@@ -272,7 +272,7 @@ export class DataProvider extends Component {
         brand: "Pastry Mix",
         heading: "Spiced Nuts 'n' Seeds Pastry Mix",
         weight: "460g",
-        price: 1700,
+        price: 2000,
         inCart: false,
         content: {
           description: {
