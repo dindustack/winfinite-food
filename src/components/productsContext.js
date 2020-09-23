@@ -98,14 +98,12 @@ export class DataProvider extends Component {
               "This Chocolate Nuts 'n Seeds butter is one of our favourite, made with the perfect blend of smooth nuts n Seeds and premium cocoa powder creating the best combo spread. Thoroughly knead (oils will separate), tire, squeeze and eat",
             use:
               "Nuts 'n Seeds Butter Sachet (For all three flavours)- At the gym, hiking, biking, running, at the office or just out and about and can't carry your jar with you everywhere you go. Or can't (seem to) make up your mind about which of our Nut 'n Seeds butter you prefer? Our Nuts 'n' Seeds butter squeeze packs are exactly the same recipe portioned in 30g sachets so you can get a burst of natural energy on-the-go ",
-            storage:
-              "Store in a cool dry place.",
+            storage: "Store in a cool dry place.",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Cocoa Powder, Dates, Sea Salt",
             source:
               "Vegan friendly, no sugar added, kosher, plant-based protein, high in fibre. Keto, natural ingredients, gluten free, non gmo, dairy free",
-            
           },
         },
         count: 1,
@@ -126,8 +124,7 @@ export class DataProvider extends Component {
               "Not your average nut butter! Our lightly roasted smooth nuts 'n seeds butter, made from Nigeria's finest nuts and seeds, blended in small batches to create that extra fluidity deliciousness.",
             use:
               "Stir me up, I'm natural. Spread me on toast for a healthy breakfast; add to smoothies for a protein punch; on your favourite pancakes or dessert; spread on crackers and veggies, or enjoy by the spoonful! ",
-            storage:
-              " Store in a cool dry place.",
+            storage: " Store in a cool dry place.",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Dates, Sea Salt",
@@ -151,8 +148,7 @@ export class DataProvider extends Component {
               "Our Tigerboost nuts 'n seeds butter is formulated as the perfect smoothie butter, made with the classic blend of smooth nuts and seeds, boosted with Tigernut to make you look and feel your best. Mother earth best kept secret is just a spoonful away!",
             use:
               "It's a great addition to your morning smoothie, it can be eaten with almost anything; a delicious addition to pancakes and waffles. ",
-            storage:
-              " Store in a cool dry place.",
+            storage: " Store in a cool dry place.",
           },
           ingredients: {
             condiments: "Sesame seed, Cashew, Coconut, Tigernut, Dates, Sea Salt",
@@ -186,32 +182,6 @@ export class DataProvider extends Component {
         },
         count: 1,
       },
-       // Golden Hibiscus Mix - 30g
-       {
-        _id: "golden-hibiscus-mix-30g",
-        title: "Golden Hibiscus Mix squeeze",
-        src: require("../assets/img/Golden_Hibiscus_Mix_30g.png"),
-        brand: "Healthy Mix",
-        heading: "Golden Hibiscus Mix squeeze",
-        weight: "30g",
-        price: 10500,
-        inCart: false,
-        content: {
-          description: {
-            make:
-              "Everything you know and love about our Golden Hibiscus mix, exactly the same recipe portioned in 30g sachets so you can ignite your wellness journey on-the-go. Formulated using a combination of over 8 plant-based ingredients that support gut and help support the appearance of healthy skin, and stronger hair and nails.",
-            use:
-              "It's best to add 2 teaspoons into filtered water, coconut water, lemon water, plant-based milk, natural juice or blitz into a smoothie each morning or during the day.",
-            storage:
-              " Store in a cool dry place.",
-          },
-          ingredients: {
-            condiments:
-              "Hibiscus flower, Turmeric, Moringa, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
-          },
-        },
-        count: 1,
-      },
 
       // Hibiscus Mix-400g
       {
@@ -234,7 +204,55 @@ export class DataProvider extends Component {
           },
           ingredients: {
             condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
-          
+          },
+        },
+        count: 1,
+      },
+      // Golden Hibiscus Mix - 30g
+      {
+        _id: "golden-hibiscus-mix-30g",
+        title: "Golden Hibiscus Mix sachet",
+        src: require("../assets/img/Golden_Hibiscus_Mix_30g.png"),
+        brand: "Healthy Mix",
+        heading: "Golden Hibiscus Mix sachet",
+        weight: "30g",
+        price: 10500,
+        inCart: false,
+        content: {
+          description: {
+            make:
+              "Everything you know and love about our Hibiscus mix, exactly the same recipe portioned in 30g sachets so you can ignite your wellness journey on-the-go. Formulated using a combination of over 8 plant-based ingredients that support gut and help support the appearance of healthy skin, and stronger hair and nails.",
+            use:
+              "It's best to add 2 teaspoons into filtered water, coconut water, lemon water, plant-based milk, natural juice or blitz into a smoothie each morning or during the day.",
+            storage: " Store in a cool dry place.",
+          },
+          ingredients: {
+            condiments:
+              "Hibiscus flower, Turmeric, Moringa, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
+          },
+        },
+        count: 1,
+      },
+      // Hibiscus Mix - 30g
+      {
+        _id: "hibiscus-mix-30g",
+        title: "Hibiscus Mix sachet",
+        src: require("../assets/img/Hibiscus_Mix_30g.png"),
+        brand: "Healthy Mix",
+        heading: "Hibiscus Mix sachet",
+        weight: "30g",
+        price: 10500,
+        inCart: false,
+        content: {
+          description: {
+            make:
+              "Everything you know and love about our Golden Hibiscus mix, exactly the same recipe portioned in 30g sachets so you can ignite your wellness journey on-the-go. Formulated using a combination of over 8 plant-based ingredients that support gut and help support the appearance of healthy skin, and stronger hair and nails.",
+            use:
+              "It's best to add 2 teaspoons into filtered water, coconut water, lemon water, plant-based milk, natural juice or blitz into a smoothie each morning or during the day.",
+            storage: " Store in a cool dry place.",
+          },
+          ingredients: {
+            condiments: "Hibiscus flower, Ginger, Clove, Cinnamon, Nutmeg, Chilli, Black Pepper",
           },
         },
         count: 1,
@@ -254,8 +272,8 @@ export class DataProvider extends Component {
             make:
               "You guys went Nuts n Seeds - Crazy with our Nuts n Seeds butter, so we thought, why not bring you the real deal! Our very own Nuts n Seeds Pastry mix made with 60% TIGERBOOST - Nuts 'n Seeds Butter. Just like all our other products this is vegan, gluten-free and paleo friendly.",
             use:
-              "Need a quick, easy and delicious breakfast option? \n  This easily customisable pastry mix is a step up from the competition. It's our best-seller for a reason, after all \n-It's perfect breakfast option to give you the energy to get through the day. Made with superfoods like tigernut, cashew and sesame seed for nutrient value. The fibre in Tigernut has been shown to lower cholesterol. Consuming at least 3g of tigernut daily can significantly lower cholesterol levels. Also contains loads of Omega-3. It can be made into Pancakes, Muffins or Waffles.",
-            storage:
+              "Need a quick, easy and delicious breakfast option? This easily customisable pastry mix is a step up from the competition. It's our best-seller for a reason, after all. - It's perfect breakfast option to give you the energy to get through the day. - Made with superfoods like tigernut, cashew and sesame seed for nutrient value. - The fibre in Tigernut has been shown to lower cholesterol. - Also contains loads of Omega-3. - It can be made into Pancakes, Muffins or Waffles.",
+              storage:
               "Refrigeration not required. Store in a cool dry place. Once opened, fold inner bag and use up within two months (easy!)",
           },
           ingredients: {
@@ -279,12 +297,13 @@ export class DataProvider extends Component {
             make:
               "Everything you know and love about our pastry mix, with a spice twist. Made with superfoods and spices; the charming spice tinges will tickle your taste buds.",
             use:
-            "Need a quick, easy and delicious breakfast option? This easily customisable pastry mix is a step up from the competition. It's our best-seller for a reason, after all:- It's perfect breakfast option to give you the energy to get through the day. Made with superfoods like tigernut, cashew and sesame seed for nutrient value. The fibre in Tigernut has been shown to lower cholesterol. Consuming at least 3g of tigernut daily can significantly lower cholesterol levels. Also contains loads of Omega-3. It can be made into Pancakes, Muffins or Waffles.",
+              "Need a quick, easy and delicious breakfast option? This easily customisable pastry mix is a step up from the competition. It's our best-seller for a reason, after all:- It's perfect breakfast option to give you the energy to get through the day. - Made with superfoods like tigernut, cashew and sesame seed for nutrient value. - The fibre in Tigernut has been shown to lower cholesterol. - Consuming at least 3g of tigernut daily can significantly lower cholesterol levels. - Also contains loads of Omega-3. - It can be made into Pancakes, Muffins or Waffles.",
             storage:
               "Refrigeration not required. Store in a cool dry place. Once opened, fold inner bag and use up within two months (easy!)",
           },
           ingredients: {
-            condiments: "Tigernut, Cashew, Sesame seed, Ginger, Clove, Cinnamon, Nutmeg, Black Pepper",
+            condiments:
+              "Tigernut, Cashew, Sesame seed, Ginger, Clove, Cinnamon, Nutmeg, Black Pepper",
           },
         },
         count: 1,

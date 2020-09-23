@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import card from "../assets/brand/cards.svg";
@@ -8,10 +8,10 @@ import Form from "react-bootstrap/Form";
 import Toast from "react-bootstrap/Toast";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import logo from "../assets/img/winfinite-logo.png";
 import axios from "axios";
 
 const CheckOutpage = () => {
-
   const dataC = useContext(DataContext);
 
   const [profile, setProfile] = useState({
@@ -26,7 +26,7 @@ const CheckOutpage = () => {
     isLoaded: false,
     paymentComplete: false,
     show: false,
-    loading: false
+    loading: false,
   });
 
   useEffect(() => {
@@ -36,14 +36,13 @@ const CheckOutpage = () => {
     script.defer = true;
     document.body.appendChild(script);
     script.onload = () => {
-      setLoadingStates({ ...loadingStates, isLoaded: true })
+      setLoadingStates({ ...loadingStates, isLoaded: true });
     };
     script.onerror = () => {
-      setLoadingStates({ ...loadingStates, isLoaded: false })
+      setLoadingStates({ ...loadingStates, isLoaded: false });
     };
     window.scrollTo(0, 0);
-
-  }, [])
+  }, []);
 
   const handleReset = () => {
     setProfile({
@@ -53,9 +52,7 @@ const CheckOutpage = () => {
       phone: "",
       address: "",
     });
-  }
-
-
+  };
 
   const payNow = (email, amount) => {
     let formData = new FormData();
@@ -81,20 +78,20 @@ const CheckOutpage = () => {
         ],
       },
       callback: function (response) {
-        setLoadingStates({ ...loadingStates, loading: true, show: true })
+        setLoadingStates({ ...loadingStates, loading: true, show: true });
 
         //  * Unfortunately ATM, the server is having CORS issues but the emails do get sent.
         //  */
-        axios.post("/sendemail.php", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        axios
+          .post("/sendemail.php", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
           .then((data) => {
-            setLoadingStates({ ...loadingStates, loading: false, paymentComplete: true })
+            setLoadingStates({ ...loadingStates, loading: false, paymentComplete: true });
             // Available responses: data => data.data.success| data.data.error
             console.log(data);
-            // this.setState({ paymentComplete: true })
             return;
           })
           .catch((err) => {
@@ -104,13 +101,10 @@ const CheckOutpage = () => {
     };
     const handler = window.PaystackPop.setup(options);
     handler.openIframe();
-  }
-
-
+  };
 
   const handleClose = () => setLoadingStates({ ...loadingStates, show: false });
-  const handleShow = () => setLoadingStates({ ...loadingStates, show: true })
-
+  const handleShow = () => setLoadingStates({ ...loadingStates, show: true });
 
   const { cart, subtotal, clearCart } = dataC;
   const { firstname, lastname, email, phone, address } = profile;
@@ -130,12 +124,12 @@ const CheckOutpage = () => {
                 <li className="breadcrumb-item">
                   <Link to="/" className="text-muted text-decoration-none">
                     Home
-                    </Link>
+                  </Link>
                 </li>
                 <li className="breadcrumb-item">
                   <Link to="/cart" className="text-muted text-decoration-none">
                     Shopping Cart
-                    </Link>
+                  </Link>
                 </li>
                 <li className="breadcrumb-item active">Checkout</li>
               </ol>
@@ -154,11 +148,9 @@ const CheckOutpage = () => {
             </div>
           </div>
 
-          {!loadingStates.paymentComplete &&
-
+          {!loadingStates.paymentComplete && (
             <div className="row">
               <div className="col-12 col-md-7">
-
                 <Form id="checkout-form">
                   {/* -- Heading -- */}
                   <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
@@ -307,62 +299,126 @@ const CheckOutpage = () => {
 
                 {/* -- Button -- */}
                 {firstname === "" ||
-                  lastname === "" ||
-                  email === "" ||
-                  phone === "" ||
-                  address === "" ? (
-                    <button className="btn btn-block btn-dark mb-5" disabled>
-                      Please fill out the form
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-block btn-dark mb-5"
-                      onClick={() => {
-                        if (loadingStates.isLoaded) {
-                          payNow(email, subtotal);
-                        } else {
-                          return (
-                            <Toast>
-                              <Toast.Body>
-                                Unable to pay now. Make sure you're connected to the internet and
-                                don't have ADBlock turned on for this website.
+                lastname === "" ||
+                email === "" ||
+                phone === "" ||
+                address === "" ? (
+                  <button className="btn btn-block btn-dark mb-5" disabled>
+                    Please fill out the form
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-block btn-dark mb-5"
+                    onClick={() => {
+                      if (loadingStates.isLoaded) {
+                        payNow(email, subtotal);
+                      } else {
+                        return (
+                          <Toast>
+                            <Toast.Body>
+                              Unable to pay now. Make sure you're connected to the internet and
+                              don't have ADBlock turned on for this website.
                             </Toast.Body>
-                            </Toast>
-                          );
-                        }
-                        clearCart();
-                        handleReset()
-                      }}>
-                      Place Order
-                    </button>
-                  )}
+                          </Toast>
+                        );
+                      }
+                    }}>
+                    Place Order
+                  </button>
+                )}
               </div>
             </div>
-          }
+          )}
 
-          {loadingStates.paymentComplete &&
-            <p>Payment Complete</p>
-          }
+          {loadingStates.paymentComplete && <p>Payment Complete</p>}
         </div>
       </section>
 
-      <Modal show={loadingStates.show} onHide={handleClose} className="modal fade" dialogClassName="vh-100 my-0 mr-0">
+      <Modal
+        show={loadingStates.show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        className="modal fade"
+        dialogClassName="vh-100 my-0 mr-0">
         <Modal.Body>
-          <div className="text-center py-5">
-            {loadingStates.loading ? "Completing payment..." : "Order complete"}
+          <div className="text-center py-2 mb-3 ml-2">
+            {loadingStates.loading ? (
+              <div className="container">
+                <div className="mb-3">
+                  <Link to="/" className="navbar-brand text-dark">
+                    <img
+                      src={logo}
+                      alt="winfinite-logo"
+                      width="50"
+                      height="50"
+                      className="img-fluid"
+                    />
+                  </Link>
+                </div>
+                <div className="text-center">
+                  <h4 className="font-weight-bolder">Receipt</h4>
+                </div>
+                <div className="row">
+                  <div className="col-12">
+                    <div className="table-responsive">
+                      <table className="table mt-4">
+                        <thead>
+                          <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price (&#8358;)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {cart.map((product) => (
+                            <tr key={product._id}>
+                              <td>{product.title}</td>
+                              <td>{product.count}</td>
+                              <td>{product.price}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              "Order complete"
+            )}
           </div>
-
         </Modal.Body>
-        <Modal.Footer className="border-0">
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
 
+        <Modal.Footer className="d-inline-flex justify-content-between modal-footer border-0">
+          <div>
+            <span className="font-weight-bold">Total:</span>{" "}
+            <span className="ml-auto font-weight-bold">&#8358;{subtotal}</span>
+          </div>
+          <div className="justify-content-center">
+            <Link to="/" className="text-decoration-none">
+              <button
+                type="submit"
+                className="btn btn-block btn-success mb-2"
+                onClick={() => {
+                  clearCart();
+                  handleReset();
+                }}>
+                <svg viewBox="0 0 20 20" fill="#ffffff" width="16px" className="mr-2">
+                  <path
+                    fillRule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Continue Shopping{" "}
+              </button>
+            </Link>
+          </div>
         </Modal.Footer>
       </Modal>
     </React.Fragment>
+  );
+};
 
-  )
-}
-
-export default CheckOutpage
+export default CheckOutpage;

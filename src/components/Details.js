@@ -160,7 +160,7 @@ export class Details extends Component {
 
                                             <hr />
                                             <p className="text-muted">
-                                            {item.content.description.storage}
+                                              {item.content.description.storage}
                                             </p>
                                           </div>
                                         </div>
@@ -191,7 +191,7 @@ export class Details extends Component {
 
                                             <hr />
                                             <p className="text-muted">
-                                            {item.content.ingredients.reuse}
+                                              {item.content.ingredients.reuse}
                                             </p>
                                           </div>
                                         </div>

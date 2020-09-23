@@ -77,7 +77,7 @@ const CartModal = (props) => {
         <Modal.Footer className="d-inline-flex justify-content-between modal-footer">
           <div>
             <span className="font-weight-bold">Subtotal:</span>{" "}
-            <span className="ml-auto small">&#8358;{subtotal}</span>
+            <span className="ml-auto font-weight-bold">&#8358;{subtotal}</span>
           </div>
           <div className="justify-content-center">
             <Link to="/cart" className="text-decoration-none">

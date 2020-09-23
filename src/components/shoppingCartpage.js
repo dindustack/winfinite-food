@@ -133,9 +133,6 @@ export class ShoppingCartPage extends Component {
                       </li>
                     ))}
                   </ul>
-                  {/* <button className="btn btn-dark" onClick={() => clearCart()}>
-                    Remove Cart
-                  </button> */}
                 </div>
 
                 <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
