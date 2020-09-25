@@ -22,7 +22,7 @@ export class RecipePage extends Component {
           <title>Recipes &mdash; Shop at Winfinite Foods</title>
         </Helmet>
         {/* ----------- Bread Crumb ------- */}
-        <nav aria-label="breadcrumb" className="pt-5 mt-2 mt-md-5 mt-5 bg-white">
+        <nav aria-label="breadcrumb" className="pt-5 mt-5 bg-white">
           <div className="container">
             <div className="row">
               <div className="col-12">

@@ -30,7 +30,7 @@ const CartModal = (props) => {
                       <div className="col-4">
                         {/* -- Product Image -- */}
                         <Link to="/:id">
-                          <img src={product.src} alt={product.title} className="img-fluid"/>
+                          <img src={product.src} alt={product.title} className="img-fluid" />
                         </Link>
                       </div>
                       <div className="col">

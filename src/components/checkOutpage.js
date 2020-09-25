@@ -6,13 +6,12 @@ import paystack from "../assets/brand/paystack.svg";
 import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
 import Toast from "react-bootstrap/Toast";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import logo from "../assets/img/winfinite-logo.png";
 import axios from "axios";
+//
 
 const CheckOutpage = () => {
   const dataC = useContext(DataContext);
+  const { cart, subtotal, clearCart } = dataC;
 
   const [profile, setProfile] = useState({
     firstname: "",
@@ -56,11 +55,20 @@ const CheckOutpage = () => {
 
   const payNow = (email, amount) => {
     let formData = new FormData();
+
+    cart.forEach((data, index) => {
+      productNames += `${data.title}(${data.count})${index !== cart.length - 1 ? "," : ""}`;
+      quantity += data.count;
+    });
+
     formData.append("firstname", profile.firstname);
     formData.append("lastname", profile.lastname);
     formData.append("email", profile.email);
     formData.append("phone", profile.phone);
     formData.append("address", profile.address);
+    formData.append("product_name", productNames);
+    formData.append("quantity", quantity);
+    formData.append("total_amount", profile.amount);
 
     let options = {
       key: "pk_test_2ef9377963e79603b90ca45d7565d50f51d7fb47",
@@ -80,8 +88,6 @@ const CheckOutpage = () => {
       callback: function (response) {
         setLoadingStates({ ...loadingStates, loading: true, show: true });
 
-        //  * Unfortunately ATM, the server is having CORS issues but the emails do get sent.
-        //  */
         axios
           .post("/sendemail.php", formData, {
             headers: {
@@ -89,12 +95,12 @@ const CheckOutpage = () => {
             },
           })
           .then((data) => {
-            setLoadingStates({ ...loadingStates, loading: false, paymentComplete: true });
-            // Available responses: data => data.data.success| data.data.error
-            console.log(data);
+            setLoadingStates({ ...loadingStates, loading: false, show: true });
+
             return;
           })
           .catch((err) => {
+            setLoadingStates({ ...loadingStates, loading: false, show: true });
             return;
           });
       },
@@ -103,11 +109,10 @@ const CheckOutpage = () => {
     handler.openIframe();
   };
 
-  const handleClose = () => setLoadingStates({ ...loadingStates, show: false });
-  const handleShow = () => setLoadingStates({ ...loadingStates, show: true });
-
-  const { cart, subtotal, clearCart } = dataC;
   const { firstname, lastname, email, phone, address } = profile;
+
+  let productNames = "";
+  let quantity = 0;
 
   return (
     <React.Fragment>
@@ -115,7 +120,7 @@ const CheckOutpage = () => {
         <title>Checkout &mdash; Shop at Winfinite Foods</title>
       </Helmet>
       {/* ----------- Bread Crumb ------- */}
-      <nav aria-label="breadcrumb" className="pt-5 mt-md-5 bg-white">
+      <nav aria-label="breadcrumb" className="pt-5 mt-5 bg-white">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -139,21 +144,21 @@ const CheckOutpage = () => {
       </nav>
 
       {/* --- Checkout content */}
-      <section className="pt-5 pb-5 pb-md-0">
+      <section className="pb-5 pb-md-0">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center">
               {/* ---- Heading ---- */}
-              <h3 className=" font-weight-bold display-4 heading mb-4 mb-md-0">Checkout</h3>
+              <h3 className=" font-weight-bold display-4 heading mb-4 mb-md-0 mt-3 mt-md-0">Checkout</h3>
             </div>
           </div>
 
-          {!loadingStates.paymentComplete && (
+          {!loadingStates.show && !loadingStates.loading && (
             <div className="row">
               <div className="col-12 col-md-7">
                 <Form id="checkout-form">
                   {/* -- Heading -- */}
-                  <h4 className="mb-5 font-weight-bold heading">Payment Details</h4>
+                  <h4 className="mb-md-5 mb-3 font-weight-bold heading">Payment Details</h4>
 
                   {/* ---- Payment Details  */}
                   <div className="row mb-5">
@@ -322,6 +327,8 @@ const CheckOutpage = () => {
                           </Toast>
                         );
                       }
+
+                      handleReset();
                     }}>
                     Place Order
                   </button>
@@ -330,93 +337,82 @@ const CheckOutpage = () => {
             </div>
           )}
 
-          {loadingStates.paymentComplete && <p>Payment Complete</p>}
-        </div>
-      </section>
-
-      <Modal
-        show={loadingStates.show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-        className="modal fade"
-        dialogClassName="vh-100 my-0 mr-0">
-        <Modal.Body>
-          <div className="text-center py-2 mb-3 ml-2">
-            {loadingStates.loading ? (
-              <div className="container">
-                <div className="mb-3">
-                  <Link to="/" className="navbar-brand text-dark">
-                    <img
-                      src={logo}
-                      alt="winfinite-logo"
-                      width="50"
-                      height="50"
-                      className="img-fluid"
-                    />
-                  </Link>
-                </div>
-                <div className="text-center">
-                  <h4 className="font-weight-bolder">Receipt</h4>
-                </div>
-                <div className="row">
-                  <div className="col-12">
-                    <div className="table-responsive">
-                      <table className="table mt-4">
-                        <thead>
-                          <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price (&#8358;)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {cart.map((product) => (
-                            <tr key={product._id}>
-                              <td>{product.title}</td>
-                              <td>{product.count}</td>
-                              <td>{product.price}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
+          {loadingStates.show && (
+            <div className="row justify-content-center">
+              <div className="col-12">
+                <div className="">
+                  {loadingStates.loading ? (
+                    <div className="p-5">
+                    <p className="lead mb-5 p-5 text-center">Compeleting payment...</p>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="row justify-content-center">
+                      <div className="col-12 col-md-6">
+                        <div className="mt-3">
+                          <h4 className="heading font-weight-bold">Order Confirmation</h4>
+                          <p>Thank you for placing your superfood order with us. Your transaction details below:</p>
+                        </div>
+                        <div className="table-responsive-md  mb-5">
+                          <table className="table mt-md-3">
+                            <thead>
+                              <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {cart.map((product) => (
+                                <tr key={product._id}>
+                                  <td>{product.title}</td>
+                                  <td>{product.count}</td>
+                                  <td>&#8358;{product.price}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div className="col-12 pb-5">
+                          <div className="d-flex justify-content-between modal-footer border-0">
+                            <div>
+                              <span className="font-weight-bold">Total:</span>{" "}
+                              <span className="ml-auto font-weight-bold">&#8358;{subtotal}</span>
+                            </div>
+                            <div className="justify-content-center">
+                              <Link to="/" className="text-decoration-none">
+                                <button
+                                  type="submit"
+                                  className="btn btn-block btn-success"
+                                  onClick={() => {
+                                    clearCart();
+                                  }}>
+                                  <svg
+                                    viewBox="0 0 20 20"
+                                    fill="#ffffff"
+                                    width="16px"
+                                    className="mr-2">
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                  Continue Shopping{" "}
+                                </button>
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            ) : (
-              "Order complete"
-            )}
-          </div>
-        </Modal.Body>
-
-        <Modal.Footer className="d-inline-flex justify-content-between modal-footer border-0">
-          <div>
-            <span className="font-weight-bold">Total:</span>{" "}
-            <span className="ml-auto font-weight-bold">&#8358;{subtotal}</span>
-          </div>
-          <div className="justify-content-center">
-            <Link to="/" className="text-decoration-none">
-              <button
-                type="submit"
-                className="btn btn-block btn-success mb-2"
-                onClick={() => {
-                  clearCart();
-                  handleReset();
-                }}>
-                <svg viewBox="0 0 20 20" fill="#ffffff" width="16px" className="mr-2">
-                  <path
-                    fillRule="evenodd"
-                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Continue Shopping{" "}
-              </button>
-            </Link>
-          </div>
-        </Modal.Footer>
-      </Modal>
+            </div>
+          )}
+        </div>
+      </section>
     </React.Fragment>
   );
 };

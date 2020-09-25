@@ -26,7 +26,7 @@ export class ShoppingCartPage extends Component {
             <title>Shopping Cart &mdash; Shop at Winfinite Foods</title>
           </Helmet>
           {/* ----------- Bread Crumb ------- */}
-          <nav aria-label="breadcrumb" className="pt-5 mt-md-5 bg-white">
+          <nav aria-label="breadcrumb" className="pt-5 mt-2 mt-md-5 mt-5 bg-white">
             <div className="container">
               <div className="row">
                 <div className="col-12">
@@ -45,12 +45,12 @@ export class ShoppingCartPage extends Component {
           </nav>
 
           {/* ----- Shipping Cart Content ------ */}
-          <section className="pt-5 pb-5">
+          <section className="pb-5">
             <div className="container">
               <div className="row">
                 <div className="col-12">
                   {/* -- Heading -- */}
-                  <h3 className="mb-5 text-center display-4 heading">Shopping Cart</h3>
+                  <h3 className="mb-md-5 mb-3 text-center display-4 heading">Shopping Cart</h3>
                 </div>
               </div>
 
