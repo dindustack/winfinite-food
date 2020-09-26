@@ -50,7 +50,7 @@ export class ShoppingCartPage extends Component {
               <div className="row">
                 <div className="col-12">
                   {/* -- Heading -- */}
-                  <h3 className="mb-md-5 mb-3 text-center display-4 heading">Shopping Cart</h3>
+                  <h3 className="mb-md-5 mb-3 text-center display-4 heading mb-md-0 mt-3 mt-md-0">Shopping Cart</h3>
                 </div>
               </div>
 

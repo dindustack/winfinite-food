@@ -7,7 +7,6 @@ import { DataContext } from "./productsContext";
 import Form from "react-bootstrap/Form";
 import Toast from "react-bootstrap/Toast";
 import axios from "axios";
-//
 
 const CheckOutpage = () => {
   const dataC = useContext(DataContext);
@@ -96,7 +95,6 @@ const CheckOutpage = () => {
           })
           .then((data) => {
             setLoadingStates({ ...loadingStates, loading: false, show: true });
-
             return;
           })
           .catch((err) => {
@@ -149,7 +147,9 @@ const CheckOutpage = () => {
           <div className="row">
             <div className="col-12 text-center">
               {/* ---- Heading ---- */}
-              <h3 className=" font-weight-bold display-4 heading mb-4 mb-md-0 mt-3 mt-md-0">Checkout</h3>
+              <h3 className=" font-weight-bold display-4 heading mb-4 mb-md-0 mt-3 mt-md-0">
+                Checkout
+              </h3>
             </div>
           </div>
 
@@ -327,7 +327,6 @@ const CheckOutpage = () => {
                           </Toast>
                         );
                       }
-
                       handleReset();
                     }}>
                     Place Order
@@ -337,80 +336,85 @@ const CheckOutpage = () => {
             </div>
           )}
 
-          {loadingStates.show && (
-            <div className="row justify-content-center">
-              <div className="col-12">
-                <div className="">
-                  {loadingStates.loading ? (
-                    <div className="p-5">
-                    <p className="lead mb-5 p-5 text-center">Compeleting payment...</p>
-                    </div>
-                  ) : (
-                    <div className="row justify-content-center">
-                      <div className="col-12 col-md-6">
-                        <div className="mt-3">
-                          <h4 className="heading font-weight-bold">Order Confirmation</h4>
-                          <p>Thank you for placing your superfood order with us. Your transaction details below:</p>
-                        </div>
-                        <div className="table-responsive-md  mb-5">
-                          <table className="table mt-md-3">
-                            <thead>
-                              <tr>
-                                <th>Item</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {cart.map((product) => (
-                                <tr key={product._id}>
-                                  <td>{product.title}</td>
-                                  <td>{product.count}</td>
-                                  <td>&#8358;{product.price}</td>
+          {loadingStates.show &&
+            (window.scrollTo(0, 0),
+            (
+              <div className="row justify-content-center">
+                <div className="col-12">
+                  <div className="">
+                    {loadingStates.loading ? (
+                      <div className="p-5">
+                        <p className="lead mb-5 p-5 text-center">Compeleting payment...</p>
+                      </div>
+                    ) : (
+                      <div className="row justify-content-center">
+                        <div className="col-12 col-md-6">
+                          <div className="mt-3">
+                            <h4 className="heading font-weight-bold">Order Confirmation</h4>
+                            <p>
+                              Thank you for placing your superfood order with us. Your transaction
+                              details below:
+                            </p>
+                          </div>
+                          <div className="table-responsive-md  mb-5">
+                            <table className="table mt-md-3">
+                              <thead>
+                                <tr>
+                                  <th>Item</th>
+                                  <th>Quantity</th>
+                                  <th>Price</th>
                                 </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
+                              </thead>
+                              <tbody>
+                                {cart.map((product) => (
+                                  <tr key={product._id}>
+                                    <td>{product.title}</td>
+                                    <td>{product.count}</td>
+                                    <td>&#8358;{product.price}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
 
-                        <div className="col-12 pb-5">
-                          <div className="d-flex justify-content-between modal-footer border-0">
-                            <div>
-                              <span className="font-weight-bold">Total:</span>{" "}
-                              <span className="ml-auto font-weight-bold">&#8358;{subtotal}</span>
-                            </div>
-                            <div className="justify-content-center">
-                              <Link to="/" className="text-decoration-none">
-                                <button
-                                  type="submit"
-                                  className="btn btn-block btn-success"
-                                  onClick={() => {
-                                    clearCart();
-                                  }}>
-                                  <svg
-                                    viewBox="0 0 20 20"
-                                    fill="#ffffff"
-                                    width="16px"
-                                    className="mr-2">
-                                    <path
-                                      fillRule="evenodd"
-                                      d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                      clipRule="evenodd"
-                                    />
-                                  </svg>
-                                  Continue Shopping{" "}
-                                </button>
-                              </Link>
+                          <div className="pb-5">
+                            <div className="d-flex justify-content-between border-0">
+                              <span className=" h5 font-weight-bolder">Total:</span>{" "}
+                              <span className="h5 mr-auto font-weight-bolder">
+                                &#8358;{subtotal}
+                              </span>
+                              <div>
+                                <Link to="/" className="text-decoration-none">
+                                  <button
+                                    type="submit"
+                                    className="btn btn-sm btn-orange text-white font-weight-bold"
+                                    onClick={() => {
+                                      clearCart();
+                                    }}>
+                                    <svg
+                                      viewBox="0 0 20 20"
+                                      fill="#ffffff"
+                                      width="16px"
+                                      className="mr-2">
+                                      <path
+                                        fillRule="evenodd"
+                                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                        clipRule="evenodd"
+                                      />
+                                    </svg>
+                                    Continue Shopping{" "}
+                                  </button>
+                                </Link>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            ))}
         </div>
       </section>
     </React.Fragment>
